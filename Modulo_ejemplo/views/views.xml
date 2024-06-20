@@ -1,0 +1,91 @@
+<odoo>
+    <!--
+        - - - - - - - - - - - - PRODUCTOS - - - - - - - - - - - -
+    -->
+    <!-- Vista principal de arbol -->
+    <record id="view_tree_producto" model="ir.ui.view">
+        <field name="name">modelo.producto.tree</field>
+        <field name="model">modelo.producto</field>
+        <field name="arch" type="xml">
+            <tree string="Lista de Productos">
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="price"/>
+                <field name="stock"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de formulario de producto-->
+    <record id="view_form_producto" model="ir.ui.view">
+        <field name="name">modelo.producto.form</field>
+        <field name="model">modelo.producto</field>
+        <field name="arch" type="xml">
+            <form string="Formulario de Producto">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="category_id"/>
+                        <field name="price"/>
+                        <field name="stock"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Accion para ir a Vista Principal (La de arbol) -->
+    <record id="onActionMenuPrincipal" model="ir.actions.act_window">
+        <field name="name">Xavier Productos</field>
+        <field name="res_model">modelo.producto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_tree_producto"/>
+    </record>
+
+    <!-- Menú principal en el home menu -->
+    <menuitem id="menu_home" name="Xavier Productos" parent="" sequence="1" action="onActionMenuPrincipal"/>
+    <!-- Menu secundario para la lista de productos -->
+    <menuitem id="menu_lista_producto" name="Lista de Productos" parent="menu_home" action="onActionMenuPrincipal" sequ>
+    <!--
+        - - - - - - - - - - - - CATEGORIAS - - - - - - - - - - - -
+    -->
+    <!-- Vista principal de árbol para las categorías -->
+    <record id="view_tree_categoria_producto" model="ir.ui.view">
+        <field name="name">modelo.producto.categoria.tree</field>
+        <field name="model">modelo.producto.categoria</field>
+        <field name="arch" type="xml">
+            <tree string="Lista de Categorías">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+      
+    <!-- Vista de formulario para las categorías -->
+    <record id="view_form_categoria_producto" model="ir.ui.view">
+        <field name="name">modelo.producto.categoria.form</field>
+        <field name="model">modelo.producto.categoria</field>
+        <field name="arch" type="xml">
+            <form string="Formulario de Categoría">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="producto_ids" readonly="1" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para ir a Vista Principal de Categorías -->
+    <record id="onActionMenuCategorias" model="ir.actions.act_window">
+        <field name="name">Categorías de Producto</field>
+        <field name="res_model">modelo.producto.categoria</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_tree_categoria_producto"/>
+    </record>
+
+    <!-- Menú de Gestión -->
+    <menuitem id="menu_gestion" name="Gestión" parent="menu_home" sequence="2"/>
+    <!-- Menu Lista de categorías -->
+    <menuitem id="menu_lista_categoria_producto" name="Categorías de Producto" parent="menu_gestion" action="onActionMenuCategorias" sequence="3"/>
+</odoo>
