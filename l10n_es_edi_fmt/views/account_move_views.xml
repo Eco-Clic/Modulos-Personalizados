@@ -13,7 +13,9 @@
             </header>
 
             <xpath expr="//notebook" position="inside">
-
+                <page string="Invoice Digital Fmt">
+                    <field name="electronic_invoice_xml"/>
+                </page>
             </xpath>
         </field>
     </record>

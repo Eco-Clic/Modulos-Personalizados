@@ -14,7 +14,4 @@ class AccountMove(models.Model):
             "res_model": "electronic.invoice.wizard",
             "view_mode": "form",
             "target": "new",
-            "context": {
-                "default_code_account_office": self.default_code_account_office
-            },
         }

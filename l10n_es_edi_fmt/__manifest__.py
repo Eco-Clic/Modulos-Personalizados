@@ -6,7 +6,7 @@
     "summary": "Módulo para generar Factura-electronica",
     "depends": ["base", "account"],
     "data": [
-        # "security/ir.model.access.csv",
+        "security/ir.model.access.csv",
         "views/account_move_views.xml",
         "wizard/electronic_invoice_views.xml",
     ],
