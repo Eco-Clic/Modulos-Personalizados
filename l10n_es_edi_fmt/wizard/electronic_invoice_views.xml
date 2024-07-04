@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_electronic_invoice_wizard" model="ir.ui.view">
+        <field name="name">Electronic Invoice</field>
+        <field name="model">electronic.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generar Factura-Electronica">
+                <group>
+                    <field name="initial_date"/>
+                    <field name="end_date"/>
+                    <field name="legal_references"/>
+                    <field name="include_invoices_ref"/>
+                    <field name="res_state_id"/>
+                </group>
+                <group string="Datos de Organismo Público">
+                    <field name="code_account_office"/>
+                    <field name="code_manager_company"/>
+                    <field name="code_processing_unit"/>
+                    <field name="code_proposing_unit"/>
+                    <field name="assignment_code"/>
+                </group>
+                <footer>
+                    <button string="Generar Factura-e" type="object" name="generate_electronic_invoice" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_electronic_invoice_wizard" model="ir.actions.act_window">
+        <field name="name">Generar Factura-e</field>
+        <field name="res_model">electronic.invoice.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_electronic_invoice_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
