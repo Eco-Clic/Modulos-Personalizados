@@ -25,6 +25,7 @@ class ElectronicInvoice(models.TransientModel):
         required=False,
     )
 
+    # http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml
     def generate_electronic_invoice(self):
         invoice_data = self.env['account.move'].browse(self.env.context.get('active_id'))
 
