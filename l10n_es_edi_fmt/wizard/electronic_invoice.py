@@ -242,7 +242,14 @@ class ElectronicInvoice(models.TransientModel):
             root, pretty_print=True, xml_declaration=True, encoding="UTF-8"
         )
 
-        # Codificar el XML en base64 si es necesario
-        # xml_base64 = base64.b64encode(xml_string).decode("utf-8")
+        # Codificar el XML en base64
+        xml_base64 = base64.b64encode(xml_string)
 
-        invoice_data.write({"electronic_invoice_xml": xml_string})
+        # Guardar el XML en el campo binary de la factura
+        invoice_data.write(
+            {
+                "edi_invoice_xml": xml_base64,
+                "xml_filename": f"xml_invoice_{invoice_data.name}.xml",
+                "electronic_invoice_xml": root,
+            }
+        )

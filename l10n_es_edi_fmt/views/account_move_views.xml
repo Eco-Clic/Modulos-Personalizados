@@ -14,7 +14,11 @@
 
             <xpath expr="//notebook" position="inside">
                 <page string="Invoice Digital Fmt">
-                    <field name="electronic_invoice_xml"/>
+                    <group>
+                        <field name="xml_filename" readonly="True"/>
+                        <field name="edi_invoice_xml" widget="binary" readonly="True"/>
+                        <field name="electronic_invoice_xml" widget="html"/>
+                    </group>
                 </page>
             </xpath>
         </field>
