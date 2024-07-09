@@ -15,9 +15,18 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Invoice Digital Fmt">
                     <group>
-                        <field name="xml_filename" readonly="True"/>
-                        <field name="edi_invoice_xml" widget="binary" readonly="True"/>
-                        <field name="electronic_invoice_xml" widget="html"/>
+                        <group>
+                            <field name="xml_filename" readonly="True"/>
+                            <field name="edi_invoice_xml" widget="binary" readonly="True"/>
+                            <field name="electronic_invoice_xml"
+                                   invisible="1"
+                                   widget="html"
+                                   readonly="True"/>
+                        </group>
+                        <group>
+                            <field name="attachment_id" readonly="True"/>
+                            <field name="edi_invoice_xml_url" widget="CopyClipboardChar" readonly="True"/>
+                        </group>
                     </group>
                 </page>
             </xpath>

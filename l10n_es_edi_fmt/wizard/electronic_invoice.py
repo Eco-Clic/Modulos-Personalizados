@@ -2,6 +2,9 @@ import base64
 from lxml import etree
 
 from odoo import models, fields
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class ElectronicInvoice(models.TransientModel):
@@ -31,37 +34,49 @@ class ElectronicInvoice(models.TransientModel):
             self.env.context.get("active_id")
         )
 
-        # Crear el root del XML
-        root = etree.Element("Batch")
+        # Crear los root del XML
+        root = etree.Element("ns3Facturae")
+        header_tag = etree.SubElement(root, "FileHeader")
+        parties_tag = etree.SubElement(root, "Parties")
+        invoices_element = etree.SubElement(root, "Invoices")
 
-        # Añadir los elementos al XML
-        batch_identifier = etree.SubElement(root, "BatchIdentifier")
+        # FileHeader
+        schema_tag = etree.SubElement(header_tag, "SchemaVersion")
+        schema_tag.text = "3.2.2"
+        modality_tag = etree.SubElement(header_tag, "Modality")
+        modality_tag.text = "I"
+        issuer_tag = etree.SubElement(header_tag, "InvoiceIssuerType")
+        issuer_tag.text = "EM"
+
+        # Añadir los elementos al XML <Batch>
+        batch_tag = etree.SubElement(header_tag, "Batch")
+        batch_identifier = etree.SubElement(batch_tag, "BatchIdentifier")
         batch_identifier.text = self.assignment_code
 
-        invoices_count = etree.SubElement(root, "InvoicesCount")
+        invoices_count = etree.SubElement(batch_tag, "InvoicesCount")
         invoices_count.text = "1"
 
-        total_invoices_amount = etree.SubElement(root, "TotalInvoicesAmount")
+        total_invoices_amount = etree.SubElement(batch_tag, "TotalInvoicesAmount")
         total_amount = etree.SubElement(total_invoices_amount, "TotalAmount")
         total_amount.text = str(invoice_data.amount_total)
 
-        total_outstanding_amount = etree.SubElement(root, "TotalOutstandingAmount")
+        total_outstanding_amount = etree.SubElement(batch_tag, "TotalOutstandingAmount")
         total_amount_outstanding = etree.SubElement(
             total_outstanding_amount, "TotalAmount"
         )
         total_amount_outstanding.text = str(invoice_data.amount_total)
 
-        total_executable_amount = etree.SubElement(root, "TotalExecutableAmount")
+        total_executable_amount = etree.SubElement(batch_tag, "TotalExecutableAmount")
         total_amount_executable = etree.SubElement(
             total_executable_amount, "TotalAmount"
         )
         total_amount_executable.text = str(invoice_data.amount_total)
 
-        invoice_currency_code = etree.SubElement(root, "InvoiceCurrencyCode")
+        invoice_currency_code = etree.SubElement(batch_tag, "InvoiceCurrencyCode")
         invoice_currency_code.text = invoice_data.currency_id.name
 
-        # Añadir los detalles del vendedor
-        seller_party = etree.SubElement(root, "SellerParty")
+        # Añadir los detalles del vendedor in <Parties> <SellerParty>
+        seller_party = etree.SubElement(parties_tag, "SellerParty")
         tax_identification = etree.SubElement(seller_party, "TaxIdentification")
         person_type_code = etree.SubElement(tax_identification, "PersonTypeCode")
         person_type_code.text = "F"
@@ -112,8 +127,8 @@ class ElectronicInvoice(models.TransientModel):
         electronic_mail = etree.SubElement(contact_details, "ElectronicMail")
         electronic_mail.text = invoice_data.partner_id.email
 
-        # Añadir los detalles del comprador
-        buyer_party = etree.SubElement(root, "BuyerParty")
+        # Añadir los detalles del comprador <Parties> <BuyerParty>
+        buyer_party = etree.SubElement(parties_tag, "BuyerParty")
         tax_identification_buyer = etree.SubElement(buyer_party, "TaxIdentification")
         person_type_code_buyer = etree.SubElement(
             tax_identification_buyer, "PersonTypeCode"
@@ -198,7 +213,7 @@ class ElectronicInvoice(models.TransientModel):
         )
         electronic_mail_legal.text = invoice_data.partner_id.email or ""
 
-        invoices_element = etree.SubElement(root, "Invoices")
+        # Agregar el tag xml de los Invoices <Invoices>
         invoice_element = etree.SubElement(invoices_element, "Invoice")
 
         # Invoice Header
@@ -235,15 +250,57 @@ class ElectronicInvoice(models.TransientModel):
         language_name_element = etree.SubElement(
             invoice_issue_data_element, "LanguageName"
         )
-        language_name_element.text = "LanguageName"
+        language_name_element.text = "es"
+
+        # Invoice <TaxesOutputs>
+        invoice_taxes_output = etree.SubElement(invoice_element, "TaxesOutputs")
+        invoice_taxes = etree.SubElement(invoice_taxes_output, "Tax")
+        taxes_info = []
+
+        # Recorrer todas las líneas del Invoice para ver los taxes
+        for line in invoice_data.line_ids:
+            tax_total_line = line.price_total
+            for tax in line.tax_ids:
+                taxes_info.append(
+                    {
+                        "name": tax.name,
+                        "type": tax.type_tax_use,
+                        "amount": tax.amount,
+                        "total": ((tax.amount/100) * tax_total_line) * tax_total_line,
+                    }
+                )
+        if len(taxes_info) > 0:
+            for tax in taxes_info:
+                tax_type = etree.SubElement(invoice_taxes, "TaxTypeCode")
+                tax_type.text = tax['name']
+                tax_rate = etree.SubElement(invoice_taxes, "TaxRate")
+                tax_rate.text = f"{tax['amount']}"
+                tax_table = etree.SubElement(invoice_taxes, "TaxableBase")
+                tax_total = etree.SubElement(tax_table, "TotalAmount")
+                tax_total.text = f"{tax['total']}"
+
+        tax_amount_tag = etree.SubElement(invoice_taxes, "TaxAmount")  # <TaxAmount>
+        tax_amount_total = etree.SubElement(tax_amount_tag, "TotalAmount")  # <TotalAmount>
+        tax_amount_total.text = f"{invoice_data.amount_tax}"
+
+        #<InvoiceTotals>
+        # <TotalGrossAmount>117.80</TotalGrossAmount>
+        # <TotalGrossAmountBeforeTaxes>117.80</TotalGrossAmountBeforeTaxes>
+        # <TotalTaxOutputs>24.74</TotalTaxOutputs>
+        # <TotalTaxesWithheld>0.00</TotalTaxesWithheld>
+        # <InvoiceTotal>142.54</InvoiceTotal>
+        # <TotalOutstandingAmount>142.54</TotalOutstandingAmount>
+        # <TotalExecutableAmount>142.54</TotalExecutableAmount>
+        # </InvoiceTotals>
 
         # Convertir el árbol XML a una cadena de texto
         xml_string = etree.tostring(
             root, pretty_print=True, xml_declaration=True, encoding="UTF-8"
         )
-
         # Codificar el XML en base64
         xml_base64 = base64.b64encode(xml_string)
+        _logger.info(f"ROOT INFO XML {root}")
+        _logger.info(f"ROOT STRING XML {xml_string}")
 
         # Guardar el XML en el campo binary de la factura
         invoice_data.write(
@@ -253,3 +310,4 @@ class ElectronicInvoice(models.TransientModel):
                 "electronic_invoice_xml": root,
             }
         )
+        invoice_data.save_binary_file_attachment()
