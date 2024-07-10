@@ -51,14 +51,14 @@ class ElectronicInvoice(models.TransientModel):
         # Añadir los elementos al XML <Batch>
         batch_tag = etree.SubElement(header_tag, "Batch")
         batch_identifier = etree.SubElement(batch_tag, "BatchIdentifier")
-        batch_identifier.text = self.assignment_code
+        batch_identifier.text = self.assignment_code or ""
 
         invoices_count = etree.SubElement(batch_tag, "InvoicesCount")
         invoices_count.text = "1"
 
         total_invoices_amount = etree.SubElement(batch_tag, "TotalInvoicesAmount")
         total_amount = etree.SubElement(total_invoices_amount, "TotalAmount")
-        total_amount.text = str(invoice_data.amount_total)
+        total_amount.text = str(invoice_data.amount_total) or ""
 
         total_outstanding_amount = etree.SubElement(batch_tag, "TotalOutstandingAmount")
         total_amount_outstanding = etree.SubElement(
@@ -70,7 +70,7 @@ class ElectronicInvoice(models.TransientModel):
         total_amount_executable = etree.SubElement(
             total_executable_amount, "TotalAmount"
         )
-        total_amount_executable.text = str(invoice_data.amount_total)
+        total_amount_executable.text = str(invoice_data.amount_total) or ""
 
         invoice_currency_code = etree.SubElement(batch_tag, "InvoiceCurrencyCode")
         invoice_currency_code.text = invoice_data.currency_id.name
@@ -91,7 +91,7 @@ class ElectronicInvoice(models.TransientModel):
 
         individual = etree.SubElement(seller_party, "Individual")
         name = etree.SubElement(individual, "Name")
-        name.text = invoice_data.partner_id.name
+        name.text = invoice_data.partner_id.name or ""
 
         first_surname = etree.SubElement(individual, "FirstSurname")
         first_surname.text = (
@@ -109,23 +109,23 @@ class ElectronicInvoice(models.TransientModel):
 
         address_in_spain = etree.SubElement(individual, "AddressInSpain")
         address = etree.SubElement(address_in_spain, "Address")
-        address.text = invoice_data.partner_id.street
+        address.text = invoice_data.partner_id.street or ""
 
         post_code = etree.SubElement(address_in_spain, "PostCode")
-        post_code.text = invoice_data.partner_id.zip
+        post_code.text = invoice_data.partner_id.zip or ""
 
         town = etree.SubElement(address_in_spain, "Town")
-        town.text = invoice_data.partner_id.city
+        town.text = invoice_data.partner_id.city or ""
 
         province = etree.SubElement(address_in_spain, "Province")
-        province.text = invoice_data.partner_id.state_id.name
+        province.text = invoice_data.partner_id.state_id.name or ""
 
         country_code = etree.SubElement(address_in_spain, "CountryCode")
         country_code.text = invoice_data.partner_id.country_id.code or ""
 
         contact_details = etree.SubElement(individual, "ContactDetails")
         electronic_mail = etree.SubElement(contact_details, "ElectronicMail")
-        electronic_mail.text = invoice_data.partner_id.email
+        electronic_mail.text = invoice_data.partner_id.email or ""
 
         # Añadir los detalles del comprador <Parties> <BuyerParty>
         buyer_party = etree.SubElement(parties_tag, "BuyerParty")
@@ -143,15 +143,15 @@ class ElectronicInvoice(models.TransientModel):
         tax_identification_number_buyer = etree.SubElement(
             tax_identification_buyer, "TaxIdentificationNumber"
         )
-        tax_identification_number_buyer.text = self.code_account_office
+        tax_identification_number_buyer.text = self.code_account_office or ""
 
         administrative_centres = etree.SubElement(buyer_party, "AdministrativeCentres")
 
         # Añadir los centros administrativos
         for role, code in [
-            ("01", self.code_account_office),
-            ("02", self.code_manager_company),
-            ("03", self.code_processing_unit),
+            ("01", self.code_account_office or ""),
+            ("02", self.code_manager_company or ""),
+            ("03", self.code_processing_unit or ""),
         ]:
             administrative_centre = etree.SubElement(
                 administrative_centres, "AdministrativeCentre"
@@ -172,7 +172,7 @@ class ElectronicInvoice(models.TransientModel):
             town_centre = etree.SubElement(address_in_spain_centre, "Town")
             town_centre.text = invoice_data.company_id.partner_id.city
             province_centre = etree.SubElement(address_in_spain_centre, "Province")
-            province_centre.text = self.res_state_id.name
+            province_centre.text = self.res_state_id.name or ""
             country_code_centre = etree.SubElement(
                 address_in_spain_centre, "CountryCode"
             )
@@ -221,17 +221,17 @@ class ElectronicInvoice(models.TransientModel):
         invoice_number_element = etree.SubElement(
             invoice_header_element, "InvoiceNumber"
         )
-        invoice_number_element.text = invoice_data.name
+        invoice_number_element.text = invoice_data.name or ""
         invoice_series_code_element = etree.SubElement(
             invoice_header_element, "InvoiceSeriesCode"
         )
-        invoice_series_code_element.text = self.assignment_code
+        invoice_series_code_element.text = self.assignment_code or ""
         invoice_document_type_element = etree.SubElement(
             invoice_header_element, "InvoiceDocumentType"
         )
         invoice_document_type_element.text = invoice_data.move_type
         invoice_class_element = etree.SubElement(invoice_header_element, "InvoiceClass")
-        invoice_class_element.text = invoice_data.state
+        invoice_class_element.text = invoice_data.state or ""
 
         # Invoice Issue Data
         invoice_issue_data_element = etree.SubElement(
@@ -272,26 +272,91 @@ class ElectronicInvoice(models.TransientModel):
         if len(taxes_info) > 0:
             for tax in taxes_info:
                 tax_type = etree.SubElement(invoice_taxes, "TaxTypeCode")
-                tax_type.text = tax['name']
+                tax_type.text = tax['name'] or ""
                 tax_rate = etree.SubElement(invoice_taxes, "TaxRate")
-                tax_rate.text = f"{tax['amount']}"
+                tax_rate.text = f"{tax['amount']}" or ""
                 tax_table = etree.SubElement(invoice_taxes, "TaxableBase")
                 tax_total = etree.SubElement(tax_table, "TotalAmount")
-                tax_total.text = f"{tax['total']}"
+                tax_total.text = f"{tax['total']}" or ""
 
         tax_amount_tag = etree.SubElement(invoice_taxes, "TaxAmount")  # <TaxAmount>
         tax_amount_total = etree.SubElement(tax_amount_tag, "TotalAmount")  # <TotalAmount>
-        tax_amount_total.text = f"{invoice_data.amount_tax}"
+        tax_amount_total.text = f"{invoice_data.amount_tax}" or ""
 
-        #<InvoiceTotals>
-        # <TotalGrossAmount>117.80</TotalGrossAmount>
-        # <TotalGrossAmountBeforeTaxes>117.80</TotalGrossAmountBeforeTaxes>
-        # <TotalTaxOutputs>24.74</TotalTaxOutputs>
-        # <TotalTaxesWithheld>0.00</TotalTaxesWithheld>
-        # <InvoiceTotal>142.54</InvoiceTotal>
-        # <TotalOutstandingAmount>142.54</TotalOutstandingAmount>
-        # <TotalExecutableAmount>142.54</TotalExecutableAmount>
-        # </InvoiceTotals>
+        # Invoice <InvoiceTotals>
+        invoice_totals = etree.SubElement(invoice_element, "InvoiceTotals")
+        invoice_gross = etree.SubElement(invoice_totals, "TotalGrossAmount")
+        invoice_gross.text = f"{invoice_data.amount_total}" or ""
+        invoice_before_tax = etree.SubElement(invoice_totals, "TotalGrossAmountBeforeTaxes")
+        invoice_before_tax.text = f"{invoice_data.amount_untaxed}" or ""
+        invoice_tax_out = etree.SubElement(invoice_totals, "TotalTaxOutputs")
+        invoice_tax_out.text = f"{invoice_data.amount_tax}" or ""
+        invoice_tax_held = etree.SubElement(invoice_totals, "TotalTaxesWithheld")
+        invoice_tax_held.text = f"{invoice_data.amount_untaxed}" or ""
+        invoice_total = etree.SubElement(invoice_totals, "InvoiceTotal")
+        invoice_total.text = f"{invoice_data.amount_total}" or ""
+
+        invoice_outs_amount = etree.SubElement(invoice_totals, "TotalOutstandingAmount")
+        invoice_outs_amount.text = f"{invoice_data.amount_total}" or ""
+        invoice_total_exe = etree.SubElement(invoice_totals, "TotalExecutableAmount")
+        invoice_total_exe.text = f"{invoice_data.amount_total}" or ""
+
+        # Start for <Items>
+        invoice_items = etree.SubElement(invoice_element, "Items")
+        # <InvoiceLine>
+        for line in invoice_data.line_ids:
+            invoice_line = etree.SubElement(invoice_items, "InvoiceLine")
+            receiverContRef = etree.SubElement(invoice_line, "ReceiverContractReference")
+            receiverTansRef = etree.SubElement(invoice_line, "ReceiverTransactionReference")
+
+            item_description = etree.SubElement(invoice_line, "ItemDescription")
+            item_description.text = line.product_id.name or ""
+            item_qty = etree.SubElement(invoice_line, "Quantity")
+            item_qty.text = f"{line.quantity}" or ""
+            item_uom = etree.SubElement(invoice_line, "UnitOfMeasure")
+            item_uom.text = f"{line.product_id.uom_id.id}" or ""
+            item_price_untax = etree.SubElement(invoice_line, "UnitPriceWithoutTax")
+            item_price_untax.text = f"{line.price_unit}" or ""
+            item_total_cost = etree.SubElement(invoice_line, "TotalCost")
+            item_total_cost.text = f"{line.price_subtotal}" or ""
+            item_total_amount = etree.SubElement(invoice_line, "GrossAmount")
+            item_total_amount.text = f"{line.price_total}" or ""
+            # <TaxesOutputs>
+            item_taxes_output = etree.SubElement(invoice_line, "TaxesOutputs")
+            for tax in line.tax_ids:
+                item_tax_line = etree.SubElement(item_taxes_output, "Tax")
+                item_tax_code = etree.SubElement(item_tax_line, "TaxTypeCode")
+                item_tax_code.text = f"{tax.id}" or ""
+                item_tax_rate = etree.SubElement(item_tax_line, "TaxRate")
+                item_tax_rate.text = f"{tax.amount}" or ""
+                # TaxaTable
+                item_tax_table = etree.SubElement(item_tax_line, "TaxableBase")
+                item_tax_total_amount = etree.SubElement(item_tax_table, "TotalAmount")
+                item_tax_total_amount.text = f"{line.price_total}" or ""
+                # TaxAmount
+                item_tax_end_amount = etree.SubElement(item_tax_line, "TaxAmount")
+                item_tax_end_total_amount = etree.SubElement(item_tax_end_amount, "TotalAmount")
+                item_tax_end_total_amount.text = f"{line.price_subtotal}" or ""
+        # <PaymentDetails>
+        payment_details_tag = etree.SubElement(invoice_element, "PaymentDetails")
+        payment_installment_tag = etree.SubElement(payment_details_tag, "Installment")
+        installment_due_tag = etree.SubElement(payment_installment_tag, "InstallmentDueDate")
+        installment_due_tag.text = f"{line.payment_id.payment_date}" if line.payment_id else ""
+        installment_mount = etree.SubElement(payment_installment_tag, "InstallmentAmount")
+        installment_mount.text = f"{line.payment_id.amount}" if line.payment_id else ""
+        payment_means = etree.SubElement(payment_installment_tag, "PaymentMeans")
+        payment_means.text = f"{line.payment_id.payment_type}" if line.payment_id else ""
+        account_credited_tag = etree.SubElement(payment_installment_tag, "AccountToBeCredited")
+        iban_account_tag = etree.SubElement(account_credited_tag, "IBAN")
+        iban_account_tag.text = f"{line.payment_id.partner_bank_id.acc_number}" if line.payment_id.partner_bank_id else ""
+        #<LegalLiterals>
+        legal_literals_tag = etree.SubElement(invoice_element, "LegalLiterals")
+        legal_reference = etree.SubElement(legal_literals_tag, "LegalReference")
+        legal_reference.text = self.legal_references or ""
+        # <AdditionalData>
+        additional_data_tag = etree.SubElement(invoice_element, "AdditionalData")
+        additional_information = etree.SubElement(additional_data_tag, "InvoiceAdditionalInformation")
+        additional_information.text = f"Factura Electrónica generada a través de Odoo"
 
         # Convertir el árbol XML a una cadena de texto
         xml_string = etree.tostring(
