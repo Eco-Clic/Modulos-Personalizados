@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="repair_order_form_inherit_adha" model="ir.ui.view">
+        <field name="name">repair_order_form_inherit_adha</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_title']" position="before">
+                <div style="text-align: right; margin-bottom: 4px;" attrs="{'invisible': ['|', ('state','in', ('cancel', 'draft')), ('invoice_state', '=', 'draft')]}">
+                    <button
+                        string="Enviar Whatsapp"
+                        type="object"
+                        class="boton_whatsapp"
+                        context="{'from_button_click': True}"
+                        name="envio_whatsapp"
+                    />
+                    <button
+                        name="create_repair_in_adha_generate_qr_code"
+                        class="oe_highlight"
+                        type="object"
+                        string="Crear en adha"
+                        context="{'from_button_click': True}"
+                    />
+                </div>
+                <field name="adha_qr_code" widget='image' class="oe_avatar"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

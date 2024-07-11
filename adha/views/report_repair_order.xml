@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="report_repair_order_document_inherit" model="ir.ui.view">
+        <field name="name">report_repair_order_document_inherit</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.report_repairorder"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='page']" position="before">
+                <div id="adhaqrcode" class="row" style="display: flex; flex-direction: column; justify-content: center;">
+                    <div class="adhaqrcode" id="adha_qrcode_image">
+                        <t t-set="adha_qr_code" t-value="o._get_adha_qr_code()"/>
+                        <p t-if="adha_qr_code" class="position-relative mb-0">
+                            <img t-att-src="adha_qr_code"/>
+                        </p>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
