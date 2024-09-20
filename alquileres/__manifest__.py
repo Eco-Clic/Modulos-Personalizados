@@ -19,6 +19,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/rent_views.xml",
+        "views/rent_room_views.xml",
         "data/rent_sequence.xml",
     ],
     "installable": True,

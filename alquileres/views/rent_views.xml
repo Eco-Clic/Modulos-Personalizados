@@ -1,0 +1,75 @@
+<odoo>
+
+    <!-- Vista de árbol para rental.property -->
+    <record id="view_rent_rental_tree" model="ir.ui.view">
+        <field name="name">rental.property.tree</field>
+        <field name="model">rental.property</field>
+        <field name="arch" type="xml">
+            <tree string="Rentals">
+                <field name="name"/>
+                <field name="property_reference"/>
+                <field name="owner_id"/>
+                <field name="number_of_rooms"/>
+                <field name="number_of_bathrooms"/>
+                <field name="size_m2"/>
+                <field name="floor"/>
+                <field name="property_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de formulario para rental.property -->
+    <record id="view_rent_rental_form" model="ir.ui.view">
+        <field name="name">rental.property.form</field>
+        <field name="model">rental.property</field>
+        <field name="arch" type="xml">
+            <form string="Rental Property">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="property_reference"/>
+                            <field name="owner_id"/>
+                            <field name="number_of_rooms"/>
+                            <field name="number_of_bathrooms"/>
+                            <field name="size_m2"/>
+                            <field name="floor"/>
+                            <field name="property_status"/>
+                        </group>
+                        <group>
+                            <field name="rental_price_per_room"/>
+                            <field name="property_reference"/>
+                            <field name="property_deed"/>
+                            <field name="energy_certificate"/>
+                            <field name="habitability_certificate"/>
+                            <field name="special_permits"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Historial">
+                            <field name="tenant_history_ids"/>
+                            <field name="maintenance_history_ids"/>
+                            <field name="contract_history_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acciones -->
+    <record id="action_rental_property" model="ir.actions.act_window">
+        <field name="name">Rentals</field>
+        <field name="res_model">rental.property</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Menú -->
+    <menuitem id="menu_rent_rental_root" name="Rental Management" sequence="1"/>
+    <menuitem id="menu_rent_rental"
+              name="Viviendas"
+              parent="menu_rent_rental_root"
+              action="action_rental_property"/>
+</odoo>
+

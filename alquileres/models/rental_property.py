@@ -6,7 +6,7 @@ class RentalProperty(models.Model):
     _description = 'Property Management'
 
     # Información Básica
-    address = fields.Char(string='Full Address', required=True)
+    name = fields.Char(string='Full Address', required=True)
     property_type = fields.Selection(
         [('apartment', 'Apartment'), ('house', 'House')],
         string='Property Type',
@@ -82,5 +82,5 @@ class RentalPropertyMaintenance(models.Model):
     property_id = fields.Many2one('rental.property', string='Property', required=True)
     maintenance_date = fields.Date(string='Maintenance Date', required=True)
     description = fields.Text(string='Description of Maintenance or Repair')
-    made_by = fields.String(string='Maintenance Made By')
+    made_by = fields.Char(string='Maintenance Made By')
     cost = fields.Float(string='Cost of Maintenance or Repair')

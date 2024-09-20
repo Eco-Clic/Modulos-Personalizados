@@ -100,7 +100,7 @@ class RentalRoomMaintenance(models.Model):
 
     room_id = fields.Many2one('rental.room', string='Room', required=True)
     maintenance_date = fields.Date(string='Maintenance Date', required=True)
-    made_by = fields.String(string='Made By', required=True)
+    made_by = fields.Char(string='Made By', required=True)
     description = fields.Text(string='Description of Maintenance or Repair')
 
     @api.constrains('maintenance_date')
