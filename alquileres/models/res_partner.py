@@ -92,6 +92,7 @@ class RentalPaymentHistory(models.Model):
     _name = 'rental.payment.history'
     _description = 'Rental Payment History'
 
+    name = fields.Char(string='Rental Payment History', required=True, copy=False, readonly=True, default='New')
     tenant_id = fields.Many2one('res.partner', string='Tenant', required=True)
     payment_date = fields.Date(string='Payment Date', required=True)
     amount_paid = fields.Float(string='Amount Paid', required=True)
@@ -101,20 +102,32 @@ class RentalPaymentHistory(models.Model):
     )
     is_on_time = fields.Boolean(string='Payment On Time', default=True)
 
+    @api.model
+    def create(self, vals):
+        if vals.get('name', 'New') == 'New':
+            vals['name'] = self.env['ir.sequence'].next_by_code('rent.payment.history') or 'New'
+        return super(RentalPaymentHistory, self).create(vals)
 
 class RentalIncidentHistory(models.Model):
     _name = 'rental.incident.history'
     _description = 'Incident History'
 
+    name = fields.Char(string='Incident History', required=True, copy=False, readonly=True, default='New')
     tenant_id = fields.Many2one('res.partner', string='Tenant', required=True)
     incident_date = fields.Date(string='Incident Date', required=True)
     description = fields.Text(string='Description of the Incident')
 
+    @api.model
+    def create(self, vals):
+        if vals.get('name', 'New') == 'New':
+            vals['name'] = self.env['ir.sequence'].next_by_code('rent.incident.history') or 'New'
+        return super(RentalIncidentHistory, self).create(vals)
 
 class RentalCommunicationHistory(models.Model):
     _name = 'rental.communication.history'
     _description = 'Communication History'
 
+    name = fields.Char(string='Communication History', required=True, copy=False, readonly=True, default='New')
     tenant_id = fields.Many2one('res.partner', string='Tenant', required=True)
     communication_date = fields.Date(string='Communication Date', required=True)
     communication_type = fields.Selection(
@@ -123,3 +136,9 @@ class RentalCommunicationHistory(models.Model):
     )
     description = fields.Text(string='Details of Communication')
     attachment = fields.Binary(string='Attachment')
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', 'New') == 'New':
+            vals['name'] = self.env['ir.sequence'].next_by_code('rent.communication.history') or 'New'
+        return super(RentalCommunicationHistory, self).create(vals)

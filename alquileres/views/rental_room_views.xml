@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_rental_room" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="res_model">rental.room</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_rental_room_form" model="ir.ui.view">
+        <field name="name">rental.room.form</field>
+        <field name="model">rental.room</field>
+        <field name="arch" type="xml">
+            <form string="Room Management">
+                <sheet>
+                  <group>
+                    <group class="oe_subgroup">
+                        <field name="name"/>
+                        <field name="size_m2" widget="float"/>
+                        <field name="room_type"/>
+                        <field name="status"/>
+                        <field name="rental_price" widget="float"/>
+                    </group>
+                    <group class="oe_subgroup">
+                        <field name="furniture_list" widget="many2many_tags"/>
+                        <field name="services_included" widget="many2many_tags"/>
+                    </group>
+                </group>
+
+                <group string="History">
+                    <group class="oe_subgroup">
+                        <field name="occupancy_history_ids" widget="one2many_list"/>
+                    </group>
+                    <group class="oe_subgroup">
+                        <field name="maintenance_history_ids" widget="one2many_list"/>
+                    </group>
+                </group>
+
+                <group string="Documentation">
+                    <group class="oe_subgroup">
+                        <field name="room_inventory"/>
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

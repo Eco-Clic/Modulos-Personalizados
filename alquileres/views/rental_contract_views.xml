@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="action_rental_contract" model="ir.actions.act_window">
+        <field name="name">Rental Contracts</field>
+        <field name="res_model">rental.contract</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_rent_contract_form" model="ir.ui.view">
+        <field name="name">rent.contract.form</field>
+        <field name="model">rental.contract</field>
+        <field name="arch" type="xml">
+            <form string="Rental Contract">
+                <sheet>
+                    <group>
+                    <group class="oe_subgroup">
+                        <field name="contract_number"/>
+                        <field name="contract_date"/>
+                        <field name="property_id"/>
+                        <field name="room_id"/>
+                        <field name="owner_id"/>
+                        <field name="tenant_id"/>
+                        <field name="agency_id"/>
+                    </group>
+                    <group class="oe_subgroup">
+                        <field name="contract_start_date"/>
+                        <field name="contract_end_date"/>
+                        <field name="renewal_terms"/>
+                        <field name="monthly_rent"/>
+                        <field name="security_deposit"/>
+                        <field name="payment_frequency"/>
+                        <field name="penalty_terms"/>
+                    </group>
+                    <group class="oe_subgroup">
+                        <field name="owner_responsibilities"/>
+                        <field name="tenant_responsibilities"/>
+                        <field name="agency_responsibilities"/>
+                    </group>
+                    <group class="oe_subgroup">
+                        <field name="signed_contract"/>
+                        <field name="contract_attachments"/>
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_rent_contract_tree" model="ir.ui.view">
+        <field name="name">rent.contract.tree</field>
+        <field name="model">rental.contract</field>
+        <field name="arch" type="xml">
+            <tree string="Contracts">
+                <field name="contract_number"/>
+                <field name="contract_date"/>
+                <field name="property_id"/>
+                <field name="room_id"/>
+                <field name="owner_id"/>
+                <field name="tenant_id"/>
+                <field name="contract_start_date"/>
+                <field name="contract_end_date"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

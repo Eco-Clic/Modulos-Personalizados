@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_rental_property" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">rental.property</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_rent_property_form" model="ir.ui.view">
+        <field name="name">rent.property.form</field>
+        <field name="model">rental.property</field>
+        <field name="arch" type="xml">
+            <form string="Property">
+                <sheet>
+                     <group>
+                    <group class="oe_subgroup">
+                        <field name="address"/>
+                        <field name="property_type"/>
+                        <field name="number_of_rooms"/>
+                        <field name="number_of_bathrooms"/>
+                        <field name="size_m2"/>
+                        <field name="floor"/>
+                        <field name="door_number"/>
+                        <field name="owner_id"/>
+                        <field name="property_reference"/>
+                        <field name="property_status"/>
+                    </group>
+                    <group class="oe_subgroup">
+                        <field name="rental_price_per_room"/>
+                        <field name="tenant_history_ids"/>
+                        <field name="maintenance_history_ids"/>
+                        <field name="contract_history_ids"/>
+                        <field name="property_deed"/>
+                        <field name="energy_certificate"/>
+                        <field name="habitability_certificate"/>
+                        <field name="special_permits"/>
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_rent_property_tree" model="ir.ui.view">
+        <field name="name">rent.property.tree</field>
+        <field name="model">rental.property</field>
+        <field name="arch" type="xml">
+            <tree string="Properties">
+                <field name="address"/>
+                <field name="property_type"/>
+                <field name="number_of_rooms"/>
+                <field name="number_of_bathrooms"/>
+                <field name="size_m2"/>
+                <field name="property_status"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

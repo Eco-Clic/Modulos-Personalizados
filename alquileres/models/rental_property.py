@@ -6,7 +6,8 @@ class RentalProperty(models.Model):
     _description = 'Property Management'
 
     # Información Básica
-    name = fields.Char(string='Full Address', required=True)
+    name = fields.Char(string='Property', required=True, copy=False, readonly=True, default='New')
+    address = fields.Char(string='Full Address', required=True)
     property_type = fields.Selection(
         [('apartment', 'Apartment'), ('house', 'House')],
         string='Property Type',
@@ -61,17 +62,30 @@ class RentalProperty(models.Model):
             if property.size_m2 <= 0:
                 raise models.ValidationError('The surface area must be greater than 0 m².')
 
+    @api.model
+    def create(self, vals):
+        if vals.get('name', 'New') == 'New':
+            vals['name'] = self.env['ir.sequence'].next_by_code('rent.property') or 'New'
+        return super(RentalProperty, self).create(vals)
+
 
 # para los registros de historial de inquilinos
 class RentalPropertyTenantHistory(models.Model):
     _name = 'rental.property.tenant.history'
     _description = 'Tenant History'
 
+    name = fields.Char(string='Tenant History', required=True, copy=False, readonly=True, default='New')
     property_id = fields.Many2one('rental.property', string='Property', required=True)
     tenant_id = fields.Many2one('res.partner', string='Tenant', required=True)
     contract_id = fields.Many2one('rental.contract', string='Contract', required=True)
     start_date = fields.Date(string='Start Date', required=True)
     end_date = fields.Date(string='End Date')
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', 'New') == 'New':
+            vals['name'] = self.env['ir.sequence'].next_by_code('rent.tenant.history') or 'New'
+        return super(RentalPropertyTenantHistory, self).create(vals)
 
 
 # para los registros de historial de mantenimiento
@@ -79,8 +93,15 @@ class RentalPropertyMaintenance(models.Model):
     _name = 'rental.property.maintenance'
     _description = 'Maintenance History'
 
+    name = fields.Char(string='Maintenance History', required=True, copy=False, readonly=True, default='New')
     property_id = fields.Many2one('rental.property', string='Property', required=True)
     maintenance_date = fields.Date(string='Maintenance Date', required=True)
     description = fields.Text(string='Description of Maintenance or Repair')
     made_by = fields.Char(string='Maintenance Made By')
     cost = fields.Float(string='Cost of Maintenance or Repair')
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', 'New') == 'New':
+            vals['name'] = self.env['ir.sequence'].next_by_code('rent.property.maintenance') or 'New'
+        return super(RentalPropertyMaintenance, self).create(vals)

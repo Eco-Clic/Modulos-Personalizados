@@ -5,6 +5,7 @@ class RentalContract(models.Model):
     _description = 'Rental Contract Management'
 
     # Información del Contrato
+    name = fields.Char(string='Contract', required=True, copy=False, readonly=True, default='New')
     contract_number = fields.Char(string='Contract Number', required=True)
     contract_date = fields.Date(string='Signature Date', required=True)
     property_id = fields.Many2one('rental.property', string='Property', required=True) # propiedad arrendada
@@ -45,3 +46,9 @@ class RentalContract(models.Model):
         for record in self:
             if record.contract_start_date > record.contract_end_date:
                 raise models.ValidationError('The contract end date must be after the start date.')
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', 'New') == 'New':
+            vals['name'] = self.env['ir.sequence'].next_by_code('rent.contract') or 'New'
+        return super(RentalContract, self).create(vals)
