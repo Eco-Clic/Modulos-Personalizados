@@ -39,7 +39,7 @@ class RentalRoom(models.Model):
         comodel_name="furniture.room.item", string="Furniture List"
     )  # E.g. Bed, Desk, Wardrobe, etc.
     services_included = fields.Many2many(
-        comodel_name="services.room.item", string="Furniture List"
+        comodel_name="services.room.item", string="Services List"
     )  # E.g. Internet, Heating, etc.
 
     # Historial
