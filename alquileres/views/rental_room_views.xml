@@ -14,35 +14,43 @@
         <field name="arch" type="xml">
             <form string="Room Management">
                 <sheet>
-                  <group>
-                    <group class="oe_subgroup">
-                        <field name="name"/>
-                        <field name="size_m2" widget="float"/>
-                        <field name="room_type"/>
-                        <field name="status"/>
-                        <field name="rental_price" widget="float"/>
+                    <group>
+                        <group class="oe_subgroup">
+                            <field name="name"/>
+                            <field name="size_m2" widget="float"/>
+                            <field name="room_type"/>
+                            <field name="status"/>
+                            <field name="rental_price" widget="float"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="furniture_list" widget="many2many_tags"/>
+                            <field name="services_included" widget="many2many_tags"/>
+                        </group>
                     </group>
-                    <group class="oe_subgroup">
-                        <field name="furniture_list" widget="many2many_tags"/>
-                        <field name="services_included" widget="many2many_tags"/>
-                    </group>
-                </group>
 
-                <group string="History">
-                    <group class="oe_subgroup">
-                        <field name="occupancy_history_ids" widget="one2many_list"/>
+                    <group string="History">
+                        <group class="oe_subgroup">
+                            <field name="occupancy_history_ids" widget="one2many_list"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="maintenance_history_ids" widget="one2many_list"/>
+                        </group>
                     </group>
-                    <group class="oe_subgroup">
-                        <field name="maintenance_history_ids" widget="one2many_list"/>
-                    </group>
-                </group>
 
-                <group string="Documentation">
-                    <group class="oe_subgroup">
-                        <field name="room_inventory"/>
+                    <group string="Documentation">
+                        <group class="oe_subgroup">
+                            <field name="room_inventory"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="room_photos" widget="many2many_binary"/>
+                        </group>
                     </group>
-                </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
