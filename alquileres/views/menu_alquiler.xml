@@ -66,6 +66,31 @@
         </field>
     </record>
 
+    <record id="action_room_maintenance" model="ir.actions.act_window">
+        <field name="name">Room Maintenance</field>
+        <field name="res_model">rental.room.maintenance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <record id="view_room_maintenance_form" model="ir.ui.view">
+        <field name="name">room.maintenance.form</field>
+        <field name="model">rental.room.maintenance</field>
+        <field name="arch" type="xml">
+            <form string="Maintenance">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="maintenance_date"/>
+                        <field name="description"/>
+                        <field name="made_by"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <record id="action_occupancy_history" model="ir.actions.act_window">
         <field name="name">Occupancy History</field>
         <field name="res_model">rental.room.occupancy</field>
@@ -90,7 +115,7 @@
         </field>
     </record>
 
-    <record id="action_payment_history" model="ir.actions.act_window">
+  <!--  <record id="action_payment_history" model="ir.actions.act_window">
         <field name="name">Payment History</field>
         <field name="res_model">rental.payment.history</field>
         <field name="type">ir.actions.act_window</field>
@@ -113,7 +138,7 @@
                 </sheet>
             </form>
         </field>
-    </record>
+    </record>-->
 
     <record id="action_incident_history" model="ir.actions.act_window">
         <field name="name">Incident History</field>
@@ -219,8 +244,9 @@
     <menuitem id="rental_menu_issue" name="Issues" parent="rental_menu_main_root"
               action="action_issue" sequence="5"/>
 
+
     <!-- Menú de configuraciones -->
-    <menuitem id="rental_menu_config" name="Configurations" parent="rental_menu_main_root" sequence="6"/>
+    <menuitem id="rental_menu_config" name="Configurations" parent="rental_menu_main_root" sequence="7"/>
     <menuitem id="rental_menu_tenant_history"
               name="Tenant History"
               action="action_tenant_history"
@@ -230,7 +256,7 @@
     <menuitem id="rental_menu_occupancy" name="Occupancy" action="action_occupancy_history"
               parent="rental_menu_config"/>
     <menuitem id="rental_menu_payment_history" name="Payment History"
-              action="action_payment_history" parent="rental_menu_config"/>
+              action="action_rental_payment_history" parent="rental_menu_config"/>
     <menuitem id="rental_menu_incident_history" name="Incident History"
               action="action_incident_history" parent="rental_menu_config"/>
     <menuitem id="rental_menu_communication_history" name="Communication History"

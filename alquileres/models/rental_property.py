@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class RentalProperty(models.Model):
     _name = 'rental.property'
     _description = 'Property Management'
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     # Información Básica
     name = fields.Char(string='Property', required=True, copy=False, readonly=True, default='New')
@@ -35,17 +36,20 @@ class RentalProperty(models.Model):
         'rental.property.tenant.history', 'property_id',
         string='Tenant History'
     )
+    tenant_history_count = fields.Integer(compute="_compute_tenant_history")
+
     # Historial de Mantenimiento
     maintenance_history_ids = fields.One2many(
         'rental.property.maintenance', 'property_id',
         string='Maintenance History'
     )
+    maintenance_history_count = fields.Integer(compute="_compute_maintenance_history")
     # Historial de Contratos
     contract_history_ids = fields.One2many(
         'rental.contract', 'property_id',
         string='Contract History'
     )
-
+    contract_history_count = fields.Integer(compute="_compute_contract_history")
     # Documentación
     property_deed = fields.Binary(string='Property Deed')
     energy_certificate = fields.Binary(string='Energy Efficiency Certificate')
@@ -67,6 +71,33 @@ class RentalProperty(models.Model):
         if vals.get('name', 'New') == 'New':
             vals['name'] = self.env['ir.sequence'].next_by_code('rent.property') or 'New'
         return super(RentalProperty, self).create(vals)
+
+
+    def return_action_view_xml_id(self):
+        """Return action window for xml_id passed through context"""
+        self.ensure_one()
+        xml_id = self.env.context.get('xml_id')
+        if xml_id is not None:
+            action = self.env['ir.actions.act_window']._for_xml_id(f'alquileres.{xml_id}')
+            action.update(
+                context=dict(self.env.context, default_rental_property_id=self.id, group_by=False),
+                domain=[('property_id', '=', self.id)]
+            )
+            return action
+        return False
+
+    @api.depends('tenant_history_ids')
+    def _compute_tenant_history(self):
+        self.tenant_history_count = len(self.tenant_history_ids) if self.tenant_history_ids else 0
+
+    @api.depends('maintenance_history_ids')
+    def _compute_maintenance_history(self):
+        self.maintenance_history_count = len(self.maintenance_history_ids) if self.maintenance_history_ids else 0
+
+    @api.depends('contract_history_ids')
+    def _compute_contract_history(self):
+        self.contract_history_count = len(self.contract_history_ids) if self.contract_history_ids else 0
+
 
 
 # para los registros de historial de inquilinos

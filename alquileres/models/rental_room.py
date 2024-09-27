@@ -46,14 +46,15 @@ class RentalRoom(models.Model):
     occupancy_history_ids = fields.One2many(
         "rental.room.occupancy", "room_id", string="Occupancy History"
     )
+    occupancy_history_count = fields.Integer(compute="_compute_occupancy_history")
+
     maintenance_history_ids = fields.One2many(
         "rental.room.maintenance", "room_id", string="Maintenance History"
     )
+    maintenance_history_count = fields.Integer(compute="_compute_maintenance_history")
 
     # Documentación
-    room_inventory = fields.Text(
-        string="Room Inventory"
-    )  # List of furniture and their conditions
+    room_inventory = fields.One2many("product.template","room_id", string="")  # List of furniture and their conditions
     room_photos = fields.Many2many(
         comodel_name="ir.attachment",
         relation="m2m_ir_attachment_relation",
@@ -61,6 +62,20 @@ class RentalRoom(models.Model):
         column2="attachment_id",
         string="Room Pictures",
     )
+
+
+    def return_action_view_xml_id(self):
+        """Return action window for xml_id passed through context"""
+        self.ensure_one()
+        xml_id = self.env.context.get('xml_id')
+        if xml_id is not None:
+            action = self.env['ir.actions.act_window']._for_xml_id(f'alquileres.{xml_id}')
+            action.update(
+                context=dict(self.env.context, default_rental_room_id=self.id, group_by=False),
+                domain=[('room_id', '=', self.id)]
+            )
+            return action
+        return False
 
     @api.constrains("size_m2")
     def _check_room_size(self):
@@ -73,6 +88,14 @@ class RentalRoom(models.Model):
         if vals.get("name", "New") == "New":
             vals["name"] = self.env["ir.sequence"].next_by_code("rent.room") or "New"
         return super(RentalRoom, self).create(vals)
+
+    @api.depends('maintenance_history_ids')
+    def _compute_maintenance_history(self):
+        self.maintenance_history_count = len(self.maintenance_history_ids) if self.maintenance_history_ids else 0
+
+    @api.depends('occupancy_history_ids')
+    def _compute_occupancy_history(self):
+        self.occupancy_history_count = len(self.occupancy_history_ids) if self.occupancy_history_ids else 0
 
 
 # furniture.room.item y services.room.item son modelos que se crean en el siguiente snippet

@@ -14,31 +14,67 @@
         <field name="arch" type="xml">
             <form string="Property">
                 <sheet>
-                     <group>
-                    <group class="oe_subgroup">
-                        <field name="address"/>
-                        <field name="property_type"/>
-                        <field name="number_of_rooms"/>
-                        <field name="number_of_bathrooms"/>
-                        <field name="size_m2"/>
-                        <field name="floor"/>
-                        <field name="door_number"/>
-                        <field name="owner_id"/>
-                        <field name="property_reference"/>
-                        <field name="property_status"/>
+                    <div class="oe_button_box" name="button_box" modifiers="{}">
+                        <button class="oe_stat_button" type="object"
+                                name="return_action_view_xml_id"
+                                help="Tenant History"
+                                context="{'xml_id': 'action_tenant_history'}"
+                                icon="fa-male">
+                            <field string="Tenant History"
+                                   name="tenant_history_count"
+                                   widget="statinfo"/>
+                        </button>
+
+                        <button class="oe_stat_button" type="object"
+                                name="return_action_view_xml_id"
+                                help="Maintenance History"
+                                context="{'xml_id': 'action_property_maintenance'}"
+                                icon="fa-cogs">
+                            <field string="Maintenance History"
+                                   name="maintenance_history_count"
+                                   widget="statinfo"/>
+                        </button>
+
+
+                        <button class="oe_stat_button" type="object"
+                                name="return_action_view_xml_id"
+                                help="Contract History"
+                                context="{'xml_id': 'action_rental_contract'}"
+                                icon="fa-history">
+                            <field string="Contract History"
+                                   name="contract_history_count"
+                                   widget="statinfo"/>
+                        </button>
+
+
+                    </div>
+                    <group>
+                        <group class="oe_subgroup">
+                            <field name="address"/>
+                            <field name="property_type"/>
+                            <field name="number_of_rooms"/>
+                            <field name="number_of_bathrooms"/>
+                            <field name="size_m2"/>
+                            <field name="floor"/>
+                            <field name="door_number"/>
+                            <field name="owner_id"/>
+                            <field name="property_reference"/>
+                            <field name="property_status"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="rental_price_per_room"/>
+                            <field name="property_deed"/>
+                            <field name="energy_certificate"/>
+                            <field name="habitability_certificate"/>
+                            <field name="special_permits"/>
+                        </group>
                     </group>
-                    <group class="oe_subgroup">
-                        <field name="rental_price_per_room"/>
-                        <field name="tenant_history_ids"/>
-                        <field name="maintenance_history_ids"/>
-                        <field name="contract_history_ids"/>
-                        <field name="property_deed"/>
-                        <field name="energy_certificate"/>
-                        <field name="habitability_certificate"/>
-                        <field name="special_permits"/>
-                    </group>
-                </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>

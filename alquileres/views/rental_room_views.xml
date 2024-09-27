@@ -14,6 +14,28 @@
         <field name="arch" type="xml">
             <form string="Room Management">
                 <sheet>
+                    <div class="oe_button_box" name="button_box" modifiers="{}">
+                        <button class="oe_stat_button" type="object"
+                                name="return_action_view_xml_id"
+                                help="Occupancy History"
+                                context="{'xml_id': 'action_occupancy_history'}"
+                                icon="fa-users">
+                            <field string="Occupancy History"
+                                   name="occupancy_history_count"
+                                   widget="statinfo"/>
+                        </button>
+
+                        <button class="oe_stat_button" type="object"
+                                name="return_action_view_xml_id"
+                                help="Maintenance History"
+                                context="{'xml_id': 'action_room_maintenance'}"
+                                icon="fa-cogs">
+                            <field string="Maintenance History"
+                                   name="maintenance_history_count"
+                                   widget="statinfo"/>
+                        </button>
+
+                    </div>
                     <group>
                         <group class="oe_subgroup">
                             <field name="name"/>
@@ -27,23 +49,18 @@
                             <field name="services_included" widget="many2many_tags"/>
                         </group>
                     </group>
-
-                    <group string="History">
-                        <group class="oe_subgroup">
-                            <field name="occupancy_history_ids" widget="one2many_list"/>
-                        </group>
-                        <group class="oe_subgroup">
-                            <field name="maintenance_history_ids" widget="one2many_list"/>
-                        </group>
-                    </group>
-
                     <group string="Documentation">
                         <group class="oe_subgroup">
-                            <field name="room_inventory"/>
+                            <field name="room_inventory" colspan="3">
+                                <tree editable="bottom" options="{'no_open': True}">
+                                    <field name="name"/>
+                                    <field name="qty_available"/>
+                                </tree>
+                            </field>
                         </group>
-                        <group class="oe_subgroup">
-                            <field name="room_photos" widget="many2many_binary"/>
-                        </group>
+                    </group>
+                    <group class="oe_subgroup">
+                        <field name="room_photos" widget="many2many_binary"/>
                     </group>
                 </sheet>
                 <div class="oe_chatter">

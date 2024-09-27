@@ -18,6 +18,8 @@
                             <field name="bank_account_number"/>
                             <field name="address"/>
                             <field name="employment_status"/>
+                        </group>
+                        <group class="oe_subgroup">
                             <field name="monthly_income"/>
                             <field name="property_id"/>
                             <field name="room_id"/>
@@ -29,10 +31,10 @@
                         </group>
 
                         <group class="oe_subgroup">
-                            <field name="rental_payment_history_ids"/>
-                            <field name="incident_history_ids"/>
-                            <field name="communication_history_ids"/>
                             <field name="co_signer_ids"/>
+                        </group>
+
+                        <group class="oe_subgroup">
                             <field name="signed_lease_contract"/>
                             <field name="id_document"/>
                             <field name="deposit_receipt"/>
@@ -44,4 +46,49 @@
             </xpath>
         </field>
     </record>
+
+    <record id="partner_view_buttons_inherit" model="ir.ui.view">
+        <field name="name">partner.view.buttons.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.partner_view_buttons"/>
+        <field name="arch" type="xml">
+            <!-- Insertamos el nuevo botón justo después del botón de facturas -->
+            <xpath expr="//button[@name='action_view_partner_invoices']" position="after">
+                <div class="oe_button_box" name="button_box" modifiers="{}">
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Incident History"
+                            context="{'xml_id': 'action_incident_history'}"
+                            icon="fa-exclamation-circle">
+                        <field string="Incident History"
+                               name="incident_history_count"
+                               widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Rental Payment History"
+                            context="{'xml_id': 'action_rental_payment_history'}"
+                            icon="fa-money">
+                        <field string="Rental Payment History"
+                               name="rental_payment_count"
+                               widget="statinfo"/>
+                    </button>
+
+
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Communication History"
+                            context="{'xml_id': 'action_communication_history'}"
+                            icon="fa-comment">
+                        <field string="Communication History"
+                               name="communication_history_count"
+                               widget="statinfo"/>
+                    </button>
+
+
+                </div>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

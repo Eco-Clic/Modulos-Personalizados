@@ -2,6 +2,7 @@ from odoo import models, fields, api
 
 class RentalContract(models.Model):
     _name = 'rental.contract'
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = 'Rental Contract Management'
 
     # Información del Contrato

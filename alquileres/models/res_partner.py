@@ -38,12 +38,15 @@ class Tenant(models.Model):
     rental_payment_history_ids = fields.One2many(
         'rental.payment.history', 'tenant_id', string='Rental Payment History'
     )
+    rental_payment_count = fields.Integer(compute="_compute_rental_payment")
     incident_history_ids = fields.One2many(
         'rental.incident.history', 'tenant_id', string='Incident History'
     )
+    incident_history_count = fields.Integer(compute="_compute_incident_history")
     communication_history_ids = fields.One2many(
         'rental.communication.history', 'tenant_id', string='Communication History'
     )
+    communication_history_count = fields.Integer(compute="_compute_communication_history")
 
     # Información de los Avalistas (co-signers)
     co_signer_ids = fields.One2many('tenant.co_signer', 'tenant_id', string='Co-Signers')
@@ -66,6 +69,32 @@ class Tenant(models.Model):
                 tenant.deposit_amount = tenant.monthly_rent * 2
             else:
                 tenant.deposit_amount = tenant.monthly_rent
+
+
+    def return_action_view_xml_id(self):
+        """Return action window for xml_id passed through context"""
+        self.ensure_one()
+        xml_id = self.env.context.get('xml_id')
+        if xml_id is not None:
+            action = self.env['ir.actions.act_window']._for_xml_id(f'alquileres.{xml_id}')
+            action.update(
+                context=dict(self.env.context, default_res_partner_id=self.id, group_by=False),
+                domain=[('tenant_id', '=', self.id)]
+            )
+            return action
+        return False
+
+    @api.depends('rental_payment_history_ids')
+    def _compute_rental_payment(self):
+        self.rental_payment_count = len(self.rental_payment_history_ids) if self.rental_payment_history_ids else 0
+
+    @api.depends('communication_history_ids')
+    def _compute_communication_history(self):
+        self.communication_history_count = len(self.communication_history_ids) if self.communication_history_ids else 0
+
+    @api.depends('incident_history_ids')
+    def _compute_incident_history(self):
+        self.incident_history_count = len(self.incident_history_ids) if self.incident_history_ids else 0
 
 
 class CoSigner(models.Model):

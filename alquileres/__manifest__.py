@@ -20,6 +20,7 @@
         "security/ir.model.access.csv",
         "views/rent_issue_views.xml",
         "views/rental_contract_views.xml",
+        "views/rent_payment_history_views.xml",
         "views/rental_property_views.xml",
         "views/rental_room_views.xml",
         "views/menu_alquiler.xml",
