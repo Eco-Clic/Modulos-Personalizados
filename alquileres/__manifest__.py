@@ -12,6 +12,7 @@
     # any module necessary for this one to work correctly
     "depends": [
         "base",
+        "stock",
         "contacts",
         "account",
     ],

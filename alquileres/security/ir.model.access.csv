@@ -3,8 +3,6 @@ access_issue,rent.issue,model_rent_issue,base.group_user,1,1,1,1
 access_contract,rental.contract,model_rental_contract,base.group_user,1,1,1,1
 access_property,rental.property,model_rental_property,base.group_user,1,1,1,1
 access_room,rental.room,model_rental_room,base.group_user,1,1,1,1
-access_tenant,res.partner,model_res_partner,base.group_user,1,1,1,1
-access_product,product.template,model_product_template,base.group_user,1,1,1,1
 access_payment,rental.payment.history,model_rental_payment_history,base.group_user,1,1,1,1
 access_payment_lines,rental.payment.history.lines,model_rental_payment_history_lines,base.group_user,1,1,1,1
 access_cosigner,tenant.co_signer,model_tenant_co_signer,base.group_user,1,1,1,1
