@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Acción para abrir el tree y form por defecto -->
+    <record id="action_maintenance_apartment" model="ir.actions.act_window">
+        <field name="name">Mantenimiento Viviendas/Habitaciones</field>
+        <field name="res_model">maintenance.apartment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Acción para abrir el calendario -->
+    <record id="action_maintenance_calendar" model="ir.actions.act_window">
+        <field name="name">Calendario Mantenimiento</field>
+        <field name="res_model">calendar.maintenance</field>
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="view_calendar_maintenance"/> 
+    </record>
+
+    <!-- Acción para abrir los empleados del módulo hr.employee -->
+    <record id="action_hr_employees" model="ir.actions.act_window">
+        <field name="name">Empleados</field>
+        <field name="res_model">hr.employee</field> 
+        <field name="view_mode">tree,form</field> 
+    </record>
+
+</odoo>
+

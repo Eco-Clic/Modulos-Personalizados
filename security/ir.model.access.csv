@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_maintenance_apartment,access_maintenance_apartment,model_maintenance_apartment,base.group_user,1,1,1,1
+access_calendar_maintenance,access_calendar_maintenance,model_calendar_maintenance,base.group_user,1,1,1,1
+

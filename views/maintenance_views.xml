@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- Vista Tree Mantenimiento-->
+    <record id="mantenimiento_root_tree" model="ir.ui.view">
+        <field name="name">maintenance.apartment.tree</field>
+        <field name="model">maintenance.apartment</field>
+        <field name="arch" type="xml">
+            <tree string="Mantenimientos Apartamentos">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form Mantenimiento-->
+    <record id="mantenimiento_root_form" model="ir.ui.view">
+        <field name="name">maintenance.apartment.form</field>
+        <field name="model">maintenance.apartment</field>
+        <field name="arch" type="xml">
+            <form string="Maintenance Form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        
+                        <field name="employer"/>
+
+
+                        <field name="details"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Calendario Mantenimiento-->
+    <record id="view_calendar_maintenance" model="ir.ui.view">
+        <field name="name">Calendario Mantenimiento</field>
+        <field name="model">calendar.maintenance</field>
+        <field name="arch" type="xml">
+            <calendar string="Mantenimiento" date_start="start_day" date_stop="end_day">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="start_day"/>
+                <field name="end_day"/>
+            </calendar>
+        </field>
+    </record>
+
+</odoo>
