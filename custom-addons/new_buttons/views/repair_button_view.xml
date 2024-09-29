@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_contact_form_custom" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Añade el botón al lado del campo de ventas -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_repairs" type="object"
+                        string="Reparaciones" icon="fa-wrench"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
