@@ -15,6 +15,7 @@
         "stock",
         "contacts",
         "account",
+        "website",
     ],
     # always loaded
     "data": [
@@ -27,6 +28,7 @@
         "views/menu_alquiler.xml",
         "views/res_partner_inh_views.xml",
         "data/rent_sequence.xml",
+        'views/rental_website_templates.xml',
     ],
     "installable": True,
     "application": True,

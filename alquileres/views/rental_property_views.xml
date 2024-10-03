@@ -39,7 +39,6 @@
                                    widget="statinfo"/>
                         </button>
 
-
                         <button class="oe_stat_button" type="object"
                                 name="return_action_view_xml_id"
                                 help="Contract History"
@@ -50,11 +49,11 @@
                                    widget="statinfo"/>
                         </button>
 
-
                     </div>
                     <group>
                         <group class="oe_subgroup">
                             <field name="address"/>
+                            <field name="website_published"/>
                             <field name="property_type"/>
                             <field name="number_of_bathrooms"/>
                             <field name="size_m2"/>

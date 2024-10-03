@@ -7,6 +7,8 @@ class RentalProperty(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     # Información Básica
+    # Nuevo campo para publicar en el sitio web
+    website_published = fields.Boolean(string="Published on Website", default=False)
     name = fields.Char(string='Property', required=True, copy=False, readonly=True, default='New')
     address = fields.Char(string='Full Address', required=True)
     property_type = fields.Selection(

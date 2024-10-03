@@ -10,6 +10,8 @@ class RentalRoom(models.Model):
     _description = "Room Management"
 
     # Información Básica
+    # Nuevo campo para publicar en el sitio web
+    website_published = fields.Boolean(string="Published on Website", default=False)
     name = fields.Char(
         string="Room", required=True, copy=False, readonly=True, default="New"
     )
