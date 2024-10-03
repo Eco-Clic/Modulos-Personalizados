@@ -1,3 +1,5 @@
+import random
+
 from odoo import models, fields, api
 
 
@@ -11,7 +13,10 @@ class RentalRoom(models.Model):
     name = fields.Char(
         string="Room", required=True, copy=False, readonly=True, default="New"
     )
-    size_m2 = fields.Float(string="Size (m²)")
+    rental_id = fields.Many2one('rental.property', string='Rental')
+    tenant_ids = fields.One2many('res.partner','room_id', string='Tenants')
+    size_m2 = fields.One2many("room.sections","room_id", string="Sections")
+    responsible_id = fields.Many2one('res.users', string="Responsible")
     room_type = fields.Selection(
         [
             ("individual", "Individual"),
@@ -36,10 +41,10 @@ class RentalRoom(models.Model):
 
     # Equipamiento
     furniture_list = fields.Many2many(
-        comodel_name="furniture.room.item", string="Furniture List"
+        comodel_name="furniture.room.item", string="Furniture List",options={'color_field': 'color'}
     )  # E.g. Bed, Desk, Wardrobe, etc.
     services_included = fields.Many2many(
-        comodel_name="services.room.item", string="Services List"
+        comodel_name="services.room.item", string="Services List",options={'color_field': 'color'}
     )  # E.g. Internet, Heating, etc.
 
     # Historial
@@ -62,6 +67,20 @@ class RentalRoom(models.Model):
         column2="attachment_id",
         string="Room Pictures",
     )
+    image_1920 = fields.Binary("Avatar", attachment=True)  # Campo para la imagen del avatar
+    image_filename = fields.Char("Image Filename")  # Campo para el nombre del archivo de la imagen
+
+    occupants = fields.One2many('res.partner', compute='_compute_occupants', string='')
+    description = fields.Html(string='Description')
+    #payment_id= fields.Many2one('rental.payment.history','payment')
+
+
+    @api.depends('tenant_ids')
+    def _compute_occupants(self):
+        for room in self:
+            room.occupants = [(6, 0, room.tenant_ids.ids)]
+
+
 
 
     def return_action_view_xml_id(self):
@@ -77,11 +96,7 @@ class RentalRoom(models.Model):
             return action
         return False
 
-    @api.constrains("size_m2")
-    def _check_room_size(self):
-        for room in self:
-            if room.size_m2 <= 0:
-                raise models.ValidationError("Room size must be greater than 0 m².")
+
 
     @api.model
     def create(self, vals):
@@ -97,6 +112,15 @@ class RentalRoom(models.Model):
     def _compute_occupancy_history(self):
         self.occupancy_history_count = len(self.occupancy_history_ids) if self.occupancy_history_ids else 0
 
+    def action_change_status(self):
+        for record in self:
+            if record.status == 'available':
+                record.status = 'occupied'
+            elif record.status == 'occupied':
+                record.status = 'maintenance'
+            else:
+                record.status = 'available'
+
 
 # furniture.room.item y services.room.item son modelos que se crean en el siguiente snippet
 class FurnitureRoomItem(models.Model):
@@ -105,6 +129,11 @@ class FurnitureRoomItem(models.Model):
 
     name = fields.Char(string="Name", required=True)
     description = fields.Text(string="Description")
+    color = fields.Integer(string="Color Index")
+
+    def create(self, vals):
+        vals['color'] = random.randint(1, 11)  # Asigna un color aleatorio entre 1 y 11
+        return super(FurnitureRoomItem, self).create(vals)
 
 
 class ServicesRoomItem(models.Model):
@@ -113,7 +142,11 @@ class ServicesRoomItem(models.Model):
 
     name = fields.Char(string="Name", required=True)
     description = fields.Text(string="Description")
+    color = fields.Integer(string="Color Index")
 
+    def create(self, vals):
+        vals['color'] = random.randint(1, 11)  # Asigna un color aleatorio entre 1 y 11
+        return super(ServicesRoomItem, self).create(vals)
 
 # para los registros de historial de ocupación
 class RentalRoomOccupancy(models.Model):
@@ -181,3 +214,22 @@ class RentalRoomMaintenance(models.Model):
                 self.env["ir.sequence"].next_by_code("rent.room.maintenance") or "New"
             )
         return super(RentalRoomMaintenance, self).create(vals)
+
+
+class Room(models.Model):
+    _name = 'room.sections'
+    _description = 'Sections'
+
+    name = fields.Char(string='Seccion', required=True)
+    height = fields.Float(string='Altura (m)', required=True)
+    width = fields.Float(string='Anchura (m)', required=True)
+    area = fields.Float(compute="_compute_area",string='Área (m²)')
+    room_id = fields.Many2one("rental.room", string="Room")
+
+
+    @api.depends('height', 'width')
+    def _compute_area(self):
+        if self.height > 0 and self.width > 0:
+            self.area = float(self.height * self.width)
+        else:
+            self.area = 0

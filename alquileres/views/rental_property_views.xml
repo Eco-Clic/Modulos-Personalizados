@@ -13,6 +13,10 @@
         <field name="model">rental.property</field>
         <field name="arch" type="xml">
             <form string="Property">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="available,occupied,maintenance"/>
+                    <button name="action_change_status" type="object" string="Change Status" class="oe_highlight"/>
+                </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box" modifiers="{}">
                         <button class="oe_stat_button" type="object"
@@ -52,7 +56,6 @@
                         <group class="oe_subgroup">
                             <field name="address"/>
                             <field name="property_type"/>
-                            <field name="number_of_rooms"/>
                             <field name="number_of_bathrooms"/>
                             <field name="size_m2"/>
                             <field name="floor"/>
@@ -63,12 +66,19 @@
                         </group>
                         <group class="oe_subgroup">
                             <field name="rental_price_per_room"/>
-                            <field name="property_deed"/>
-                            <field name="energy_certificate"/>
-                            <field name="habitability_certificate"/>
-                            <field name="special_permits"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Attachments">
+                            <group>
+                                <field name="property_deed"/>
+                                <field name="energy_certificate"/>
+                                <field name="habitability_certificate"/>
+                                <field name="special_permits"/>
+                            </group>
+
+                        </page>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>
@@ -86,7 +96,6 @@
             <tree string="Properties">
                 <field name="address"/>
                 <field name="property_type"/>
-                <field name="number_of_rooms"/>
                 <field name="number_of_bathrooms"/>
                 <field name="size_m2"/>
                 <field name="property_status"/>

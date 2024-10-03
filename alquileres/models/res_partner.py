@@ -13,11 +13,7 @@ class Tenant(models.Model):
         [('single', 'Single'), ('married', 'Married'), ('divorced', 'Divorced')],
         string='Marital Status'
     )
-    nationality = fields.Char(string='Nationality')
-    phone = fields.Char(string='Phone Number', required=True)
-    email = fields.Char(string='Email', required=True)
-    bank_account_number = fields.Char(string='Bank Account Number')
-    address = fields.Char(string='Address')
+    nationality = fields.Many2one('res.country',string='Nationality')
     employment_status = fields.Selection(
         [('employed', 'Employed'), ('unemployed', 'Unemployed'), ('self_employed', 'Self-employed'),
          ('student', 'Student')],

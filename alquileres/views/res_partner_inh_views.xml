@@ -13,35 +13,34 @@
                             <field name="identification_number"/>
                             <field name="marital_status"/>
                             <field name="nationality"/>
-                            <field name="phone"/>
-                            <field name="email"/>
-                            <field name="bank_account_number"/>
-                            <field name="address"/>
                             <field name="employment_status"/>
                         </group>
                         <group class="oe_subgroup">
-                            <field name="monthly_income"/>
+                            <field name="monthly_income" widget="monetary"/>
                             <field name="property_id"/>
                             <field name="room_id"/>
                             <field name="lease_start_date"/>
                             <field name="lease_end_date"/>
-                            <field name="monthly_rent"/>
-                            <field name="deposit_amount"/>
+                            <field name="monthly_rent" widget="monetary"/>
+                            <field name="deposit_amount" widget="monetary"/>
                             <field name="guarantees"/>
                         </group>
 
-                        <group class="oe_subgroup">
-                            <field name="co_signer_ids"/>
+                        <group string="Co-signers" colspan="2">
+                            <field name="co_signer_ids" widget="many2many_avatar"/>
                         </group>
 
-                        <group class="oe_subgroup">
+
+                    </group>
+                </page>
+                <page string="Contract information">
+                     <group class="oe_subgroup">
                             <field name="signed_lease_contract"/>
                             <field name="id_document"/>
-                            <field name="deposit_receipt"/>
+                            <field name="deposit_receipt" widget="monetary"/>
                             <field name="income_proof"/>
                             <field name="additional_guarantees"/>
                         </group>
-                    </group>
                 </page>
             </xpath>
         </field>

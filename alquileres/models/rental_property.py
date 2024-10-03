@@ -14,7 +14,17 @@ class RentalProperty(models.Model):
         string='Property Type',
         required=True
     )
-    number_of_rooms = fields.Integer(string='Number of Rooms', required=True)
+    status = fields.Selection(
+        [
+            ("available", "Available"),
+            ("occupied", "Occupied"),
+            ("maintenance", "Under Maintenance"),
+        ],
+        string="Current Status",
+        required=True,
+        default="available",
+    )
+    rooms = fields.One2many("rental.room","rental_id", string="Rooms")
     number_of_bathrooms = fields.Integer(string='Number of Bathrooms', required=True)
     size_m2 = fields.Float(string='Surface Area (m²)', required=True)
     floor = fields.Char(string='Floor (if applicable)')
@@ -22,6 +32,7 @@ class RentalProperty(models.Model):
 
     # Datos de Propiedad
     owner_id = fields.Many2one('res.partner', string='Owner', required=True)
+   # payment_id = fields.Many2one('rental.payment.history', 'payment')
     property_reference = fields.Char(string='Property Reference Number', required=True)
     property_status = fields.Selection(
         [('available', 'Available'), ('rented', 'Rented'), ('maintenance', 'Under Maintenance')],
@@ -53,6 +64,11 @@ class RentalProperty(models.Model):
     # Documentación
     property_deed = fields.Binary(string='Property Deed')
     energy_certificate = fields.Binary(string='Energy Efficiency Certificate')
+    energy_certificate_list = fields.Selection(
+        [('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E'), ('F', 'F'), ('G', 'G'), ],
+        string='Energy Efficiency Certificate',
+        required=True
+    )
     habitability_certificate = fields.Binary(string='Habitability Certificate')
     special_permits = fields.Binary(string='Special Permits or Licenses')
 
@@ -98,6 +114,14 @@ class RentalProperty(models.Model):
     def _compute_contract_history(self):
         self.contract_history_count = len(self.contract_history_ids) if self.contract_history_ids else 0
 
+    def action_change_status(self):
+        for record in self:
+            if record.status == 'available':
+                record.status = 'occupied'
+            elif record.status == 'occupied':
+                record.status = 'maintenance'
+            else:
+                record.status = 'available'
 
 
 # para los registros de historial de inquilinos

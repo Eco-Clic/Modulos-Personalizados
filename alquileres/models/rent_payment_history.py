@@ -15,9 +15,16 @@ class RentalPaymentHistory(models.Model):
         ('Room', 'Room')
     ], string='Inmueble')
     service_ids = fields.One2many(
-        "rental.payment.history.lines", "payment_id",string="Service"
+        "rental.payment.history.lines", "payment_id", string="Service"
     )
     invoice_count = fields.Integer(string="Invoice Count", compute="_compute_invoice_count")
+
+    alquiler_price = fields.Float(string='Precio Alquiler($)', required=True)
+    invoice_id = fields.Many2one('account.move', string='Invoice')
+
+    # Campos adicionales para las casas y los apartamentos
+    # property_ids = fields.One2many('rental.property', 'paymet_id', string='Properties')  # Cambia a tu modelo real
+    # room_ids = fields.One2many('rental.room', 'paymet_id', string='Rooms')
 
     @api.depends('tenant_id')
     def _compute_invoice_count(self):
@@ -32,13 +39,28 @@ class RentalPaymentHistory(models.Model):
     def action_create_invoice(self):
         self.ensure_one()
         invoice_lines = []
-        for service in self.service_ids:
-            invoice_lines.append((0, 0, {
-                'product_id': service.product_id.id,
-                'quantity': service.quantity,
-                'price_unit': service.price,
-                'account_id': service.product_id.property_account_income_id.id,
-            }))
+
+        if self.payment_type == 'monthly':
+            # Agrega un producto de Pago de Alquiler con cantidad 1
+            rental_product = self.env['product.template'].search([
+                ('name', '=', 'Pago de Alquiler'),
+                ('detailed_type', '=', 'service')
+            ], limit=1)
+            if rental_product:
+                invoice_lines.append((0, 0, {
+                    'product_id': rental_product.id,
+                    'quantity': 1,
+                    'price_unit': self.alquiler_price,
+                }))
+        else:
+            for service in self.service_ids:
+                invoice_lines.append((0, 0, {
+                    'product_id': service.product_id.id,
+                    'quantity': service.quantity,
+                    'price_unit': service.price,
+                    'account_id': service.product_id.property_account_income_id.id,
+                }))
+
         invoice = self.env['account.move'].create({
             'partner_id': self.tenant_id.id,
             'move_type': 'out_invoice',
@@ -46,6 +68,14 @@ class RentalPaymentHistory(models.Model):
         })
         invoice.action_post()
         self.write({'invoice_id': invoice.id})
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Factura',
+            'res_model': 'account.move',
+            'view_mode': 'form',
+            'res_id': invoice.id,
+            'target': 'current',  # Abre en la misma ventana
+        }
 
 
 class RentalPaymentHistoryLines(models.Model):
