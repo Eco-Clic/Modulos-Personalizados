@@ -10,15 +10,18 @@ class RentalRoom(models.Model):
     _description = "Room Management"
 
     # Información Básica
-    # Nuevo campo para publicar en el sitio web
-    website_published = fields.Boolean(string="Published on Website", default=False)
     name = fields.Char(
         string="Room", required=True, copy=False, readonly=True, default="New"
     )
-    rental_id = fields.Many2one('rental.property', string='Rental')
-    tenant_ids = fields.One2many('res.partner','room_id', string='Tenants')
-    size_m2 = fields.One2many("room.sections","room_id", string="Sections")
-    responsible_id = fields.Many2one('res.users', string="Responsible")
+    rental_id = fields.Many2one("rental.property", string="Rental", readonly=True)
+    tenant_ids = fields.One2many(
+        "res.partner",
+        "room_id",
+        string="Tenants",
+        domain="[('owner_or_tenant', '=', 'tenant')]",
+    )
+    size_m2 = fields.One2many("room.sections", "room_id", string="Sections")
+    responsible_id = fields.Many2one("res.users", string="Responsible")
     room_type = fields.Selection(
         [
             ("individual", "Individual"),
@@ -27,7 +30,6 @@ class RentalRoom(models.Model):
             ("other", "Other"),
         ],
         string="Room Type",
-        required=True,
     )
     status = fields.Selection(
         [
@@ -43,10 +45,14 @@ class RentalRoom(models.Model):
 
     # Equipamiento
     furniture_list = fields.Many2many(
-        comodel_name="furniture.room.item", string="Furniture List",options={'color_field': 'color'}
+        comodel_name="furniture.room.item",
+        string="Furniture List",
+        options={"color_field": "color"},
     )  # E.g. Bed, Desk, Wardrobe, etc.
     services_included = fields.Many2many(
-        comodel_name="services.room.item", string="Services List",options={'color_field': 'color'}
+        comodel_name="services.room.item",
+        string="Services List",
+        options={"color_field": "color"},
     )  # E.g. Internet, Heating, etc.
 
     # Historial
@@ -61,7 +67,9 @@ class RentalRoom(models.Model):
     maintenance_history_count = fields.Integer(compute="_compute_maintenance_history")
 
     # Documentación
-    room_inventory = fields.One2many("product.template","room_id", string="")  # List of furniture and their conditions
+    room_inventory = fields.One2many(
+        "product.template", "room_id", string=""
+    )  # List of furniture and their conditions
     room_photos = fields.Many2many(
         comodel_name="ir.attachment",
         relation="m2m_ir_attachment_relation",
@@ -69,59 +77,73 @@ class RentalRoom(models.Model):
         column2="attachment_id",
         string="Room Pictures",
     )
-    image_1920 = fields.Binary("Avatar", attachment=True)  # Campo para la imagen del avatar
-    image_filename = fields.Char("Image Filename")  # Campo para el nombre del archivo de la imagen
+    image_1920 = fields.Binary(
+        "Imagen", attachment=True
+    )  # Campo para la imagen del avatar
+    image_filename = fields.Char(
+        "Image Filename"
+    )  # Campo para el nombre del archivo de la imagen
+    has_a_tenant = fields.Boolean(compute="_compute_occupants")
+    # occupants = fields.One2many('res.partner', compute='_compute_occupants', string='')
+    description = fields.Html(string="Description")
+    color = fields.Integer(string="Color Index")
+    is_room = fields.Boolean(string="is_room", default=True)
+    # payment_id= fields.Many2one('rental.payment.history','payment')
+    # Nuevo campo para publicar en el sitio web
+    website_published = fields.Boolean(string="Published on Website", default=False)
 
-    occupants = fields.One2many('res.partner', compute='_compute_occupants', string='')
-    description = fields.Html(string='Description')
-    #payment_id= fields.Many2one('rental.payment.history','payment')
-
-
-    @api.depends('tenant_ids')
+    @api.depends("tenant_ids")
     def _compute_occupants(self):
-        for room in self:
-            room.occupants = [(6, 0, room.tenant_ids.ids)]
-
-
-
+        # Check the number of occupants
+        if len(self.tenant_ids) > 0:
+            self.has_a_tenant = True
+        else:
+            self.has_a_tenant = False
 
     def return_action_view_xml_id(self):
         """Return action window for xml_id passed through context"""
         self.ensure_one()
-        xml_id = self.env.context.get('xml_id')
+        xml_id = self.env.context.get("xml_id")
         if xml_id is not None:
-            action = self.env['ir.actions.act_window']._for_xml_id(f'alquileres.{xml_id}')
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                f"alquileres.{xml_id}"
+            )
             action.update(
-                context=dict(self.env.context, default_rental_room_id=self.id, group_by=False),
-                domain=[('room_id', '=', self.id)]
+                context=dict(
+                    self.env.context, default_rental_room_id=self.id, group_by=False
+                ),
+                domain=[("room_id", "=", self.id)],
             )
             return action
         return False
-
-
 
     @api.model
     def create(self, vals):
         if vals.get("name", "New") == "New":
             vals["name"] = self.env["ir.sequence"].next_by_code("rent.room") or "New"
+            vals["color"] = random.randint(1, 11)
         return super(RentalRoom, self).create(vals)
 
-    @api.depends('maintenance_history_ids')
+    @api.depends("maintenance_history_ids")
     def _compute_maintenance_history(self):
-        self.maintenance_history_count = len(self.maintenance_history_ids) if self.maintenance_history_ids else 0
+        self.maintenance_history_count = (
+            len(self.maintenance_history_ids) if self.maintenance_history_ids else 0
+        )
 
-    @api.depends('occupancy_history_ids')
+    @api.depends("occupancy_history_ids")
     def _compute_occupancy_history(self):
-        self.occupancy_history_count = len(self.occupancy_history_ids) if self.occupancy_history_ids else 0
+        self.occupancy_history_count = (
+            len(self.occupancy_history_ids) if self.occupancy_history_ids else 0
+        )
 
     def action_change_status(self):
         for record in self:
-            if record.status == 'available':
-                record.status = 'occupied'
-            elif record.status == 'occupied':
-                record.status = 'maintenance'
+            if record.status == "available":
+                record.status = "occupied"
+            elif record.status == "occupied":
+                record.status = "maintenance"
             else:
-                record.status = 'available'
+                record.status = "available"
 
 
 # furniture.room.item y services.room.item son modelos que se crean en el siguiente snippet
@@ -134,7 +156,7 @@ class FurnitureRoomItem(models.Model):
     color = fields.Integer(string="Color Index")
 
     def create(self, vals):
-        vals['color'] = random.randint(1, 11)  # Asigna un color aleatorio entre 1 y 11
+        vals["color"] = random.randint(1, 11)  # Asigna un color aleatorio entre 1 y 11
         return super(FurnitureRoomItem, self).create(vals)
 
 
@@ -147,8 +169,9 @@ class ServicesRoomItem(models.Model):
     color = fields.Integer(string="Color Index")
 
     def create(self, vals):
-        vals['color'] = random.randint(1, 11)  # Asigna un color aleatorio entre 1 y 11
+        vals["color"] = random.randint(1, 11)  # Asigna un color aleatorio entre 1 y 11
         return super(ServicesRoomItem, self).create(vals)
+
 
 # para los registros de historial de ocupación
 class RentalRoomOccupancy(models.Model):
@@ -219,17 +242,16 @@ class RentalRoomMaintenance(models.Model):
 
 
 class Room(models.Model):
-    _name = 'room.sections'
-    _description = 'Sections'
+    _name = "room.sections"
+    _description = "Sections"
 
-    name = fields.Char(string='Seccion', required=True)
-    height = fields.Float(string='Altura (m)', required=True)
-    width = fields.Float(string='Anchura (m)', required=True)
-    area = fields.Float(compute="_compute_area",string='Área (m²)')
+    name = fields.Char(string="Seccion", required=True)
+    height = fields.Float(string="Altura (m)", required=True)
+    width = fields.Float(string="Anchura (m)", required=True)
+    area = fields.Float(compute="_compute_area", string="Área (m²)")
     room_id = fields.Many2one("rental.room", string="Room")
 
-
-    @api.depends('height', 'width')
+    @api.depends("height", "width")
     def _compute_area(self):
         if self.height > 0 and self.width > 0:
             self.area = float(self.height * self.width)

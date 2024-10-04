@@ -115,30 +115,30 @@
         </field>
     </record>
 
-  <!--  <record id="action_payment_history" model="ir.actions.act_window">
-        <field name="name">Payment History</field>
-        <field name="res_model">rental.payment.history</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">form</field>
-    </record>
+    <!--  <record id="action_payment_history" model="ir.actions.act_window">
+          <field name="name">Payment History</field>
+          <field name="res_model">rental.payment.history</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="view_mode">form</field>
+      </record>
 
-    <record id="view_rent_payment_history_form" model="ir.ui.view">
-        <field name="name">rent.payment.history.form</field>
-        <field name="model">rental.payment.history</field>
-        <field name="arch" type="xml">
-            <form string="Payment History">
-                <sheet>
-                    <group>
-                        <field name="tenant_id"/>
-                        <field name="amount_paid"/>
-                        <field name="payment_date"/>
-                        <field name="payment_method"/>
-                        <field name="is_on_time"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>-->
+      <record id="view_rent_payment_history_form" model="ir.ui.view">
+          <field name="name">rent.payment.history.form</field>
+          <field name="model">rental.payment.history</field>
+          <field name="arch" type="xml">
+              <form string="Payment History">
+                  <sheet>
+                      <group>
+                          <field name="tenant_id"/>
+                          <field name="amount_paid"/>
+                          <field name="payment_date"/>
+                          <field name="payment_method"/>
+                          <field name="is_on_time"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>-->
 
     <record id="action_incident_history" model="ir.actions.act_window">
         <field name="name">Incident History</field>
@@ -243,6 +243,8 @@
               action="action_rental_contract" sequence="4"/>
     <menuitem id="rental_menu_issue" name="Issues" parent="rental_menu_main_root"
               action="action_issue" sequence="5"/>
+    <menuitem id="menu_empadronamiento" name="Registration" parent="rental_menu_main_root"
+              action="action_empadronamiento" sequence="6"/>
 
 
     <!-- Menú de configuraciones -->
@@ -255,8 +257,8 @@
               parent="rental_menu_config"/>
     <menuitem id="rental_menu_occupancy" name="Occupancy" action="action_occupancy_history"
               parent="rental_menu_config"/>
-    <menuitem id="rental_menu_payment_history" name="Payment History"
-              action="action_rental_payment_history" parent="rental_menu_config"/>
+   <!-- <menuitem id="rental_menu_payment_history" name="Payment History"
+              action="action_rental_payment_history" parent="rental_menu_config"/>-->
     <menuitem id="rental_menu_incident_history" name="Incident History"
               action="action_incident_history" parent="rental_menu_config"/>
     <menuitem id="rental_menu_communication_history" name="Communication History"

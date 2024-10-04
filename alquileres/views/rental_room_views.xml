@@ -92,20 +92,13 @@
                     <group>
                         <group class="oe_subgroup">
                             <field name="name"/>
-                            <field name="website_published"/>
                             <field name="room_type"/>
                             <field name="rental_price" widget="monetary"/>
-                            <field name="responsible_id"  widget="many2one_avatar"/>
+                            <field name="responsible_id" widget="many2one_avatar"/>
                         </group>
 
                     </group>
-                    <group string="Occupants">
-                        <field name="occupants" colspan="3">
-                            <tree editable="bottom">
-                                <field name="name"/>
-                            </tree>
-                        </field>
-                    </group>
+
                     <notebook>
                         <page string="Room Inventory">
                             <field name="room_inventory" colspan="3">
@@ -118,6 +111,15 @@
                         </page>
                         <page string="Image">
                             <field name="room_photos" widget="many2many_binary"/>
+                        </page>
+                        <page string="Occupants">
+                            <group>
+                                <field name="tenant_ids" colspan="3">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </group>
                         </page>
                         <page string="Sections" name="sections">
                             <field name="size_m2">

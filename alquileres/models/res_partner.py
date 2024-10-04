@@ -8,6 +8,10 @@ class Tenant(models.Model):
 
     # Información Personal
     birth_date = fields.Date(string='Date of Birth')
+    owner_or_tenant= fields.Selection(
+        [('owner', 'Owner'), ('tenant', 'Tenant')],
+        string='Owner or Tenant'
+    )
     identification_number = fields.Char(string='DNI/NIE', required=True)
     marital_status = fields.Selection(
         [('single', 'Single'), ('married', 'Married'), ('divorced', 'Divorced')],

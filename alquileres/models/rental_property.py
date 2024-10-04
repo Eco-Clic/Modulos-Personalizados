@@ -7,8 +7,6 @@ class RentalProperty(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     # Información Básica
-    # Nuevo campo para publicar en el sitio web
-    website_published = fields.Boolean(string="Published on Website", default=False)
     name = fields.Char(string='Property', required=True, copy=False, readonly=True, default='New')
     address = fields.Char(string='Full Address', required=True)
     property_type = fields.Selection(
@@ -27,10 +25,12 @@ class RentalProperty(models.Model):
         default="available",
     )
     rooms = fields.One2many("rental.room","rental_id", string="Rooms")
+    number_of_rooms = fields.Integer(string='Number of Rooms', required=True)
     number_of_bathrooms = fields.Integer(string='Number of Bathrooms', required=True)
     size_m2 = fields.Float(string='Surface Area (m²)', required=True)
     floor = fields.Char(string='Floor (if applicable)')
     door_number = fields.Char(string='Door Number (if applicable)')
+    is_property = fields.Boolean(string="is_property",default=True)
 
     # Datos de Propiedad
     owner_id = fields.Many2one('res.partner', string='Owner', required=True)
@@ -68,11 +68,14 @@ class RentalProperty(models.Model):
     energy_certificate = fields.Binary(string='Energy Efficiency Certificate')
     energy_certificate_list = fields.Selection(
         [('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E'), ('F', 'F'), ('G', 'G'), ],
-        string='Energy Efficiency Certificate',
-        required=True
+        string='Energy Efficiency Certificate'
     )
     habitability_certificate = fields.Binary(string='Habitability Certificate')
     special_permits = fields.Binary(string='Special Permits or Licenses')
+    image_1920 = fields.Binary("Imagen", attachment=True)  # Campo para la imagen del avatar
+    image_filename = fields.Char("Image Filename")  # Campo para el nombre del archivo de la imagen
+    # Nuevo campo para publicar en el sitio web
+    website_published = fields.Boolean(string="Published on Website", default=False)
 
     @api.constrains('number_of_rooms', 'number_of_bathrooms', 'size_m2')
     def _check_validations(self):

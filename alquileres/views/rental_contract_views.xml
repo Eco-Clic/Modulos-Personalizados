@@ -5,7 +5,7 @@
         <field name="name">Rental Contracts</field>
         <field name="res_model">rental.contract</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
     </record>
 
     <record id="view_rent_contract_form" model="ir.ui.view">
@@ -28,18 +28,18 @@
                             <field name="contract_start_date"/>
                             <field name="contract_end_date"/>
                             <field name="renewal_terms"/>
-                            <field name="monthly_rent"/>
-                            <field name="security_deposit"/>
+                            <field name="monthly_rent" widget="monetary"/>
+                            <field name="security_deposit" widget="monetary"/>
                             <field name="payment_frequency"/>
                             <field name="penalty_terms"/>
                         </group>
-                        <group class="oe_subgroup">
+                        <group string="Responsibilities" class="oe_subgroup">
                             <field name="owner_responsibilities"/>
                             <field name="tenant_responsibilities"/>
                             <field name="agency_responsibilities"/>
                         </group>
                         <group class="oe_subgroup">
-                            <field name="signed_contract"/>
+                            <field name="signed_contract" widget="signature"/>
                         </group>
                     </group>
                     <notebook>
@@ -74,4 +74,54 @@
             </tree>
         </field>
     </record>
+
+    <record id="view_rent_contract_kanban" model="ir.ui.view">
+        <field name="name">rent.contract.kanban</field>
+        <field name="model">rental.contract</field>
+        <field name="arch" type="xml">
+            <kanban string="Contracts">
+                <field name="tenant_id"/>
+                <field name="is_active"/>
+                <field name="contract_start_date"/>
+                <field name="contract_end_date"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_card">
+                                <div class="o_kanban_details">
+                                    <strong>
+                                        <field name="tenant_id"
+                                               widget="many2one_avatar_user"/> <!-- Nombre del inquilino -->
+                                    </strong>
+                                    <div>
+                                        <span>Status:</span>
+                                        <t t-if="record.is_active.raw_value"> <!-- Verifica si el contrato está activo -->
+                                            <span class="badge badge-success">Activo</span>
+                                        </t>
+                                        <t t-else="">
+                                            <span class="badge badge-danger">Inactivo</span>
+                                        </t>
+                                    </div>
+                                    <div>
+                                        <span>Start Date:</span>
+                                        <span class="o_field_date">
+                                            <field name="contract_start_date"/> <!-- Fecha de inicio -->
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>End Date:</span>
+                                        <span class="o_field_date">
+                                            <field name="contract_end_date"/> <!-- Fecha de fin -->
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
 </odoo>
