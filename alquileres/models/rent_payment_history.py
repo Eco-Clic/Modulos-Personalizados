@@ -21,10 +21,25 @@ class RentalPaymentHistory(models.Model):
 
     alquiler_price = fields.Float(string='Precio Alquiler($)', required=True)
     invoice_id = fields.Many2one('account.move', string='Invoice')
+    reference_field = fields.Reference([
+        ('rental.property', 'Property'),
+        ('rental.room', 'Room')
+    ], string="Related Reference")
 
-    # Campos adicionales para las casas y los apartamentos
-    # property_ids = fields.One2many('rental.property', 'paymet_id', string='Properties')  # Cambia a tu modelo real
-    # room_ids = fields.One2many('rental.room', 'paymet_id', string='Rooms')
+    @api.onchange('inmueble', 'tenant_id')
+    def _onchange_inmueble(self):
+        # Limpiar el campo de referencia cuando cambie la selección de inmueble
+        self.reference_field = False
+
+        if self.inmueble and self.tenant_id:
+            # Dependiendo del valor de 'inmueble', cambiar el dominio del campo 'reference_field'
+            if self.inmueble == 'Property':
+                return {
+                    'domain': {'reference_field': [('tenant_id', '=', self.tenant_id.id), ('is_property', '=', True)]}}
+            elif self.inmueble == 'Room':
+                return {'domain': {'reference_field': [('tenant_id', '=', self.tenant_id.id), ('is_room', '=', True)]}}
+        else:
+            return {'domain': {'reference_field': []}}
 
     @api.depends('tenant_id')
     def _compute_invoice_count(self):

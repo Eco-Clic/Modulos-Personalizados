@@ -1,3 +1,5 @@
+from datetime import date
+
 from odoo import models, fields, api
 
 class RentalContract(models.Model):
@@ -41,6 +43,13 @@ class RentalContract(models.Model):
         domain=[('res_model', '=', 'rental.contract')],
         string='Contract Attachments'
     )
+    is_active = fields.Boolean(string='Active', compute='_compute_is_active')
+
+    @api.depends('contract_start_date', 'contract_end_date')
+    def _compute_is_active(self):
+        for record in self:
+            today = date.today()
+            record.is_active = record.contract_start_date <= today <= record.contract_end_date
 
     @api.constrains('contract_start_date', 'contract_end_date')
     def _check_dates(self):

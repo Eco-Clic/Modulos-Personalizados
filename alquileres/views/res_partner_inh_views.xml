@@ -9,6 +9,7 @@
                 <page string="Rental Information">
                     <group>
                         <group class="oe_subgroup">
+                            <field name="owner_or_tenant"/>
                             <field name="birth_date"/>
                             <field name="identification_number"/>
                             <field name="marital_status"/>

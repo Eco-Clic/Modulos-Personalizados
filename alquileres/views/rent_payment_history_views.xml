@@ -18,8 +18,11 @@
                         <field name="tenant_id" required="1"/>
                         <field name="payment_type" required="1"/>
                         <field name="inmueble" required="1"/>
-                        <field name="alquiler_price"
+                        <field name="alquiler_price" widget="monetary"
                                invisible="payment_type != 'monthly'"/>
+                    </group>
+                    <group>
+                        <field name="reference_field" widget="selection"/>
                     </group>
                     <notebook>
                         <page string="Services" invisible="payment_type == 'monthly'">
@@ -27,18 +30,13 @@
                                 <tree editable="bottom" options="{'no_open': True}">
                                     <field name="product_id"/>
                                     <field name="quantity"/>
-                                    <field name="price"/>
+                                    <field name="price" widget="monetary"/>
                                     <field name="observations"/>
                                 </tree>
                             </field>
                         </page>
                     </notebook>
-                 <!--   <group invisible="inmueble != 'property'">
-                        <field name="property_ids" widget="many2many_tags" domain="[('tenant_id', '=', tenant_id)]"/>
-                    </group>
-                    <group invisible="inmueble != 'room'">
-                        <field name="room_ids" widget="many2many_tags" domain="[('tenant_ids', '=', tenant_id)]"/>
-                    </group>-->
+
                 </sheet>
             </form>
         </field>
@@ -73,7 +71,7 @@
                         <field name="payment_id"/>
                         <field name="product_id"/>
                         <field name="quantity"/>
-                        <field name="price"/>
+                        <field name="price" widget="monetary"/>
                         <field name="observations"/>
                     </group>
                 </sheet>
@@ -89,7 +87,7 @@
                 <field name="payment_id" readonly="true"/>
                 <field name="product_id"/>
                 <field name="quantity"/>
-                <field name="price"/>
+                <field name="price" widget="monetary"/>
             </tree>
         </field>
     </record>
