@@ -21,14 +21,16 @@
     "data": [
         "security/ir.model.access.csv",
         "views/rent_issue_views.xml",
+        "views/rental_empadronamiento_views.xml",
         "views/rental_contract_views.xml",
         "views/rent_payment_history_views.xml",
         "views/rental_property_views.xml",
         "views/rental_room_views.xml",
         "views/menu_alquiler.xml",
         "views/res_partner_inh_views.xml",
-        "data/rent_sequence.xml",
         'views/rental_website_templates.xml',
+        "data/rent_sequence.xml",
+
     ],
     "installable": True,
     "application": True,

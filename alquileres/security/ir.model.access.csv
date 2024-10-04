@@ -16,3 +16,4 @@ access_property_maintenance,rental.property.maintenance,model_rental_property_ma
 access_room_occupancy,rental.room.occupancy,model_rental_room_occupancy,base.group_user,1,1,1,1
 access_room_sections,room.sections,model_room_sections,base.group_user,1,1,1,1
 access_room_maintenance,rental.room.maintenance,model_rental_room_maintenance,base.group_user,1,1,1,1
+access_rent_empadronamiento,access_rent_empadronamiento,model_rent_empadronamiento,base.group_user,1,1,1,1
