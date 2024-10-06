@@ -9,20 +9,20 @@ class RentalContract(models.Model):
 
     # Información del Contrato
     name = fields.Char(string='Contract', required=True, copy=False, readonly=True, default='New')
-    contract_number = fields.Char(string='Contract Number', required=True)
-    contract_date = fields.Date(string='Signature Date', required=True)
-    property_id = fields.Many2one('rental.property', string='Property', required=True) # propiedad arrendada
-    room_id = fields.Many2one('rental.room', string='Room', required=True) # habitación arrendada
+    contract_number = fields.Char(string='Contract Number')
+    contract_date = fields.Date(string='Signature Date', required=True,default=date.today())
+    property_id = fields.Many2one('rental.property', string='Property', ) # propiedad arrendada
+    room_id = fields.Many2one('rental.room', string='Room', ) # habitación arrendada
     owner_id = fields.Many2one('res.partner', string='Owner', required=True)
     tenant_id = fields.Many2one('res.partner', string='Tenant', required=True)
     agency_id = fields.Many2one('res.partner', string='Agency', required=False)
-    contract_start_date = fields.Date(string='Start Date', required=True)
-    contract_end_date = fields.Date(string='End Date', required=True)
+    contract_start_date = fields.Date(string='Start Date', required=True, default=date.today())
+    contract_end_date = fields.Date(string='End Date', required=True, default=date.today())
     renewal_terms = fields.Text(string='Renewal or Termination Conditions')
 
     # Términos Financieros
-    monthly_rent = fields.Float(string='Monthly Rent', required=True)
-    security_deposit = fields.Float(string='Security Deposit', required=True)
+    monthly_rent = fields.Float(string='Monthly Rent', )
+    security_deposit = fields.Float(string='Security Deposit', )
     payment_frequency = fields.Selection(
         [('monthly', 'Monthly'), ('quarterly', 'Quarterly')],
         string='Payment Frequency',

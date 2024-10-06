@@ -102,7 +102,7 @@ class RentalRoom(models.Model):
     def _compute_current_tenant(self):
         for property in self:
             tenant = property.contract_history_ids.filtered(lambda x: x.status == 'open').tenant_id
-            property.tenant_id = tenant.partner_id if tenant else False
+            property.tenant_id = tenant.id if tenant else False
 
     @api.depends("tenant_ids")
     def _compute_occupants(self):

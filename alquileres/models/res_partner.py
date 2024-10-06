@@ -60,6 +60,15 @@ class Tenant(models.Model):
     # si es Owner o es Tenant
     is_owner = fields.Boolean(compute='_compute_is_owner')
     is_tenant = fields.Boolean(compute='_compute_is_tenant')
+    # Historial de Contratos
+    rental_contracts_ids = fields.One2many(
+        'rental.contract', 'tenant_id', string='Rental Contract History'
+    )
+    rental_contract_count = fields.Integer(compute="_compute_rental_contract")
+
+    def _compute_rental_contract(self):
+        for record in self:
+            record.rental_contract_count = len(record.rental_contracts_ids) if record.rental_contracts_ids else 0
 
     def _compute_is_owner(self):
         for record in self:

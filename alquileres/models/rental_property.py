@@ -82,7 +82,7 @@ class RentalProperty(models.Model):
     def _compute_current_tenant(self):
         for property in self:
             tenant = property.contract_history_ids.filtered(lambda x: x.status == 'open').tenant_id
-            property.tenant_id = tenant.partner_id if tenant else False
+            property.tenant_id = tenant.id if tenant else False
 
     @api.constrains('number_of_rooms', 'number_of_bathrooms', 'size_m2')
     def _check_validations(self):
@@ -144,7 +144,7 @@ class RentalProperty(models.Model):
             'view_mode': 'form',
             'target': 'new',
             'context': {
-                'default_property_id': self.property_id.id,
+                'default_property_id': self.id,
             }
         }
 
@@ -157,7 +157,7 @@ class RentalProperty(models.Model):
             'view_mode': 'form',
             'target': 'new',
             'context': {
-                'default_property_id': self.property_id.id,
+                'default_property_id': self.id,
             }
         }
 

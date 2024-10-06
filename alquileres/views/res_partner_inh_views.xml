@@ -108,6 +108,16 @@
                                name="communication_history_count"
                                widget="statinfo"/>
                     </button>
+
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Contracts History"
+                            context="{'xml_id': 'action_rental_contract'}"
+                            icon="fa-letter">
+                        <field string="Contracts History"
+                               name="rental_contract_count"
+                               widget="statinfo"/>
+                    </button>
                 </div>
             </xpath>
         </field>
