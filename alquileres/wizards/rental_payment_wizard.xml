@@ -2,11 +2,11 @@
 <odoo>
     <data>
 
-        <record id="view_rental_payment_history_form" model="ir.ui.view">
-            <field name="name">rental.payment.history.form</field>
-            <field name="model">rental.payment.history</field>
+        <record id="view_rental_payment_wizard_form" model="ir.ui.view">
+            <field name="name">rental.payment.wizard.form</field>
+            <field name="model">rental.payment.wizard</field>
             <field name="arch" type="xml">
-                <form string="Rental Payment History">
+                <form string="Rental Payment wizard">
                     <header>
                         <button name="action_create_invoice"
                                 string="Facturar"
@@ -37,8 +37,11 @@
                                 </field>
                             </page>
                         </notebook>
-
                     </sheet>
+                    <button name="action_create_invoice"
+                            string="Confirmar Factura"
+                            type="object"
+                            class="btn-primary"/>
                 </form>
             </field>
         </record>

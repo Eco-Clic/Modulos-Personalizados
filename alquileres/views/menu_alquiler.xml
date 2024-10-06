@@ -243,5 +243,19 @@
     <menuitem id="rental_menu_services_items" name="Services Items" action="action_rent_services_room_item"
               parent="rental_menu_config"/>
 
+    <record id="menu_tenant_partner" model="ir.ui.menu">
+        <field name="name">Tenants</field>
+        <field name="parent_id" ref="alquileres.rental_menu_main_root"/>
+        <field name="action" ref="action_tenant_partner"/>
+        <field name="sequence" eval="20"/>
+    </record>
+
+    <record id="menu_owner_partner" model="ir.ui.menu">
+        <field name="name">Owners</field>
+        <field name="parent_id" ref="alquileres.rental_menu_main_root"/>
+        <field name="action" ref="action_owner_partner"/>
+        <field name="sequence" eval="10"/>
+    </record>
+
 
 </odoo>

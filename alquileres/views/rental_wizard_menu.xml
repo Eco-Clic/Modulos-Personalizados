@@ -7,7 +7,6 @@
         <field name="name">Check-In</field>
         <field name="res_model">rental.check.in.wizard</field>
         <field name="view_mode">form</field>
-        <field name="target">new</field>
     </record>
 
     <!-- Menú para el wizard de Check-In -->
@@ -19,7 +18,6 @@
         <field name="name">Check-Out</field>
         <field name="res_model">rental.check.out.wizard</field>
         <field name="view_mode">form</field>
-        <field name="target">new</field>
     </record>
 
     <!-- Menú para el wizard de Check-Out -->

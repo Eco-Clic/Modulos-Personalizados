@@ -47,30 +47,28 @@
                     <field name="rental_payment_history_ids" readonly="1"/>
                 </page>
             </xpath>
+
+            <!-- Botones para Check-In y Check-Out -->
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <!-- Botón para Check-In -->
+                    <button name="action_open_check_in_wizard"
+                            string="Abrir Contrato"
+                            type="object"
+                            class="btn-primary"/>
+                    <!-- Botón para Check-Out -->
+                    <button name="action_open_check_out_wizard"
+                            string="Cerrar Contrato"
+                            type="object"
+                            class="btn-secondary"/>
+                    <button name="action_open_rental_payment_wizard"
+                            string="Pago de Renta"
+                            type="object"
+                            class="btn-secondary"/>
+                </header>
+            </xpath>
+
         </field>
-        <!-- Botones para Check-In y Check-Out -->
-        <xpath position="//sheet/header">
-            <!-- Botón para Check-In -->
-            <button name="action_open_check_in_wizard"
-                    string="Abrir Contrato"
-                    type="object"
-                    class="btn-primary"
-                    context="{'default_owner_id': active_id}"
-                    attrs="{'invisible': [('is_company','=',False)]}"/>
-            <!-- Botón para Check-Out -->
-            <button name="action_open_check_out_wizard"
-                    string="Cerrar Contrato"
-                    type="object"
-                    class="btn-secondary"
-                    context="{'default_owner_id': active_id}"
-                    attrs="{'invisible': [('is_company','=',False)]}"/>
-            <button name="action_open_rental_payment_wizard"
-                    string="Pago de Renta"
-                    type="object"
-                    class="btn-secondary"
-                    context="{'default_tenant_id': active_id}"
-                    attrs="{'invisible': [('is_company','=',False)]}"/>
-        </xpath>
     </record>
 
     <record id="partner_view_buttons_inherit" model="ir.ui.view">
@@ -112,13 +110,6 @@
         <field name="domain">[('owner_or_tenant', '=', 'owner')]</field>
     </record>
 
-    <record id="menu_owner_partner" model="ir.ui.menu">
-        <field name="name">Owners</field>
-        <field name="parent_id" ref="alquileres.rental_menu_main_root"/>
-        <field name="action" ref="action_owner_partner"/>
-        <field name="sequence" eval="10"/>
-    </record>
-
     <record id="action_tenant_partner" model="ir.actions.act_window">
         <field name="name">Tenants</field>
         <field name="res_model">res.partner</field>
@@ -126,10 +117,4 @@
         <field name="domain">[('owner_or_tenant', '=', 'tenant')]</field>
     </record>
 
-    <record id="menu_tenant_partner" model="ir.ui.menu">
-        <field name="name">Tenants</field>
-        <field name="parent_id" ref="alquileres.rental_menu_main_root"/>
-        <field name="action" ref="action_tenant_partner"/>
-        <field name="sequence" eval="20"/>
-    </record>
 </odoo>

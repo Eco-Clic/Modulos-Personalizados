@@ -4,7 +4,7 @@ access_contract,rental.contract,model_rental_contract,base.group_user,1,1,1,1
 access_property,rental.property,model_rental_property,base.group_user,1,1,1,1
 access_room,rental.room,model_rental_room,base.group_user,1,1,1,1
 access_payment,rental.payment.history,model_rental_payment_history,base.group_user,1,1,1,1
-#access_payment_lines,rental.payment.history.lines,model_rental_payment_history_lines,base.group_user,1,1,1,1
+access_payment_lines,rental.payment.history.lines,model_rental_payment_history_lines,base.group_user,1,1,1,1
 access_cosigner,tenant.co_signer,model_tenant_co_signer,base.group_user,1,1,1,1
 access_furniture_room_item,furniture.room.item,model_furniture_room_item,base.group_user,1,1,1,1
 access_services_room_item,services.room.item,model_services_room_item,base.group_user,1,1,1,1

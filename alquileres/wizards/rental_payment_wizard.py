@@ -97,7 +97,7 @@ class RentalPaymentHistoryLines(models.TransientModel):
     _name = 'rental.payment.history.lines'
     _description = ' Payment History Lines'
 
-    payment_id = fields.Many2one('rental.payment.history', string='Payment')
+    payment_id = fields.Many2one('rental.payment.wizard', string='Payment')
     product_id = fields.Many2one("product.template", string="Product")
     quantity = fields.Float(string='Quantity')
     price = fields.Float(string='Price')
