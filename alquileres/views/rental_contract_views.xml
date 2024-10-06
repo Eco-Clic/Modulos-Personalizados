@@ -14,9 +14,29 @@
         <field name="arch" type="xml">
             <form string="Rental Contract">
                 <sheet>
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                        <button name="action_contract_draft"
+                                type="object"
+                                string="Mover a Borrador"
+                                invisible="status in ('draft')"
+                                class="oe_highlight"/>
+                        <button name="action_contract_open"
+                                type="object"
+                                string="Open Contract"
+                                invisible="status in ('open')"
+                                class="btn-success"/>
+                        <button name="action_contract_closed"
+                                type="object"
+                                invisible="status in ('closed')"
+                                string="Closed Contract"
+                                class="btn-warning"/>
+                    </header>
                     <group>
                         <group class="oe_subgroup">
                             <field name="contract_number"/>
+                            <field name="is_active" string="Contrato Vigente por Fecha"/>
+                            <field name="active" readonly="1"/>
                             <field name="contract_date"/>
                             <field name="property_id"/>
                             <field name="room_id"/>

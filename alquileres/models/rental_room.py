@@ -84,13 +84,25 @@ class RentalRoom(models.Model):
         "Image Filename"
     )  # Campo para el nombre del archivo de la imagen
     has_a_tenant = fields.Boolean(compute="_compute_occupants")
-    # occupants = fields.One2many('res.partner', compute='_compute_occupants', string='')
     description = fields.Html(string="Description")
     color = fields.Integer(string="Color Index")
     is_room = fields.Boolean(string="is_room", default=True)
-    # payment_id= fields.Many2one('rental.payment.history','payment')
     # Nuevo campo para publicar en el sitio web
     website_published = fields.Boolean(string="Published on Website", default=False)
+    # Historial de Contratos
+    contract_history_ids = fields.One2many(
+        'rental.contract', 'room_id',
+        string='Contract History'
+    )
+    contract_history_count = fields.Integer(compute="_compute_contract_history")
+    tenant_id = fields.Many2one('res.partner', string='Inquilino Actual', compute='_compute_current_tenant', store=True)
+
+    # Busca el contrato actual activo y lo asigna al tenant_id
+    @api.depends('contract_history_ids')
+    def _compute_current_tenant(self):
+        for property in self:
+            tenant = property.contract_history_ids.filtered(lambda x: x.status == 'open').tenant_id
+            property.tenant_id = tenant.partner_id if tenant else False
 
     @api.depends("tenant_ids")
     def _compute_occupants(self):

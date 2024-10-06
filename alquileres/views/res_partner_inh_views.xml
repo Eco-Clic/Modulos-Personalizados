@@ -35,16 +35,33 @@
                     </group>
                 </page>
                 <page string="Contract information">
-                     <group class="oe_subgroup">
-                            <field name="signed_lease_contract"/>
-                            <field name="id_document"/>
-                            <field name="deposit_receipt" widget="monetary"/>
-                            <field name="income_proof"/>
-                            <field name="additional_guarantees"/>
-                        </group>
+                    <group class="oe_subgroup">
+                        <field name="signed_lease_contract"/>
+                        <field name="id_document"/>
+                        <field name="deposit_receipt" widget="monetary"/>
+                        <field name="income_proof"/>
+                        <field name="additional_guarantees"/>
+                    </group>
                 </page>
             </xpath>
         </field>
+        <!-- Botones para Check-In y Check-Out -->
+        <xpath position="//sheet/header">
+            <!-- Botón para Check-In -->
+            <button name="action_open_check_in_wizard"
+                    string="Check-In"
+                    type="object"
+                    class="btn-primary"
+                    context="{'default_owner_id': active_id}"
+                    attrs="{'invisible': [('is_company','=',False)]}"/>
+            <!-- Botón para Check-Out -->
+            <button name="action_open_check_out_wizard"
+                    string="Check-Out"
+                    type="object"
+                    class="btn-secondary"
+                    context="{'default_owner_id': active_id}"
+                    attrs="{'invisible': [('is_company','=',False)]}"/>
+        </xpath>
     </record>
 
     <record id="partner_view_buttons_inherit" model="ir.ui.view">
@@ -84,11 +101,36 @@
                                name="communication_history_count"
                                widget="statinfo"/>
                     </button>
-
-
                 </div>
             </xpath>
         </field>
     </record>
 
+    <record id="action_owner_partner" model="ir.actions.act_window">
+        <field name="name">Owners</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('owner_or_tenant', '=', 'owner')]</field>
+    </record>
+
+    <record id="menu_owner_partner" model="ir.ui.menu">
+        <field name="name">Owners</field>
+        <field name="parent_id" ref="alquileres.rental_menu_main_root"/>
+        <field name="action" ref="action_owner_partner"/>
+        <field name="sequence" eval="10"/>
+    </record>
+
+    <record id="action_tenant_partner" model="ir.actions.act_window">
+        <field name="name">Tenants</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('owner_or_tenant', '=', 'tenant')]</field>
+    </record>
+
+    <record id="menu_tenant_partner" model="ir.ui.menu">
+        <field name="name">Tenants</field>
+        <field name="parent_id" ref="alquileres.rental_menu_main_root"/>
+        <field name="action" ref="action_tenant_partner"/>
+        <field name="sequence" eval="20"/>
+    </record>
 </odoo>

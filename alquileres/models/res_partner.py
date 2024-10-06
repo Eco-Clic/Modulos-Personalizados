@@ -57,6 +57,24 @@ class Tenant(models.Model):
     deposit_receipt = fields.Binary(string='Deposit Payment Receipt')
     income_proof = fields.Binary(string='Income Proof (Payslips, Tax Returns, etc.)')
     additional_guarantees = fields.Binary(string='Additional Guarantees (Aval, Insurance, etc.)')
+    # si es Owner o es Tenant
+    is_owner = fields.Boolean(compute='_compute_is_owner')
+    is_tenant = fields.Boolean(compute='_compute_is_tenant')
+
+    def _compute_is_owner(self):
+        for record in self:
+            # recorrer todos los registros de rental.property o rental.room y verificar si es owner
+            Properties = self.env['rental.property'].search([('owner_id', '=', record.id)])
+            Rooms = self.env['rental.room'].search([('owner_id', '=', record.id)])
+            if Properties or Rooms:
+                record.is_owner = True
+
+    def _compute_is_tenant(self):
+        for record in self:
+            Properties = self.env['rental.property'].search([('tenant_id', '=', record.id)])
+            Rooms = self.env['rental.room'].search([('tenant_id', '=', record.id)])
+            if Properties or Rooms:
+                record.is_tenant = True
 
     @api.depends('monthly_income')
     def _compute_required_deposit(self):

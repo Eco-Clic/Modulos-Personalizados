@@ -34,7 +34,6 @@ class RentalProperty(models.Model):
 
     # Datos de Propiedad
     owner_id = fields.Many2one('res.partner', string='Owner', required=True)
-   # payment_id = fields.Many2one('rental.payment.history', 'payment')
     property_reference = fields.Char(string='Property Reference Number', required=True)
     property_status = fields.Selection(
         [('available', 'Available'), ('rented', 'Rented'), ('maintenance', 'Under Maintenance')],
@@ -76,6 +75,14 @@ class RentalProperty(models.Model):
     image_filename = fields.Char("Image Filename")  # Campo para el nombre del archivo de la imagen
     # Nuevo campo para publicar en el sitio web
     website_published = fields.Boolean(string="Published on Website", default=False)
+    tenant_id = fields.Many2one('res.partner', string='Inquilino Actual', compute='_compute_current_tenant', store=True)
+
+    # Busca el contrato actual activo y lo asigna al tenant_id
+    @api.depends('contract_history_ids')
+    def _compute_current_tenant(self):
+        for property in self:
+            tenant = property.contract_history_ids.filtered(lambda x: x.status == 'open').tenant_id
+            property.tenant_id = tenant.partner_id if tenant else False
 
     @api.constrains('number_of_rooms', 'number_of_bathrooms', 'size_m2')
     def _check_validations(self):

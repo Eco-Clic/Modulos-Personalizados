@@ -44,12 +44,31 @@ class RentalContract(models.Model):
         string='Contract Attachments'
     )
     is_active = fields.Boolean(string='Active', compute='_compute_is_active')
+    status = fields.Selection(
+        [('draft', 'Draft'), ('open', 'Active'), ('closed', 'Closed')],
+        string='Status',
+        default='draft',
+    )
+    active = fields.Boolean(string='Active', default=True)
+
+    def action_contract_open(self):
+        self.status = 'open'
+        self.active = True
+
+    def action_contract_closed(self):
+        self.status = 'closed'
+        self.active = False
+
+    def action_contract_draft(self):
+        self.status = 'draft'
+        self.active = True
 
     @api.depends('contract_start_date', 'contract_end_date')
     def _compute_is_active(self):
         for record in self:
             today = date.today()
             record.is_active = record.contract_start_date <= today <= record.contract_end_date
+
 
     @api.constrains('contract_start_date', 'contract_end_date')
     def _check_dates(self):

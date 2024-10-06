@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!-- Acción del wizard de Check-In -->
+    <record id="action_rental_check_in_wizard" model="ir.actions.act_window">
+        <field name="name">Check-In</field>
+        <field name="res_model">rental.check.in.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menú para el wizard de Check-In -->
+    <menuitem id="menu_rental_check_in_wizard" name="Check-In"
+              parent="rental_rental_menu" action="action_rental_check_in_wizard" sequence="10"/>
+
+    <!-- Acción del wizard de Check-Out -->
+    <record id="action_rental_check_out_wizard" model="ir.actions.act_window">
+        <field name="name">Check-Out</field>
+        <field name="res_model">rental.check.out.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menú para el wizard de Check-Out -->
+    <menuitem id="menu_rental_check_out_wizard" name="Check-Out"
+              parent="rental_rental_menu" action="action_rental_check_out_wizard" sequence="20"/>
+
+    </data>
+</odoo>

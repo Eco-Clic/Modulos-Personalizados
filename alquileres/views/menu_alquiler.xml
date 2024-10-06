@@ -115,31 +115,6 @@
         </field>
     </record>
 
-    <!--  <record id="action_payment_history" model="ir.actions.act_window">
-          <field name="name">Payment History</field>
-          <field name="res_model">rental.payment.history</field>
-          <field name="type">ir.actions.act_window</field>
-          <field name="view_mode">form</field>
-      </record>
-
-      <record id="view_rent_payment_history_form" model="ir.ui.view">
-          <field name="name">rent.payment.history.form</field>
-          <field name="model">rental.payment.history</field>
-          <field name="arch" type="xml">
-              <form string="Payment History">
-                  <sheet>
-                      <group>
-                          <field name="tenant_id"/>
-                          <field name="amount_paid"/>
-                          <field name="payment_date"/>
-                          <field name="payment_method"/>
-                          <field name="is_on_time"/>
-                      </group>
-                  </sheet>
-              </form>
-          </field>
-      </record>-->
-
     <record id="action_incident_history" model="ir.actions.act_window">
         <field name="name">Incident History</field>
         <field name="res_model">rental.incident.history</field>

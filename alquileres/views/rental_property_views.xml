@@ -71,6 +71,20 @@
                 <header>
                     <field name="status" widget="statusbar" statusbar_visible="available,occupied,maintenance"/>
                     <button name="action_change_status" type="object" string="Change Status" class="oe_highlight"/>
+                    <!-- Botón para Check-In -->
+                    <button name="action_open_check_in_wizard"
+                            string="Check-In"
+                            type="object"
+                            class="btn-primary"
+                            context="{'default_owner_id': active_id}"
+                            attrs="{'invisible': [('is_company','=',False)]}"/>
+                    <!-- Botón para Check-Out -->
+                    <button name="action_open_check_out_wizard"
+                            string="Check-Out"
+                            type="object"
+                            class="btn-secondary"
+                            context="{'default_owner_id': active_id}"
+                            attrs="{'invisible': [('is_company','=',False)]}"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box" modifiers="{}">
@@ -124,6 +138,7 @@
                         </group>
                         <group class="oe_subgroup">
                             <field name="owner_id"/>
+                            <field name="tenant_id"/>
                             <field name="property_reference"/>
                             <field name="rental_price_per_room"/>
                             <field name="energy_certificate_list"/>
