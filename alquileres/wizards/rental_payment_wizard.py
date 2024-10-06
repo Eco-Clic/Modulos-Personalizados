@@ -82,7 +82,15 @@ class ModelName(models.TransientModel):
             'invoice_line_ids': invoice_lines,
         })
         invoice.action_post()
-        self.write({'invoice_id': invoice.id})
+        # crear el hito de pago en rental.payment.history
+        rental = self.env['rental.payment.history'].create({
+            'tenant_id': self.tenant_id.id,
+            'payment_type': self.payment_type,
+            'inmueble': self.inmueble,
+            'reference_field': self.reference_field.id,
+            'invoice_id': invoice.id,
+        })
+        invoice.write({'payment_history_id': rental.id}) # Relacionar la factura con el hito de pago
         return {
             'type': 'ir.actions.act_window',
             'name': 'Factura Pago de Alquiler',

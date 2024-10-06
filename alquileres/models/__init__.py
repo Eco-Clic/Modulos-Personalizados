@@ -8,3 +8,4 @@ from . import res_partner
 from . import product_template
 from . import rent_payment_history
 from . import rental_empadronamiento
+from . import account_move

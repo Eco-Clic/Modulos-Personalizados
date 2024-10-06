@@ -23,42 +23,4 @@
         <field name="type">ir.actions.act_window</field>
         <field name="view_mode">tree</field>
     </record>
-
-<!--    <record id="view_rental_payment_history_lines_form" model="ir.ui.view">-->
-<!--        <field name="name">rental.payment.history.lines.form</field>-->
-<!--        <field name="model">rental.payment.history.lines</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <form string="Rental Payment History Line">-->
-<!--                <sheet>-->
-<!--                    <group>-->
-<!--                        <field name="payment_id"/>-->
-<!--                        <field name="product_id"/>-->
-<!--                        <field name="quantity"/>-->
-<!--                        <field name="price" widget="monetary"/>-->
-<!--                        <field name="observations"/>-->
-<!--                    </group>-->
-<!--                </sheet>-->
-<!--            </form>-->
-<!--        </field>-->
-<!--    </record>-->
-
-<!--    <record id="view_rental_payment_history_lines_tree" model="ir.ui.view">-->
-<!--        <field name="name">rental.payment.history.lines.tree</field>-->
-<!--        <field name="model">rental.payment.history.lines</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <tree string="Rental Payment History Lines">-->
-<!--                <field name="payment_id" readonly="true"/>-->
-<!--                <field name="product_id"/>-->
-<!--                <field name="quantity"/>-->
-<!--                <field name="price" widget="monetary"/>-->
-<!--            </tree>-->
-<!--        </field>-->
-<!--    </record>-->
-
-<!--    <record id="action_rental_payment_history_lines" model="ir.actions.act_window">-->
-<!--        <field name="name">Rental Payment History Lines</field>-->
-<!--        <field name="res_model">rental.payment.history.lines</field>-->
-<!--        <field name="type">ir.actions.act_window</field>-->
-<!--        <field name="view_mode">tree,form</field>-->
-<!--    </record>-->
 </odoo>

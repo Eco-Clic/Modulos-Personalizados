@@ -91,6 +91,16 @@
 
                     <button class="oe_stat_button" type="object"
                             name="return_action_view_xml_id"
+                            help="Rental Payment History"
+                            context="{'xml_id': 'action_rental_payment_history'}"
+                            icon="fa-money">
+                        <field string="Rental Payment History"
+                               name="rental_payment_count"
+                               widget="statinfo"/>
+                    </button>
+
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
                             help="Communication History"
                             context="{'xml_id': 'action_communication_history'}"
                             icon="fa-comment">

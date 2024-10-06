@@ -7,14 +7,18 @@
         <field name="arch" type="xml">
             <form string="Check-In Rental">
                 <group>
-                    <field name="property_id"/>
-                    <field name="room_id"/>
-                    <field name="owner_id"/>
-                    <field name="tenant_id"/>
-                    <field name="agency_id"/>
-                    <field name="contract_start_date"/>
-                    <field name="contract_end_date"/>
-                    <field name="renewal_terms"/>
+                    <group>
+                        <field name="agency_id"/>
+                        <field name="property_id"/>
+                        <field name="room_id"/>
+                        <field name="contract_start_date"/>
+                        <field name="renewal_terms"/>
+                    </group>
+                    <group>
+                         <field name="owner_id"/>
+                        <field name="tenant_id"/>
+                        <field name="contract_end_date"/>
+                    </group>
                 </group>
                 <footer>
                     <button name="action_create_contract" type="object" string="Procesar" class="btn-primary"/>
@@ -31,10 +35,10 @@
         <field name="arch" type="xml">
             <form string="Check-Out Rental">
                 <group>
-                    <field name="property_id"/>
-                    <field name="room_id"/>
-                    <field name="tenant_id"/>
                     <field name="contract_id"/>
+                    <field name="property_id" readonly="1"/>
+                    <field name="room_id" readonly="1"/>
+                    <field name="tenant_id" readonly="1"/>
                 </group>
                 <footer>
                     <button name="action_terminate_contract" type="object" string="Procesar Check-Out" class="btn-primary"/>
