@@ -135,6 +135,32 @@ class RentalProperty(models.Model):
             else:
                 record.status = 'available'
 
+    def action_open_check_in_wizard(self):
+        # Acción para abrir el wizard de Check-In
+        return {
+            'name': 'Check-In Wizard',
+            'type': 'ir.actions.act_window',
+            'res_model': 'rental.check.in.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_property_id': self.property_id.id,
+            }
+        }
+
+    def action_open_check_out_wizard(self):
+        # Acción para abrir el wizard de Check-Out
+        return {
+            'name': 'Check-Out Wizard',
+            'type': 'ir.actions.act_window',
+            'res_model': 'rental.check.out.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_property_id': self.property_id.id,
+            }
+        }
+
 
 # para los registros de historial de inquilinos
 class RentalPropertyTenantHistory(models.Model):

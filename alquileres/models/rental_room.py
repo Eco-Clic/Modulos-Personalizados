@@ -157,6 +157,32 @@ class RentalRoom(models.Model):
             else:
                 record.status = "available"
 
+    def action_open_check_in_wizard(self):
+        # Acción para abrir el wizard de Check-In
+        return {
+            'name': 'Check-In Wizard',
+            'type': 'ir.actions.act_window',
+            'res_model': 'rental.check.in.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_room_id': self.id,
+            }
+        }
+
+    def action_open_check_out_wizard(self):
+        # Acción para abrir el wizard de Check-Out
+        return {
+            'name': 'Check-Out Wizard',
+            'type': 'ir.actions.act_window',
+            'res_model': 'rental.check.out.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_room_id': self.id,
+            }
+        }
+
 
 # furniture.room.item y services.room.item son modelos que se crean en el siguiente snippet
 class FurnitureRoomItem(models.Model):

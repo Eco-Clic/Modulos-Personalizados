@@ -43,23 +43,32 @@
                         <field name="additional_guarantees"/>
                     </group>
                 </page>
+                <page string="Rental Payments History">
+                    <field name="rental_payment_history_ids" readonly="1"/>
+                </page>
             </xpath>
         </field>
         <!-- Botones para Check-In y Check-Out -->
         <xpath position="//sheet/header">
             <!-- Botón para Check-In -->
             <button name="action_open_check_in_wizard"
-                    string="Check-In"
+                    string="Abrir Contrato"
                     type="object"
                     class="btn-primary"
                     context="{'default_owner_id': active_id}"
                     attrs="{'invisible': [('is_company','=',False)]}"/>
             <!-- Botón para Check-Out -->
             <button name="action_open_check_out_wizard"
-                    string="Check-Out"
+                    string="Cerrar Contrato"
                     type="object"
                     class="btn-secondary"
                     context="{'default_owner_id': active_id}"
+                    attrs="{'invisible': [('is_company','=',False)]}"/>
+            <button name="action_open_rental_payment_wizard"
+                    string="Pago de Renta"
+                    type="object"
+                    class="btn-secondary"
+                    context="{'default_tenant_id': active_id}"
                     attrs="{'invisible': [('is_company','=',False)]}"/>
         </xpath>
     </record>
@@ -81,16 +90,6 @@
                                name="incident_history_count"
                                widget="statinfo"/>
                     </button>
-                    <button class="oe_stat_button" type="object"
-                            name="return_action_view_xml_id"
-                            help="Rental Payment History"
-                            context="{'xml_id': 'action_rental_payment_history'}"
-                            icon="fa-money">
-                        <field string="Rental Payment History"
-                               name="rental_payment_count"
-                               widget="statinfo"/>
-                    </button>
-
 
                     <button class="oe_stat_button" type="object"
                             name="return_action_view_xml_id"

@@ -13,6 +13,17 @@ class RentalCheckInWizard(models.TransientModel):
     contract_end_date = fields.Date(string='End Date', required=True)
     renewal_terms = fields.Text(string='Renewal or Termination Conditions')
 
+    @api.model
+    def default_get(self, fields_list):
+        res = super(RentalCheckInWizard, self).default_get(fields_list)
+        if self.env.context.get('default_tenant_id'):
+            res['tenant_id'] = self.env.context['default_tenant_id']
+        if self.env.context.get('default_room_id'):
+            res['room_id'] = self.env.context['default_room_id']
+        if self.env.context.get('default_property_id'):
+            res['property_id'] = self.env.context['default_property_id']
+        return res
+
     def action_create_contract(self):
         # Crear el contrato basado en los datos del wizard
         contract = self.env['rental.contract'].create({
@@ -45,6 +56,17 @@ class RentalCheckOutWizard(models.TransientModel):
     room_id = fields.Many2one('rental.room', string='Room', required=True)
     tenant_id = fields.Many2one('res.partner', string='Tenant', required=True)
     contract_id = fields.Many2one('rental.contract', string='Contract', required=True)
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super(RentalCheckOutWizard, self).default_get(fields_list)
+        if self.env.context.get('default_tenant_id'):
+            res['tenant_id'] = self.env.context['default_tenant_id']
+        if self.env.context.get('default_room_id'):
+            res['room_id'] = self.env.context['default_room_id']
+        if self.env.context.get('default_property_id'):
+            res['property_id'] = self.env.context['default_property_id']
+        return res
 
     def action_terminate_contract(self):
         # Encontrar el contrato y marcarlo como terminado
