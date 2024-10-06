@@ -115,7 +115,17 @@ class Tenant(models.Model):
         self.incident_history_count = len(self.incident_history_ids) if self.incident_history_ids else 0
 
     def action_open_rental_payment_wizard(self):
-        return self.return_action_view_xml_id('view_rental_payment_history_form')
+        # Acción para abrir el wizard de de los Pagos de Alquiler
+        return {
+            'name': 'Rental Payment Wizard',
+            'type': 'ir.actions.act_window',
+            'res_model': 'rental.payment.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_tenant_id': self.id,  # Pasa el partner como tenant
+            }
+        }
 
     def action_open_check_in_wizard(self):
         # Acción para abrir el wizard de Check-In

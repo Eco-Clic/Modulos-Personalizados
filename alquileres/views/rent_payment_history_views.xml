@@ -1,45 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_rental_payment_history_form" model="ir.ui.view">
-        <field name="name">rental.payment.history.form</field>
-        <field name="model">rental.payment.history</field>
-        <field name="arch" type="xml">
-            <form string="Rental Payment History">
-                <header>
-                    <button name="action_create_invoice"
-                            string="Facturar"
-                            class="btn-primary" type="object"
-                            icon="fa-file-text">
-                    </button>
-                </header>
-                <sheet>
-                    <group>
-                        <field name="tenant_id" required="1"/>
-                        <field name="payment_type" required="1"/>
-                        <field name="inmueble" required="1"/>
-                        <field name="alquiler_price" widget="monetary"
-                               invisible="payment_type != 'monthly'"/>
-                    </group>
-                    <group>
-                        <field name="reference_field" widget="selection"/>
-                    </group>
-                    <notebook>
-                        <page string="Services" invisible="payment_type == 'monthly'">
-                            <field name="service_ids">
-                                <tree editable="bottom" options="{'no_open': True}">
-                                    <field name="product_id"/>
-                                    <field name="quantity"/>
-                                    <field name="price" widget="monetary"/>
-                                    <field name="observations"/>
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
 
-                </sheet>
-            </form>
-        </field>
-    </record>
 
     <record id="view_rental_payment_history_tree" model="ir.ui.view">
         <field name="name">rental.payment.history.tree</field>
@@ -48,6 +9,9 @@
             <tree string="Rental Payment Histories">
                 <field name="tenant_id"/>
                 <field name="payment_type"/>
+                <field name="invoice_id"/>
+                <field name="alquiler_price"/>
+                <field name="reference_field"/>
                 <field name="inmueble"/>
             </tree>
         </field>
@@ -57,44 +21,44 @@
         <field name="name">Rental Payment Histories</field>
         <field name="res_model">rental.payment.history</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree</field>
     </record>
 
-    <record id="view_rental_payment_history_lines_form" model="ir.ui.view">
-        <field name="name">rental.payment.history.lines.form</field>
-        <field name="model">rental.payment.history.lines</field>
-        <field name="arch" type="xml">
-            <form string="Rental Payment History Line">
-                <sheet>
-                    <group>
-                        <field name="payment_id"/>
-                        <field name="product_id"/>
-                        <field name="quantity"/>
-                        <field name="price" widget="monetary"/>
-                        <field name="observations"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+<!--    <record id="view_rental_payment_history_lines_form" model="ir.ui.view">-->
+<!--        <field name="name">rental.payment.history.lines.form</field>-->
+<!--        <field name="model">rental.payment.history.lines</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Rental Payment History Line">-->
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <field name="payment_id"/>-->
+<!--                        <field name="product_id"/>-->
+<!--                        <field name="quantity"/>-->
+<!--                        <field name="price" widget="monetary"/>-->
+<!--                        <field name="observations"/>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
 
-    <record id="view_rental_payment_history_lines_tree" model="ir.ui.view">
-        <field name="name">rental.payment.history.lines.tree</field>
-        <field name="model">rental.payment.history.lines</field>
-        <field name="arch" type="xml">
-            <tree string="Rental Payment History Lines">
-                <field name="payment_id" readonly="true"/>
-                <field name="product_id"/>
-                <field name="quantity"/>
-                <field name="price" widget="monetary"/>
-            </tree>
-        </field>
-    </record>
+<!--    <record id="view_rental_payment_history_lines_tree" model="ir.ui.view">-->
+<!--        <field name="name">rental.payment.history.lines.tree</field>-->
+<!--        <field name="model">rental.payment.history.lines</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree string="Rental Payment History Lines">-->
+<!--                <field name="payment_id" readonly="true"/>-->
+<!--                <field name="product_id"/>-->
+<!--                <field name="quantity"/>-->
+<!--                <field name="price" widget="monetary"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
 
-    <record id="action_rental_payment_history_lines" model="ir.actions.act_window">
-        <field name="name">Rental Payment History Lines</field>
-        <field name="res_model">rental.payment.history.lines</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
-    </record>
+<!--    <record id="action_rental_payment_history_lines" model="ir.actions.act_window">-->
+<!--        <field name="name">Rental Payment History Lines</field>-->
+<!--        <field name="res_model">rental.payment.history.lines</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--    </record>-->
 </odoo>
