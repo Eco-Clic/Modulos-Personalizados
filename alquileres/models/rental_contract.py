@@ -12,7 +12,7 @@ class RentalContract(models.Model):
     contract_number = fields.Char(string='Contract Number')
     contract_date = fields.Date(string='Signature Date', required=True,default=date.today())
     property_id = fields.Many2one('rental.property', string='Property', ) # propiedad arrendada
-    room_id = fields.Many2one('rental.room', string='Room', ) # habitación arrendada
+    room_id = fields.Many2one('rental.room', string='Room', domain="[('property_id', '=', property_id)]") # habitación arrendada
     owner_id = fields.Many2one('res.partner', string='Owner', required=True)
     tenant_id = fields.Many2one('res.partner', string='Tenant', required=True)
     agency_id = fields.Many2one('res.partner', string='Agency', required=False)

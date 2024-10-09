@@ -27,7 +27,7 @@ class Tenant(models.Model):
 
     # Información de Alquiler
     property_id = fields.Many2one('rental.property', string='Rented Property')
-    room_id = fields.Many2one('rental.room', string='Rented Room')
+    room_id = fields.Many2one('rental.room', string='Rented Room', domain="[('property_id', '=', property_id)]")
     lease_start_date = fields.Date(string='Lease Start Date')
     lease_end_date = fields.Date(string='Lease End Date')
     monthly_rent = fields.Float(string='Monthly Rent Amount')

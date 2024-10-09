@@ -5,7 +5,7 @@ class RentalCheckInWizard(models.TransientModel):
     _description = 'Wizard for Rental Check-In Contracts'
 
     property_id = fields.Many2one('rental.property', string='Property', required=True)
-    room_id = fields.Many2one('rental.room', string='Room', required=True)
+    room_id = fields.Many2one('rental.room', string='Room', required=True, domain="[('property_id', '=', property_id)]")
     owner_id = fields.Many2one('res.partner', string='Owner', required=True)
     tenant_id = fields.Many2one('res.partner', string='Tenant', required=True)
     agency_id = fields.Many2one('res.partner', string='Agency', required=False)
