@@ -19,6 +19,8 @@
     ],
     # always loaded
     "data": [
+        "data/rent_sequence.xml",
+        "data/data.xml",
         "security/ir.model.access.csv",
         "views/rent_issue_views.xml",
         "views/rental_empadronamiento_views.xml",
@@ -28,8 +30,8 @@
         "views/rental_room_views.xml",
         "views/res_partner_inh_views.xml",
         "views/menu_alquiler.xml",
-        'views/rental_website_templates.xml',
-        "data/rent_sequence.xml",
+        "views/rental_website_templates.xml",
+        "views/account_move_view.xml",
         "wizards/wizard_check_contracts.xml",
         "wizards/rental_payment_wizard.xml",
     ],

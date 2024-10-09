@@ -17,3 +17,10 @@ class ProductTemplate(models.Model):
         default="bueno",
     )
     cantidad = fields.Integer("Cantidad")
+
+
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    payment_id = fields.Many2one('rental.payment.history', string="Payment History")

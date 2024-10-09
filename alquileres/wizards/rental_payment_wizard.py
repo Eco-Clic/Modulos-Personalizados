@@ -41,7 +41,7 @@ class ModelName(models.TransientModel):
 
         if self.payment_type == 'monthly':
             # Agrega un producto de Pago de Alquiler con cantidad 1
-            rental_product = self.env['product.template'].search([
+            rental_product = self.env['product.product'].search([
                 ('name', '=', 'Pago de Alquiler'),
                 ('detailed_type', '=', 'service')
             ], limit=1)
@@ -53,11 +53,12 @@ class ModelName(models.TransientModel):
                 }))
         else:
             for service in self.service_ids:
+                account_id = service.product_id.property_account_income_id.id or service.product_id.categ_id.property_account_income_categ_id.id
                 invoice_lines.append((0, 0, {
                     'product_id': service.product_id.id,
                     'quantity': service.quantity,
                     'price_unit': service.price,
-                    'account_id': service.product_id.property_account_income_id.id,
+                    'account_id': account_id,
                 }))
 
         invoice = self.env['account.move'].create({
@@ -72,6 +73,8 @@ class ModelName(models.TransientModel):
             'payment_type': self.payment_type,
             'inmueble': self.inmueble,
             'invoice_id': invoice.id,
+            'property_id': self.property_id.id,
+            'room_id': self.room_id.id,
         })
         invoice.write({'payment_history_id': rental.id}) # Relacionar la factura con el hito de pago
         return {
@@ -89,7 +92,7 @@ class RentalPaymentHistoryLines(models.TransientModel):
     _description = ' Payment History Lines'
 
     payment_id = fields.Many2one('rental.payment.wizard', string='Payment')
-    product_id = fields.Many2one("product.template", string="Product")
+    product_id = fields.Many2one("product.product", string="Product")
     quantity = fields.Float(string='Quantity')
     price = fields.Float(string='Price')
     observations = fields.Text(string='Observations')

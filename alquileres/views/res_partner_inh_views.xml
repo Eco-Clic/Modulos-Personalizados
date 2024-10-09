@@ -113,7 +113,7 @@
                             name="return_action_view_xml_id"
                             help="Contracts History"
                             context="{'xml_id': 'action_rental_contract'}"
-                            icon="fa-letter">
+                            icon="fa-book">
                         <field string="Contracts History"
                                name="rental_contract_count"
                                widget="statinfo"/>

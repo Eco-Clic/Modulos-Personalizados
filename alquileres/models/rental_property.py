@@ -76,6 +76,7 @@ class RentalProperty(models.Model):
     # Nuevo campo para publicar en el sitio web
     website_published = fields.Boolean(string="Published on Website", default=False)
     tenant_id = fields.Many2one('res.partner', string='Inquilino Actual', compute='_compute_current_tenant', store=True)
+    description = fields.Text(string='Descripción')
 
     # Busca el contrato actual activo y lo asigna al tenant_id
     @api.depends('contract_history_ids')

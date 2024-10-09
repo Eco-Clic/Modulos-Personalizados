@@ -15,9 +15,11 @@ class RentalPaymentHistory(models.Model):
         ('Room', 'Room')
     ], string='Inmueble')
 
-    alquiler_price = fields.Float(string='Precio Alquiler($)', required=True)
+    alquiler_price = fields.Float(string='Precio Alquiler($)')
     invoice_id = fields.Many2one('account.move', string='Invoice')
     reference_field = fields.Reference([
         ('rental.property', 'Property'),
         ('rental.room', 'Room')
     ], string="Related Reference")
+    property_id = fields.Many2one('rental.property', string='Property')
+    room_id = fields.Many2one('rental.room', string='Room')

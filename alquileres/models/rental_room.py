@@ -194,7 +194,8 @@ class FurnitureRoomItem(models.Model):
     color = fields.Integer(string="Color Index")
 
     def create(self, vals):
-        vals["color"] = random.randint(1, 11)  # Asigna un color aleatorio entre 1 y 11
+        if "color" not in vals:
+            vals["color"] = random.randint(1, 11)  # Asigna un color aleatorio entre 1 y 11
         return super(FurnitureRoomItem, self).create(vals)
 
 
@@ -207,7 +208,8 @@ class ServicesRoomItem(models.Model):
     color = fields.Integer(string="Color Index")
 
     def create(self, vals):
-        vals["color"] = random.randint(1, 11)  # Asigna un color aleatorio entre 1 y 11
+        if "color" not in vals:
+            vals["color"] = random.randint(1, 11)  # Asigna un color aleatorio entre 1 y 11
         return super(ServicesRoomItem, self).create(vals)
 
 
