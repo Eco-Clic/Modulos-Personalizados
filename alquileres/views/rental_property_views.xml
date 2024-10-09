@@ -86,15 +86,15 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box" modifiers="{}">
-                        <button class="oe_stat_button" type="object"
-                                name="return_action_view_xml_id"
-                                help="Tenant History"
-                                context="{'xml_id': 'action_tenant_history'}"
-                                icon="fa-male">
-                            <field string="Tenant History"
-                                   name="tenant_history_count"
-                                   widget="statinfo"/>
-                        </button>
+<!--                        <button class="oe_stat_button" type="object"-->
+<!--                                name="return_action_view_xml_id"-->
+<!--                                help="Tenant History"-->
+<!--                                context="{'xml_id': 'action_tenant_history'}"-->
+<!--                                icon="fa-male">-->
+<!--                            <field string="Tenant History"-->
+<!--                                   name="tenant_history_count"-->
+<!--                                   widget="statinfo"/>-->
+<!--                        </button>-->
 
                         <button class="oe_stat_button" type="object"
                                 name="return_action_view_xml_id"

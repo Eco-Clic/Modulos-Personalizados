@@ -21,25 +21,9 @@ class ModelName(models.TransientModel):
 
     alquiler_price = fields.Float(string='Precio Alquiler($)', required=True)
     invoice_id = fields.Many2one('account.move', string='Invoice')
-    reference_field = fields.Reference([
-        ('rental.property', 'Property'),
-        ('rental.room', 'Room')
-    ], string="Related Reference")
+    property_id = fields.Many2one('rental.property', string='Property',domain="[('tenant_id', '=', tenant_id)]")
+    room_id = fields.Many2one('rental.room', string='Room', domain="[('tenant_id', '=', tenant_id)]")
 
-    @api.onchange('inmueble', 'tenant_id')
-    def _onchange_inmueble(self):
-        # Limpiar el campo de referencia cuando cambie la selección de inmueble
-        self.reference_field = False
-
-        if self.inmueble and self.tenant_id:
-            # Dependiendo del valor de 'inmueble', cambiar el dominio del campo 'reference_field'
-            if self.inmueble == 'Property':
-                return {
-                    'domain': {'reference_field': [('tenant_id', '=', self.tenant_id.id), ('is_property', '=', True)]}}
-            elif self.inmueble == 'Room':
-                return {'domain': {'reference_field': [('tenant_id', '=', self.tenant_id.id), ('is_room', '=', True)]}}
-        else:
-            return {'domain': {'reference_field': []}}
 
     @api.depends('tenant_id')
     def _compute_invoice_count(self):
@@ -87,7 +71,6 @@ class ModelName(models.TransientModel):
             'tenant_id': self.tenant_id.id,
             'payment_type': self.payment_type,
             'inmueble': self.inmueble,
-            'reference_field': self.reference_field.id,
             'invoice_id': invoice.id,
         })
         invoice.write({'payment_history_id': rental.id}) # Relacionar la factura con el hito de pago
