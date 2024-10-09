@@ -11,7 +11,7 @@
                 <!-- Añadimos un campo nuevo en la vista de account.move.form -->
                 <xpath expr="//notebook" position="before">
                     <group>
-                        <field name="payment_history_id"/>
+                        <field name="payment_history_id" readonly="1"/>
                     </group>
                 </xpath>
             </field>

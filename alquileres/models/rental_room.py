@@ -95,14 +95,8 @@ class RentalRoom(models.Model):
         string='Contract History'
     )
     contract_history_count = fields.Integer(compute="_compute_contract_history")
-    tenant_id = fields.Many2one('res.partner', string='Inquilino Actual', compute='_compute_current_tenant', store=True)
-
-    # Busca el contrato actual activo y lo asigna al tenant_id
-    @api.depends('contract_history_ids')
-    def _compute_current_tenant(self):
-        for property in self:
-            tenant = property.contract_history_ids.filtered(lambda x: x.status == 'open').tenant_id
-            property.tenant_id = tenant.id if tenant else False
+    tenant_id = fields.Many2one('res.partner', string='Inquilino Actual', store=True)
+    contract_open = fields.Many2one("rental.contract", string="Contrato Abierto", store=True)
 
     @api.depends("tenant_ids")
     def _compute_occupants(self):
@@ -156,6 +150,7 @@ class RentalRoom(models.Model):
                 record.status = "maintenance"
             else:
                 record.status = "available"
+                record.tenant_id = False
 
     def action_open_check_in_wizard(self):
         # Acción para abrir el wizard de Check-In

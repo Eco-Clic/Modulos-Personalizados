@@ -7,7 +7,7 @@ class Issue(models.Model):
 
     name = fields.Char(string='Issue', required=True, copy=False, readonly=True, default='New')
     rental_id = fields.Many2one('rental.property', string='Rental')
-    room_id = fields.Many2one('rental.room', string='Room',domain="[('property_id', '=', rental_id)]")
+    room_id = fields.Many2one('rental.room', string='Room',domain="[('rental_id', '=', rental_id)]")
     description = fields.Text(string='Issue Description', required=True)
     report_date = fields.Date(string='Report Date', required=True)
     status = fields.Selection([

@@ -13,7 +13,7 @@ class ModelName(models.TransientModel):
     inmueble = fields.Selection([
         ('Property', 'Property'),
         ('Room', 'Room')
-    ], string='Inmueble')
+    ], string='Inmueble',default='Property')
     service_ids = fields.One2many(
         "rental.payment.history.lines", "payment_id", string="Service"
     )

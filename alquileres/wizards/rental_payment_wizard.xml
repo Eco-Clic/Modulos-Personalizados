@@ -14,8 +14,8 @@
                         </group>
                         <group>
                             <field name="inmueble" required="1"/>
-                            <field name="property_id"/>
-                            <field name="room_id"/>
+                            <field name="property_id" invisible="inmueble == 'Room'"/>
+                            <field name="room_id" invisible="inmueble == 'Property'"/>
                             <field name="alquiler_price" widget="monetary"
                                    invisible="payment_type != 'monthly'"/>
                         </group>

@@ -136,7 +136,8 @@
                         </group>
                         <group class="oe_subgroup">
                             <field name="owner_id"/>
-                            <field name="tenant_id"/>
+                            <field name="tenant_id" readonly="1"/>
+                            <field name="contract_open" readonly="1"/>
                             <field name="property_reference"/>
                             <field name="rental_price_per_room"/>
                             <field name="energy_certificate_list"/>

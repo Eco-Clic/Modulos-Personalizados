@@ -94,6 +94,8 @@
                             <field name="name"/>
                             <field name="room_type"/>
                             <field name="rental_price" widget="monetary"/>
+                            <field name="tenant_id" readonly="1"/>
+                            <field name="contract_open" readonly="1"/>
                             <field name="responsible_id" widget="many2one_avatar"/>
                         </group>
 

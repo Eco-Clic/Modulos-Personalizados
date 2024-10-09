@@ -12,7 +12,7 @@ class RentalContract(models.Model):
     contract_number = fields.Char(string='Contract Number')
     contract_date = fields.Date(string='Signature Date', required=True,default=date.today())
     property_id = fields.Many2one('rental.property', string='Property', ) # propiedad arrendada
-    room_id = fields.Many2one('rental.room', string='Room', domain="[('property_id', '=', property_id)]") # habitación arrendada
+    room_id = fields.Many2one('rental.room', string='Room', domain="[('rental_id', '=', property_id)]") # habitación arrendada
     owner_id = fields.Many2one('res.partner', string='Owner', required=True)
     tenant_id = fields.Many2one('res.partner', string='Tenant', required=True)
     agency_id = fields.Many2one('res.partner', string='Agency', required=False)
@@ -53,11 +53,26 @@ class RentalContract(models.Model):
 
     def action_contract_open(self):
         self.status = 'open'
+        if self.property_id and not self.room_id:
+            self.property_id.status = 'occupied'
+            self.property_id.tenant_id = self.tenant_id.id
+            self.property_id.contract_open = self.id
+        elif self.property_id and self.room_id:
+            self.room_id.status = 'occupied'
+            self.room_id.tenant_id = self.tenant_id.id
+            self.room_id.contract_open = self.id
         self.active = True
 
     def action_contract_closed(self):
         self.status = 'closed'
-        self.active = False
+        if self.property_id and not self.room_id:
+            self.property_id.status = 'available'
+            self.property_id.tenant_id = False
+            self.property_id.contract_open = False
+        elif self.property_id and self.room_id:
+            self.room_id.status = 'available'
+            self.room_id.tenant_id = False
+            self.room_id.contract_open = False
 
     def action_contract_draft(self):
         self.status = 'draft'

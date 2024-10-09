@@ -2,42 +2,6 @@
 <odoo>
     <data>
 
-<!--        &lt;!&ndash; crear Muebles furniture.room.item    &ndash;&gt;-->
-<!--        <record id="furniture_room_item_1" model="furniture.room.item">-->
-<!--            <field name="name">Sofa</field>-->
-<!--            <field name="description">Sofa de 3 plazas</field>-->
-<!--            <field name="color">1</field>-->
-<!--        </record>-->
-<!--        <record id="furniture_room_item_2" model="furniture.room.item">-->
-<!--            <field name="name">Mesa de centro</field>-->
-<!--            <field name="description">Mesa de centro de madera</field>-->
-<!--            <field name="color">2</field>-->
-<!--        </record>-->
-<!--        <record id="furniture_room_item_3" model="furniture.room.item">-->
-<!--            <field name="name">Mesa de comedor</field>-->
-<!--            <field name="description">Mesa de comedor de cristal</field>-->
-<!--            <field name="color">3</field>-->
-<!--        </record>-->
-<!--        <record id="furniture_room_item_4" model="furniture.room.item">-->
-<!--            <field name="name">Silla</field>-->
-<!--            <field name="description">Silla de madera</field>-->
-<!--            <field name="color">4</field>-->
-<!--        </record>-->
-
-<!--        &lt;!&ndash; crear Servicios del Cuarto "services.room.item"    &ndash;&gt;-->
-<!--        <record id="services_room_item_1" model="services.room.item">-->
-<!--            <field name="name">WIFI</field>-->
-<!--            <field name="color">10</field>-->
-<!--        </record>-->
-<!--        <record id="services_room_item_2" model="services.room.item">-->
-<!--            <field name="name">Termo</field>-->
-<!--            <field name="color">5</field>-->
-<!--        </record>-->
-<!--        <record id="services_room_item_3" model="services.room.item">-->
-<!--            <field name="name">Vista al mar</field>-->
-<!--            <field name="color">15</field>-->
-<!--        </record>-->
-
         <!-- Crear un producto de tipo servicio  para cobrar alquiler -->
         <record id="producto_alquiler" model="product.product">
             <field name="name">Pago de Alquiler</field>
