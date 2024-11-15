@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_cleaning_main" model="ir.sequence">
+        <field name="name">Secuencia de Limpieza</field>
+        <field name="code">cleaning.main.sequence</field>
+        <field name="prefix">LMP/</field>
+        <field name="padding">4</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

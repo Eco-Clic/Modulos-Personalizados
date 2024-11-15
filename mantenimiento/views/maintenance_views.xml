@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Vista Tree Main Maintenances -->
+    <record id="view_maintenance_tree" model="ir.ui.view">
+        <field name="name">maintenance.main.tree</field>
+        <field name="model">maintenance.main</field>
+        <field name="arch" type="xml">
+            <tree string="Mantenimiento">
+                <field name="sequence"/>
+                <field name="employer_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="room_propierty_reference"/>
+                <field name="urgent" widget="boolean_toggle" options="{'color': 'red'}" string="Urgente"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form Main Maintenances -->
+    <record id="view_maintenance_form" model="ir.ui.view">
+        <field name="name">maintenance.main.form</field>
+        <field name="model">maintenance.main</field>
+        <field name="arch" type="xml">
+            <form string="Mantenimiento">
+                <header>
+                    <!-- Agregar Secuencia al Header -->
+                    <field name="status" widget="statusbar" statusbar_visible="approval,inprogress,finalished"/>
+                    <button name="action_change_status" type="object" string="Cambiar Estado" class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Cancelar"/>
+                </header>
+                <sheet>
+                    <!-- Título principal con la secuencia -->
+                    <div class="oe_title">
+                        <h1>
+                            <field name="sequence"/>
+                        </h1>
+                    </div>
+
+                    <!-- Campos del mantenimiento -->
+                    <group string="Descripción del mantenimiento">
+                        <field name="employer_id"/>
+                        <field name="room_propierty_reference"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+
+                    <!-- Fotos del mantenimiento -->
+                    <group string="Fotos del Mantenimiento">
+                        <field name="pictures_maintenance" widget="many2many_binary"/>
+                    </group>
+
+
+                    <!-- Sección para videos -->
+                    <group string="Videos">
+                        <field name="videos_binary" widget="many2many_binary" options="{'multiple': true}" />
+                    </group>
+
+
+                    <!-- Notebooks para detalles adicionales -->
+                    <notebook>
+                        <page string="Líneas de factura">
+                            <field name="maintenance_line_id">
+                                <tree editable="bottom">
+                                    <field name="service_ids"/>
+                                    <field name="responsible"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Inventario de muebles">
+                            <field name="furniture_list">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <!-- Sección de Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Calendar para Mantenimiento -->
+    <record id="view_maintenance_calendar" model="ir.ui.view">
+        <field name="name">maintenance.main.calendar</field>
+        <field name="model">maintenance.main</field>
+        <field name="arch" type="xml">
+            <calendar string="Mantenimiento" date_start="start_date" date_stop="end_date"/>
+        </field>
+    </record>
+
+    <!-- Vista Graficos para Mantenimiento -->
+    <record id="view_maintenance_graph" model="ir.ui.view">
+        <field name="name">maintenance.line.graph</field>
+        <field name="model">maintenance.line</field>
+        <field name="arch" type="xml">
+            <graph string="Gráfico" type="bar">
+                <field name="amount" type="measure"/>
+                <field name="responsible" type="row"/>
+                <field name="service_ids" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Vista Pivot para Mantenimiento -->
+    <record id="view_maintenance_line_pivot" model="ir.ui.view">
+        <field name="name">maintenance.line.pivot</field>
+        <field name="model">maintenance.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Análisis">
+                <field name="responsible" type="row"/>
+                <field name="service_ids" type="row"/>
+                <field name="maintenance_status" type="row"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+
+
+</odoo>
