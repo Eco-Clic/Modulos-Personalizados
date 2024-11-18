@@ -136,12 +136,3 @@ class MantenimientoLines(models.Model):
         if not self.search([]):
             return False 
         return True  
-
-    def action_open_report_wizard(self):
-        return {
-            'type': 'ir.actions.act_window',
-            'name': _('Generar Reporte'),
-            'res_model': 'maintenance.report.wizard',
-            'view_mode': 'form',
-            'target': 'new',
-        }
