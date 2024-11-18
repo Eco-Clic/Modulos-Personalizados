@@ -25,7 +25,6 @@
         "views/maintenance_actions.xml",        
         "views/maintenance_root.xml",     
         "views/cleaning_views.xml",   
-        # 'wizards/maintenance_report_wizard.xml', 
     ],
     "installable": True,
     "application": True,
