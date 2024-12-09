@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <header> 
+            <img src="ruta/logo" alt="Logo"/>
+            <input type="date" min="2024-12-09"/>
+            <button onclick="window.location.href='parte_privada.xml'">I'm a landlord</button>
+            <button onclick="window.location.href='parte_message.xml'">Message</button>
+            <button onclick="window.location.href='parte_heart.xml'">Heart</button>
+    
+            <label for="idiomas">Select Language:</label>
+            <select name="idiomas" id="idiomas">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="es">Español</option>
+                <option value="it">Italiano</option>
+                <option value="nl">Nederlands</option>
+                <option value="pt">Português</option>
+            </select>
+        </header>
+
+        <hr/>
+
+        <main id = "pie-de-cabecera">
+            <label for="any-price">Any price</label>
+            <select name="any-price" id="any-price">
+                <label for = "coins">Coins</label>
+                <select name="coins" id="coins">
+                    <option value="euros">Euros €</option>
+                    <option value="usd">Dólares USD $</option>
+                    <option value="gbp">Libras Esterlinas GBP £</option>
+                    <option value="jpy">Yen Japonés JPY ¥</option>
+                    <option value="cny">Yuan Chino CNY ¥</option>
+                    <option value="inr">Rupia India INR ₹</option>
+                    <option value="cad">Dólar Canadiense CAD $</option>
+                    <option value="aud">Dólar Australiano AUD $</option>
+                    <option value="chf">Franco Suizo CHF ₣</option>
+                    <option value="brl">Real Brasileño BRL R$</option>
+                    <option value="mxn">Peso Mexicano MXN $</option>
+                    <option value="rub">Rublo Ruso RUB ₽</option>
+                </select>
+
+                <div id="input-price">
+                    <label for="min-price">Precio mínimo:</label>
+                    <input type="number" id="min-price" name="min-price" min="400" step="0.01" placeholder="400€" />
+    
+                    <label for="max-price">Precio máximo:</label>
+                    <input type="number" id="max-price" name="max-price" max="4528" step="0.01" placeholder="4528€" />
+                </div>
+
+                <div id="checkbox-bills-include">
+                    <input type = "checkbox"/>
+                    <p>Bills included</p>
+                </div>
+
+                <hr/>
+
+                <input type = "submit" value = "Clear" id = "clear"/>
+
+            </select>
+
+            <label for="any-property-type">Any property type</label>
+            <select name="any-property-type" id="any-property-type">
+                
+            </select>
+
+            <label for="any-furnishing">Any furnishing</label>
+            <select name="any-furnishing" id="any-furnishing">
+                
+            </select>
+
+        </main>
+
+        <template id="property_list" name="Property List">
+            <t t-call="website.layout">
+                <div class="container mt16">
+                    <h1>Available Properties</h1>
+                    <t t-if="properties">
+                        <div class="row">
+                            <t t-foreach="properties" t-as="property">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img t-attf-src="/web/image/rental.property/#{property.id}/image_1920" class="card-img-top" alt="Property Image"/>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <t t-esc="property.name"/>
+                                            </h5>
+                                            <p class="card-text">Price per room: $<t t-esc="property.rental_price_per_room"/></p>
+                                            <p class="card-text">Address: <t t-esc="property.address"/></p>
+                                            <p class="card-text">Size: <t t-esc="property.size_m2"/> m²</p>
+                                            <a t-attf-href="/property/#{property.id}" class="btn btn-primary">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                    <t t-if="not properties">
+                        <p>No properties available at this time.</p>
+                    </t>
+                </div>
+            </t>
+        </template>
+
+
+        <template id="property_details" name="Property Details">
+            <t t-call="website.layout">
+                <div class="container mt16">
+                    <h1><t t-esc="property.name"/></h1>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img t-attf-src="/web/image/rental.property/#{property.id}/image_1920" class="img-fluid" alt="Property Image"/>
+                        </div>
+                        <div class="col-md-6">
+                            <h2>Property Information</h2>
+                            <p><strong>Address:</strong> <t t-esc="property.address"/></p>
+                            <p><strong>Type:</strong> <t t-esc="dict(property._fields['property_type'].selection)[property.property_type]"/></p>
+                            <p><strong>Price per room:</strong> $<t t-esc="property.rental_price_per_room"/></p>
+                            <p><strong>Surface Area:</strong> <t t-esc="property.size_m2"/> m²</p>
+                            <h3>Rooms Available</h3>
+                            <ul>
+                                <t t-foreach="property.rooms.filtered(lambda r: r.website_published and r.status == 'available')" t-as="room">
+                                    <li>
+                                        Room: <t t-esc="room.name"/>, Size: <t t-esc="room.size_m2"/> m², Price: $<t t-esc="room.rental_price"/>
+                                    </li>
+                                </t>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>
