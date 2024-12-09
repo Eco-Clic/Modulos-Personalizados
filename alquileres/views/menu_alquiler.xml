@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Configuraciones -->
+    <record id="view_rent_tenant_history_form" model="ir.ui.view">
+        <field name="name">rent.tenant.history.form</field>
+        <field name="model">rental.property.tenant.history</field>
+        <field name="arch" type="xml">
+            <form string="Tenant History">
+                <sheet>
+                    <group>
+                        <field name="property_id"/>
+                        <field name="tenant_id"/>
+                        <field name="contract_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_rent_tenant_history_tree" model="ir.ui.view">
+        <field name="name">rent.tenant.history.tree</field>
+        <field name="model">rental.property.tenant.history</field>
+        <field name="arch" type="xml">
+            <tree string="Tenant History List">
+                <field name="property_id"/>
+                <field name="tenant_id"/>
+                <field name="contract_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_tenant_history" model="ir.actions.act_window">
+        <field name="name">Tenant History</field>
+        <field name="res_model">rental.property.tenant.history</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_rent_tenant_history_tree"/>
+    </record>
+
+    <record id="action_property_maintenance" model="ir.actions.act_window">
+        <field name="name">Property Maintenance</field>
+        <field name="res_model">rental.property.maintenance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <record id="view_rent_maintenance_form" model="ir.ui.view">
+        <field name="name">rent.maintenance.form</field>
+        <field name="model">rental.property.maintenance</field>
+        <field name="arch" type="xml">
+            <form string="Maintenance">
+                <sheet>
+                    <group>
+                        <field name="property_id"/>
+                        <field name="maintenance_date"/>
+                        <field name="description"/>
+                        <field name="made_by"/>
+                        <field name="cost"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_room_maintenance" model="ir.actions.act_window">
+        <field name="name">Room Maintenance</field>
+        <field name="res_model">rental.room.maintenance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <record id="view_room_maintenance_form" model="ir.ui.view">
+        <field name="name">room.maintenance.form</field>
+        <field name="model">rental.room.maintenance</field>
+        <field name="arch" type="xml">
+            <form string="Maintenance">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="maintenance_date"/>
+                        <field name="description"/>
+                        <field name="made_by"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_occupancy_history" model="ir.actions.act_window">
+        <field name="name">Occupancy History</field>
+        <field name="res_model">rental.room.occupancy</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_rent_occupancy_form" model="ir.ui.view">
+        <field name="name">rent.occupancy.form</field>
+        <field name="model">rental.room.occupancy</field>
+        <field name="arch" type="xml">
+            <form string="Occupancy">
+                <sheet>
+                    <group>
+                        <field name="room_id"/>
+                        <field name="tenant_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_incident_history" model="ir.actions.act_window">
+        <field name="name">Incident History</field>
+        <field name="res_model">rental.incident.history</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_rent_incident_history_form" model="ir.ui.view">
+        <field name="name">rent.incident.history.form</field>
+        <field name="model">rental.incident.history</field>
+        <field name="arch" type="xml">
+            <form string="Incident History">
+                <sheet>
+                    <group>
+                        <field name="tenant_id"/>
+                        <field name="incident_date"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_communication_history" model="ir.actions.act_window">
+        <field name="name">Communication History</field>
+        <field name="res_model">rental.communication.history</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_rent_communication_history_form" model="ir.ui.view">
+        <field name="name">rent.communication.history.form</field>
+        <field name="model">rental.communication.history</field>
+        <field name="arch" type="xml">
+            <form string="Communication History">
+                <sheet>
+                    <group>
+                        <field name="tenant_id"/>
+                        <field name="communication_type"/>
+                        <field name="communication_date"/>
+                        <field name="attachment"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_rent_furniture_room_item" model="ir.actions.act_window">
+        <field name="name">Furniture Items</field>
+        <field name="res_model">furniture.room.item</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <record id="view_rent_furniture_room_item_form" model="ir.ui.view">
+        <field name="name">rent.furniture.room.item.form</field>
+        <field name="model">furniture.room.item</field>
+        <field name="arch" type="xml">
+            <form string="Furniture Item">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_rent_services_room_item" model="ir.actions.act_window">
+        <field name="name">Services Items</field>
+        <field name="res_model">services.room.item</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <record id="view_rent_services_room_item_form" model="ir.ui.view">
+        <field name="name">rent.services.room.item.form</field>
+        <field name="model">services.room.item</field>
+        <field name="arch" type="xml">
+            <form string="Services Item">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="rental_menu_main_root" name="Rental Management" sequence="1"/>
+    <menuitem id="rental_menu_property" name="Properties" parent="rental_menu_main_root"
+              action="action_rental_property" sequence="2"/>
+    <menuitem id="rental_menu_room" name="Rooms" parent="rental_menu_main_root" action="action_rental_room"
+              sequence="3"/>
+    <menuitem id="rental_menu_contract" name="Contracts" parent="rental_menu_main_root"
+              action="action_rental_contract" sequence="4"/>
+    <menuitem id="rental_menu_issue" name="Issues" parent="rental_menu_main_root"
+              action="action_issue" sequence="5"/>
+    <menuitem id="menu_empadronamiento" name="Registration" parent="rental_menu_main_root"
+              action="action_empadronamiento" sequence="6"/>
+
+
+    <!-- Menú de configuraciones -->
+    <menuitem id="rental_menu_config" name="Configurations" parent="rental_menu_main_root" sequence="7"/>
+    <menuitem id="rental_menu_tenant_history"
+              name="Tenant History"
+              action="action_tenant_history"
+              parent="rental_menu_config"/>
+    <menuitem id="rental_menu_maintenance" name="Maintenance" action="action_property_maintenance"
+              parent="rental_menu_config"/>
+    <menuitem id="rental_menu_occupancy" name="Occupancy" action="action_occupancy_history"
+              parent="rental_menu_config"/>
+   <!-- <menuitem id="rental_menu_payment_history" name="Payment History"
+              action="action_rental_payment_history" parent="rental_menu_config"/>-->
+    <menuitem id="rental_menu_incident_history" name="Incident History"
+              action="action_incident_history" parent="rental_menu_config"/>
+    <menuitem id="rental_menu_communication_history" name="Communication History"
+              action="action_communication_history" parent="rental_menu_config"/>
+    <menuitem id="rental_menu_furniture_items" name="Furniture Items" action="action_rent_furniture_room_item"
+              parent="rental_menu_config"/>
+    <menuitem id="rental_menu_services_items" name="Services Items" action="action_rent_services_room_item"
+              parent="rental_menu_config"/>
+
+    <record id="menu_tenant_partner" model="ir.ui.menu">
+        <field name="name">Tenants</field>
+        <field name="parent_id" ref="alquileres.rental_menu_main_root"/>
+        <field name="action" ref="action_tenant_partner"/>
+        <field name="sequence" eval="20"/>
+    </record>
+
+    <record id="menu_owner_partner" model="ir.ui.menu">
+        <field name="name">Owners</field>
+        <field name="parent_id" ref="alquileres.rental_menu_main_root"/>
+        <field name="action" ref="action_owner_partner"/>
+        <field name="sequence" eval="10"/>
+    </record>
+
+
+</odoo>

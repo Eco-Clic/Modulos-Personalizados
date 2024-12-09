@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vista de formulario para la gestión de empadronamiento -->
+        <record id="view_form_empadronamiento" model="ir.ui.view">
+            <field name="name">empadronamiento.form</field>
+            <field name="model">rent.empadronamiento</field>
+            <field name="arch" type="xml">
+                <form string="Registration Management">
+                    <header>
+                        <field name="status" widget="statusbar" statusbar_visible="incomplete,complete"/>
+                        <button name="check_registration_status" type="object" string="Change Status"
+                                class="oe_highlight"/>
+                    </header>
+                    <group class="oe_subgroup" col="2">
+                        <group class="oe_subgroup">
+                            <field name="name"/>
+                            <field name="tenant_name"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="address"/>
+                            <field name="registration_date"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="id_number"/>
+                            <field name="relationship"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Required Documentation">
+                            <group class="oe_subgroup">
+                                <field name="rental_contract" filename="Rental Contract" widget="binary"/>
+                                <field name="owner_authorization"
+                                       filename="Authorization of the Owner for Registration" widget="binary"/>
+                                <field name="tenant_id_copy" filename="Copy of the Tenant DNI/NIE" widget="binary"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción para abrir el formulario -->
+        <record id="action_empadronamiento" model="ir.actions.act_window">
+            <field name="name">Registration Management</field>
+            <field name="res_model">rent.empadronamiento</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menú -->
+
+    </data>
+</odoo>

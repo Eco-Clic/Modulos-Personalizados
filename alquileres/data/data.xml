@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Crear un producto de tipo servicio  para cobrar alquiler -->
+        <record id="producto_alquiler" model="product.product">
+            <field name="name">Pago de Alquiler</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="list_price">100</field>
+            <field name="standard_price">50</field>
+        </record>
+
+        <!-- Crear un PArtner que sea el owner_id -->
+        <record id="partner_owner_rent" model="res.partner">
+            <field name="name">Juan</field>
+            <field name="email">juan.perez@gmail.com</field>
+            <field name="phone">123456789</field>
+        </record>
+
+
+        <!-- Crear una rental.property 1-->
+        <record id="property_1" model="rental.property">
+            <field name="name">Casa de la playa</field>
+            <field name="owner_id" ref="partner_owner_rent"/>
+            <field name="address">Casa de la playa en la costa de Valencia</field>
+            <field name="property_type">house</field>
+            <field name="property_reference">house-101</field>
+            <field name="number_of_rooms">4</field>
+            <field name="number_of_bathrooms">1</field>
+            <field name="size_m2">100</field>
+            <field name="floor">1</field>
+            <field name="door_number">1</field>
+            <field name="is_property">True</field>
+        </record>
+
+        <!-- Crear una rental.property 2-->
+        <record id="property_2" model="rental.property">
+            <field name="name">Piso en el centro</field>
+            <field name="owner_id" ref="partner_owner_rent"/>
+            <field name="address">Piso en el centro de Valencia</field>
+            <field name="property_type">house</field>
+            <field name="property_reference">house-301</field>
+            <field name="number_of_rooms">3</field>
+            <field name="number_of_bathrooms">1</field>
+            <field name="size_m2">80</field>
+            <field name="floor">2</field>
+            <field name="door_number">2</field>
+            <field name="is_property">True</field>
+        </record>
+
+        <!-- Crear un rental.room   -->
+        <record id="room_1" model="rental.room">
+            <field name="name">Habitacion 1</field>
+            <field name="rental_id" ref="property_1"/>
+            <field name="room_type">individual</field>
+            <field name="status">available</field>
+            <field name="rental_price">100</field>
+        </record>
+        <record id="room_2" model="rental.room">
+            <field name="name">Habitacion 2</field>
+            <field name="rental_id" ref="property_1"/>
+            <field name="room_type">other</field>
+            <field name="status">available</field>
+            <field name="rental_price">150</field>
+        </record>
+        <record id="room_3" model="rental.room">
+            <field name="name">Habitacion 3</field>
+            <field name="rental_id" ref="property_2"/>
+            <field name="room_type">double</field>
+            <field name="status">available</field>
+            <field name="rental_price">160</field>
+        </record>
+
+    </data>
+</odoo>

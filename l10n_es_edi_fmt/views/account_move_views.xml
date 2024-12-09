@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_move_form_inherit_factura_e" model="ir.ui.view">
+        <field name="name">account.move.form.factura.e</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="action_open_invoice_electronic_wizard"
+                        string="Generar Factura-Electronica"
+                        type="object"
+                        class="oe_highlight" />
+            </header>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Invoice Digital Fmt">
+                    <group>
+                        <group>
+                            <field name="xml_filename" readonly="True"/>
+                            <field name="edi_invoice_xml" widget="binary" readonly="True"/>
+                            <field name="electronic_invoice_xml"
+                                   invisible="1"
+                                   widget="html"
+                                   readonly="True"/>
+                        </group>
+                        <group>
+                            <field name="attachment_id" readonly="True"/>
+                            <field name="edi_invoice_xml_url" widget="CopyClipboardChar" readonly="True"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

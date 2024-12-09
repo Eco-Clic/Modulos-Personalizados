@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_rental_property" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">rental.property</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record id="view_rental_property_kanban" model="ir.ui.view">
+        <field name="name">rental.property.kanban</field>
+        <field name="model">rental.property</field>
+        <field name="arch" type="xml">
+            <kanban string="Rental Properties">
+                <field name="name"/>
+                <field name="property_status"/>
+                <field name="number_of_rooms"/>
+                <field name="size_m2"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_card">
+                                <div class="o_kanban_details">
+                                    <div class="o_kanban_image">
+                                        <img t-att-src="kanban_image('rental.property', 'image_1920', record.id)"/>
+                                    </div>
+                                    <!-- Nombre de la propiedad -->
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                    <!-- Estado de la propiedad -->
+                                    <div>
+                                        <span>Status:</span>
+                                        <t t-if="record.property_status.raw_value == 'available'">
+                                            <span class="badge badge-success">Available</span>
+                                        </t>
+                                        <t t-if="record.property_status.raw_value == 'occupied'">
+                                            <span class="badge badge-warning">Occupied</span>
+                                        </t>
+                                        <t t-if="record.property_status.raw_value == 'maintenance'">
+                                            <span class="badge badge-danger">Maintenance</span>
+                                        </t>
+                                    </div>
+                                    <!-- Número de habitaciones -->
+                                    <div>
+                                        <span>Rooms:</span>
+                                        <field name="number_of_rooms"/>
+                                    </div>
+                                    <!-- Tamaño en metros cuadrados -->
+                                    <div>
+                                        <span>Size (m²):</span>
+                                        <field name="size_m2"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="view_rent_property_form" model="ir.ui.view">
+        <field name="name">rent.property.form</field>
+        <field name="model">rental.property</field>
+        <field name="arch" type="xml">
+            <form string="Property">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="available,occupied,maintenance"/>
+                    <button name="action_change_status" type="object" string="Change Status" class="oe_highlight"/>
+                    <!-- Botón para Check-In -->
+                    <button name="action_open_check_in_wizard"
+                            string="Check-In"
+                            type="object"
+                            class="btn-primary"
+                            context="{'default_owner_id': active_id}"/>
+                    <!-- Botón para Check-Out -->
+                    <button name="action_open_check_out_wizard"
+                            string="Check-Out"
+                            type="object"
+                            class="btn-secondary"
+                            context="{'default_owner_id': active_id}"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" modifiers="{}">
+<!--                        <button class="oe_stat_button" type="object"-->
+<!--                                name="return_action_view_xml_id"-->
+<!--                                help="Tenant History"-->
+<!--                                context="{'xml_id': 'action_tenant_history'}"-->
+<!--                                icon="fa-male">-->
+<!--                            <field string="Tenant History"-->
+<!--                                   name="tenant_history_count"-->
+<!--                                   widget="statinfo"/>-->
+<!--                        </button>-->
+
+                        <button class="oe_stat_button" type="object"
+                                name="return_action_view_xml_id"
+                                help="Maintenance History"
+                                context="{'xml_id': 'action_property_maintenance'}"
+                                icon="fa-cogs">
+                            <field string="Maintenance History"
+                                   name="maintenance_history_count"
+                                   widget="statinfo"/>
+                        </button>
+
+
+                        <button class="oe_stat_button" type="object"
+                                name="return_action_view_xml_id"
+                                help="Contract History"
+                                context="{'xml_id': 'action_rental_contract'}"
+                                icon="fa-history">
+                            <field string="Contract History"
+                                   name="contract_history_count"
+                                   widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="o_col o_col_6">
+                        <group>
+                            <field name="image_1920" widget="image"
+                                   options="{'preview_image': 'image_1920', 'size': (128, 128)}"
+                                   class="oe_avatar"/>
+                        </group>
+                    </div>
+                    <group>
+                        <group class="oe_subgroup">
+                            <field name="address"/>
+                            <field name="property_type"/>
+                            <field name="number_of_rooms"/>
+                            <field name="number_of_bathrooms"/>
+                            <field name="size_m2"/>
+                            <field name="floor"/>
+                            <field name="door_number"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="owner_id"/>
+                            <field name="tenant_id" readonly="1"/>
+                            <field name="contract_open" readonly="1"/>
+                            <field name="property_reference"/>
+                            <field name="rental_price_per_room"/>
+                            <field name="energy_certificate_list"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Attachments">
+                            <group>
+                                <field name="property_deed"/>
+                                <field name="energy_certificate"/>
+                                <field name="habitability_certificate"/>
+                                <field name="special_permits"/>
+                            </group>
+
+                        </page>
+                        <page string="Rooms">
+                            <field name="rooms" mode="kanban" context="{'default_rental_id': id, }">
+                                <kanban>
+                                    <field name="name"/>
+                                    <field name="status"/>
+                                    <field name="color"/>
+                                    <field name="image_1920"/>
+                                    <field name="has_a_tenant"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+                                            <div t-att-class="color + (record.name.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
+                                                <div class="o_kanban_image">
+                                                    <img alt="Contact image"
+                                                         t-att-src="kanban_image('rental.room', 'image_1920', record.id.raw_value)"/>
+                                                </div>
+                                                <div class="oe_kanban_details">
+                                                    <div>
+                                                        <strong>
+                                                            <field name="name"/>
+                                                        </strong>
+                                                    </div>
+                                                    <div>
+                                                        <span>Status:</span>
+                                                        <field name="status"/>
+                                                    </div>
+                                                    <div>
+                                                        <span>Has a Tenant:</span>
+                                                        <field name="has_a_tenant"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <form string="Rooms">
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="name" string="Name"/>
+                                                <field name="status"/>
+                                                <field name="has_a_tenant"/>
+                                            </group>
+                                            <group>
+                                                <field name="room_type"/>
+                                                <field name="rental_price" widget="monetary"/>
+                                                <field name="responsible_id" widget="many2one_avatar"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_rent_property_tree" model="ir.ui.view">
+        <field name="name">rent.property.tree</field>
+        <field name="model">rental.property</field>
+        <field name="arch" type="xml">
+            <tree string="Properties">
+                <field name="address"/>
+                <field name="property_type"/>
+                <field name="number_of_bathrooms"/>
+                <field name="size_m2"/>
+                <field name="property_status"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

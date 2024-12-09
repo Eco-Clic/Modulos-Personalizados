@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista del wizard de Check-In -->
+    <record id="view_rental_check_in_wizard_form" model="ir.ui.view">
+        <field name="name">rental.check.in.wizard.form</field>
+        <field name="model">rental.check.in.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Check-In Rental">
+                <group>
+                    <group>
+                        <field name="agency_id"/>
+                        <field name="property_id"/>
+                        <field name="room_id"/>
+                        <field name="contract_start_date"/>
+                        <field name="renewal_terms"/>
+                    </group>
+                    <group>
+                         <field name="owner_id"/>
+                        <field name="tenant_id"/>
+                        <field name="contract_end_date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_create_contract" type="object" string="Procesar" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista del wizard de Check-Out -->
+    <record id="view_rental_check_out_wizard_form" model="ir.ui.view">
+        <field name="name">rental.check.out.wizard.form</field>
+        <field name="model">rental.check.out.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Check-Out Rental">
+                <group>
+                    <field name="contract_id"/>
+                    <field name="property_id" readonly="1"/>
+                    <field name="room_id" readonly="1"/>
+                    <field name="tenant_id" readonly="1"/>
+                </group>
+                <footer>
+                    <button name="action_terminate_contract" type="object" string="Procesar Check-Out" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

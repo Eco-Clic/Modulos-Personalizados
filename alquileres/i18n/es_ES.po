@@ -1,0 +1,1721 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* alquileres
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20240514\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-10 15:34+0000\n"
+"PO-Revision-Date: 2024-10-10 15:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_rental_payment_history_lines
+msgid " Payment History Lines"
+msgstr "Líneas del historial de pagos"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_details
+msgid ", Size:"
+msgstr ", Tamaño:"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_contract_kanban
+msgid "<span class=\"badge badge-danger\">Inactivo</span>"
+msgstr "<span class=\"badge badge-danger\">Inactive</span>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_property_kanban
+msgid "<span class=\"badge badge-danger\">Maintenance</span>"
+msgstr "<span class=\"badge badge-danger\">Mantenimiento</span>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_contract_kanban
+msgid "<span class=\"badge badge-success\">Activo</span>"
+msgstr "<span class=\"badge badge-success\">Active</span>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_property_kanban
+msgid "<span class=\"badge badge-success\">Available</span>"
+msgstr "<span class=\"badge badge-success\">Disponible</span>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_property_kanban
+msgid "<span class=\"badge badge-warning\">Occupied</span>"
+msgstr "<span class=\"badge badge-warning\">Ocupado</span>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_contract_kanban
+msgid "<span>End Date:</span>"
+msgstr "<span>Fecha de fin:</span>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_form
+msgid "<span>Has a Tenant:</span>"
+msgstr "<span>Tiene inquilino:</span>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_property_kanban
+msgid "<span>Rooms:</span>"
+msgstr "<span>Dormitorios:</span>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_property_kanban
+msgid "<span>Size (m²):</span>"
+msgstr "<span>Tamaño (m²):</span>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_contract_kanban
+msgid "<span>Start Date:</span>"
+msgstr "<span>Fecha de inicio:</span>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_contract_kanban
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_form
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_property_kanban
+msgid "<span>Status:</span>"
+msgstr "<span>Estatus:</span>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_details
+msgid "<strong>Address:</strong>"
+msgstr "<strong>Dirección:</strong>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_details
+msgid "<strong>Price per room:</strong> $"
+msgstr "<strong>Precio por dormitorio:</strong> $"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_room_kanban
+msgid "<strong>Responsible:</strong>"
+msgstr "<strong>Responsable:</strong>"
+
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_room_kanban
+msgid "<strong>Status:</strong>"
+msgstr "<strong>Estatus:</strong>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_details
+msgid "<strong>Surface Area:</strong>"
+msgstr "<strong>Área de superficie:</strong>"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_details
+msgid "<strong>Type:</strong>"
+msgstr "<strong>Tipo:</strong>"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__message_needaction
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__message_needaction
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__message_needaction
+msgid "Action Needed"
+msgstr "Acción necesaria"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__is_active
+msgid "Active"
+msgstr "Activo"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__activity_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__activity_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__activity_exception_decoration
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__activity_exception_decoration
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de excepción de actividad"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__activity_state
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__activity_state
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__activity_state
+msgid "Activity State"
+msgstr "Estado de actividad"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__activity_type_icon
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__activity_type_icon
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ícono del tipo de actividad"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__additional_guarantees
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__guarantees
+#: model:ir.model.fields,field_description:alquileres.field_res_users__additional_guarantees
+#: model:ir.model.fields,field_description:alquileres.field_res_users__guarantees
+msgid "Additional Guarantees (Aval, Insurance, etc.)"
+msgstr "Garantías adicionales (aval, seguro, etc.)"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_list
+msgid "Address:"
+msgstr "Dirección:"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__agency_id
+msgid "Agency"
+msgstr "Agencia"
+
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__agency_responsibilities
+msgid "Agency Responsibilities"
+msgstr "Responsabilidades de la agencia"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_room_sections__height
+msgid "Altura (m)"
+msgstr "Altura (m)"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_room_sections__width
+msgid "Anchura (m)"
+msgstr "Anchura (m)"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_property__property_type__apartment
+msgid "Apartment"
+msgstr "Apartamento"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_communication_history__attachment
+msgid "Attachment"
+msgstr "Adjunto"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__message_attachment_count
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__message_attachment_count
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de adjuntos"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_form
+msgid "Attachments"
+msgstr "Adjuntos"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__owner_authorization
+msgid "Authorization of the Owner for Registration"
+msgstr "Autorización del propietario para el empadronamiento"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_property__property_status__available
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_property__status__available
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_room__status__available
+msgid "Available"
+msgstr "Disponible"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_list
+msgid "Available Properties"
+msgstr "Propiedades disponibles"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_tenant_co_signer__bank_account_number
+msgid "Bank Account Number"
+msgstr "Número de cuenta bancaria"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__product_template__status__bueno
+msgid "Bueno"
+msgstr "Bueno"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_product_product__cantidad
+#: model:ir.model.fields,field_description:alquileres.field_product_template__cantidad
+msgid "Cantidad"
+msgstr "Cantidad"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_rent_empadronamiento
+msgid "Census"
+msgstr "Empadronamiento"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_form_empadronamiento
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_form
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_room_form
+msgid "Change Status"
+msgstr "Cambiar estado"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__co_signer_ids
+#: model:ir.model.fields,field_description:alquileres.field_res_users__co_signer_ids
+msgid "Co-Signers"
+msgstr "Codemandantes"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_tenant_form
+msgid "Co-signers"
+msgstr "Codemandantes"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_furniture_room_item__color
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__color
+#: model:ir.model.fields,field_description:alquileres.field_services_room_item__color
+msgid "Color Index"
+msgstr "Índice de color"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_communication_history__communication_date
+msgid "Communication Date"
+msgstr "Fecha de comunicación"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_communication_history
+#: model:ir.model,name:alquileres.model_rental_communication_history
+#: model:ir.model.fields,field_description:alquileres.field_rental_communication_history__name
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__communication_history_ids
+#: model:ir.model.fields,field_description:alquileres.field_res_users__communication_history_ids
+#: model:ir.ui.menu,name:alquileres.rental_menu_communication_history
+#: model_terms:ir.ui.view,arch_db:alquileres.partner_view_buttons_inherit
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_communication_history_form
+msgid "Communication History"
+msgstr "Historial de comunicaciones"
+
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__communication_history_count
+#: model:ir.model.fields,field_description:alquileres.field_res_users__communication_history_count
+msgid "Communication History Count"
+msgstr "Conteo de historial de comunicaciones"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_communication_history__communication_type
+msgid "Communication Type"
+msgstr "Tipo de comunicación"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rent_empadronamiento__relationship__roommate
+msgid "Compañero de Piso"
+msgstr "Compañero de piso"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rent_empadronamiento__status__complete
+msgid "Complete"
+msgstr "Completo"
+
+#. module: alquileres
+#: model:ir.ui.menu,name:alquileres.rental_menu_config
+msgid "Configurations"
+msgstr "Configuraciones"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_form
+msgid "Contact image"
+msgstr "Imagen del contacto"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__name
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_tenant_history__contract_id
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__contract_attachments
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_contract_form
+msgid "Contract Attachments"
+msgstr "Adjuntos del contrato"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__contract_history_ids
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_form
+msgid "Contract History"
+msgstr "Historial de contratos"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__contract_history_count
+msgid "Contract History Count"
+msgstr "Conteo de historial de contratos"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__contract_number
+msgid "Contract Number"
+msgstr "Número del contrato"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_tenant_form
+msgid "Contract information"
+msgstr "Información del contrato"
+
+#. module: alquileres
+#: model:ir.ui.menu,name:alquileres.rental_menu_contract
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_contract_kanban
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_contract_tree
+msgid "Contracts"
+msgstr "Contratos"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__tenant_id_copy
+msgid "Copy of the Tenant DNI/NIE"
+msgstr "Copia del DNI/NIE del inquilino"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_maintenance__cost
+msgid "Cost of Maintenance or Repair"
+msgstr "Costo de mantenimiento o reparación"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_payment_history_form
+msgid "Create Invoice"
+msgstr "Crear factura"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_furniture_room_item__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rent_issue__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rental_communication_history__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rental_incident_history__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history_lines__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_maintenance__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_tenant_history__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_maintenance__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_occupancy__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_room_sections__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_services_room_item__create_uid
+#: model:ir.model.fields,field_description:alquileres.field_tenant_co_signer__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_furniture_room_item__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rent_issue__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_communication_history__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_incident_history__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history_lines__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_maintenance__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_tenant_history__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_maintenance__create_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_occupancy__create_date
+#: model:ir.model.fields,field_description:alquileres.field_room_sections__create_date
+#: model:ir.model.fields,field_description:alquileres.field_services_room_item__create_date
+#: model:ir.model.fields,field_description:alquileres.field_tenant_co_signer__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_product_product__status
+#: model:ir.model.fields,field_description:alquileres.field_product_template__status
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__property_status
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__status
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__status
+msgid "Current Status"
+msgstr "Estado actual"
+
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__identification_number
+#: model:ir.model.fields,field_description:alquileres.field_res_users__identification_number
+#: model:ir.model.fields,field_description:alquileres.field_tenant_co_signer__identification_number
+msgid "DNI/NIE"
+msgstr "DNI/NIE"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__id_document
+#: model:ir.model.fields,field_description:alquileres.field_res_users__id_document
+msgid "DNI/NIE or Passport"
+msgstr "DNI/NIE o Pasaporte"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__birth_date
+#: model:ir.model.fields,field_description:alquileres.field_res_users__birth_date
+msgid "Date of Birth"
+msgstr "Fecha de Nacimiento"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__deposit_amount
+#: model:ir.model.fields,field_description:alquileres.field_res_users__deposit_amount
+msgid "Deposit Amount"
+msgstr "Depósito"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__deposit_receipt
+#: model:ir.model.fields,field_description:alquileres.field_res_users__deposit_receipt
+msgid "Deposit Payment Receipt"
+msgstr "Comprobante de Pago del Depósito"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_field_furniture_room_item__description
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__description
+#: model:ir.model.fields,field_description:alquileres.field_services_room_item__description
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_room_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_maintenance__description
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_maintenance__description
+msgid "Description of Maintenance or Repair"
+msgstr "Descripción del Mantenimiento o Reparación"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_incident_history__description
+msgid "Description of the Incident"
+msgstr "Descripción del Incidente"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_communication_history__description
+msgid "Details of Communication"
+msgstr "Detalles de la Comunicación"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_furniture_room_item__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rent_issue__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rental_communication_history__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rental_incident_history__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history_lines__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_maintenance__display_name
+#: model:ir.fields:alquileres.field_rental_property_tenant_history__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_maintenance__display_name
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_occupancy__display_name
+#: model:ir.model.fields,field_description:alquileres.field_room_sections__display_name
+#: model:ir.model.fields,field_description:alquileres.field_services_room_item__display_name
+#: model:ir.model.fields,field_description:alquileres.field_tenant_co_signer__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__res_partner__marital_status__divorced
+msgid "Divorced"
+msgstr "Divorciado"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__door_number
+msgid "Door Number (if applicable)"
+msgstr "Número de Puerta (si aplica)"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_room__room_type__double
+msgid "Double"
+msgstr "Doble"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_tenant_co_signer__email
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_communication_history__communication_type__email
+msgid "Email"
+msgstr "Correo Electrónico"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__res_partner__employment_status__employed
+#: model:ir.model.fields.selection,name:alquileres.selection__tenant_co_signer__employment_status__employed
+msgid "Employed"
+msgstr "Empleado"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__employment_status
+#: model:ir.model.fields,field_description:alquileres.field_res_users__employment_status
+#: model:ir.model.fields,field_description:alquileres.field_tenant_co_signer__employment_status
+msgid "Employment Status"
+msgstr "Situación Laboral"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__contract_end_date
+#: model:ir.model.fields,field_description="alquileres.field_rental_property_tenant_history__end_date"
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_occupancy__end_date
+msgid "End Date"
+msgstr "Fecha de Finalización"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__energy_certificate
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__energy_certificate_list
+msgid "Energy Efficiency Certificate"
+msgstr "Certificado de Eficiencia Energética"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__address
+msgid "Exact Address of the Home"
+msgstr "Dirección Exacta del Domicilio"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_payment_history_form
+msgid "Facturas"
+msgstr "Facturas"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rent_empadronamiento__relationship__family
+msgid "Familiar"
+msgstr "Familiar"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__floor
+msgid "Floor (if applicable)"
+msgstr "Planta (si aplica)"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__message_follower_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__message_follower_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__message_partner_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__message_partner_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Contactos)"
+
+#. module: alquileres
+#: model:ir.model.fields,help:alquileres.field_rental_contract__activity_type_icon
+#: model:ir.model.fields,help:alquileres.field_rental_property__activity_type_icon
+#: model:ir.model.fields,help:alquileres.field.rental_room__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono de Font Awesome (por ejemplo, fa-tasks)"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__address
+msgid "Full Address"
+msgstr "Dirección Completa"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_tenant_co_signer__name
+msgid "Full Name"
+msgstr "Nombre Completo"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_furniture_room_item_form
+msgid "Furniture Item"
+msgstr "Elemento de Mueble"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_rent_furniture_room_item
+#: model:ir.ui.menu,name:alquileres.rental_menu_furniture_items
+msgid "Furniture Items"
+msgstr "Elementos de Mueble"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_furniture_room_item
+msgid "Furniture Items for Room"
+msgstr "Elementos de Mueble para Habitación"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__furniture_list
+msgid "Furniture List"
+msgstr "Lista de Muebles"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_room_form
+msgid "Furniture and Services"
+msgstr "Muebles y Servicios"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__habitability_certificate
+msgid "Habitability Certificate"
+msgstr "Certificado de Habitabilidad"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__has_a_tenant
+msgid "Has A Tenant"
+msgstr "Tiene un Inquilino"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__has_message
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__has_message
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__has_message
+msgid "Has Message"
+msgstr "Tiene un Mensaje"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_property__property_type__house
+msgid "House"
+msgstr "Casa"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_furniture_room_item__id
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__id
+#: model:ir.model.fields,field_description:alquileres.field_rent_issue__id
+#: model:ir.model.fields,field_description:alquileres.field_rental_communication_history__id
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__id
+#: model:ir.model.fields,field_description:alquileres.field_rental_incident_history__id
+#: model:ir.model.fields,description:alquileres.field_rental_payment_history__id
+#: model:ir.model.fields,description:alquileres.field_rental_payment_history_lines__id
+#: model:ir.model.fields,description:alquileres.field_rental_property__id
+#: model:ir.model.fields,description:alquileres.field_rental_property_maintenance__id
+#: model:ir.model.fields,description:alquileres.field_rental_property_tenant_history__id
+#: model:ir.model.fields,description:alquileres.field_rental_room__id
+#: model:ir.model.fields,description:alquileres.field_rental_room_maintenance__id
+#: model:ir.model.fields,description:alquileres.field_rental_room_occupancy__id
+#: model:ir.model.fields,description: alquileres.field_room_sections__id
+#: model:ir.model.fields,description: alquileres.field_services_room_item__id
+#: model:ir.model.fields,description: alquileres.field_tenant_co_signer__id
+msgid "ID"
+msgstr "ID"  # No cambio necesario, "ID" es un término universalmente reconocido
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__activity_exception_icon
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__activity_exception_icon
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: alquileres
+#: model:ir.model.fields,help:alquileres.field_rental_contract__activity_exception_icon
+#: model:ir.model.fields,help:alquileres.field_rental_property__activity_exception_icon
+#: model:ir.model.fields,help:alquileres.field_rental_room__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad excepcional."
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__id_number
+msgid "Identification Number (DNI/NIE)"
+msgstr "Número de Identificación (DNI/NIE)"
+
+#. module: alquileres
+#: model:ir.model.fields,help:alquileres.field_rental_contract__message_needaction
+#: model:ir.model.fields,help:alquileres.field_rental_property__message_needaction
+#: model:ir.model.fields,help:alquileres.field_rental_room__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, los nuevos mensajes requieren su atención."
+
+#. module:  
+ alquileres
+#: model:ir.model.fields,help:alquileres.field_rental_contract__message_has_error
+#: model:ir.model.fields,help:alquileres.field_rental_contract__message_has_sms_error
+#: model:ir.model.fields,help:alquileres.field_rental_property__message_has_error
+#: model:ir.model.fields,help:alquileres.field_rental_property__message_has_sms_error
+#: model:ir.model.fields:alquileres.field_rental_room__message_has_error
+#: model:ir.model.fields:alquileres.field_rental_room__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_room_form
+msgid "Image"
+msgstr "Imagen"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__image_filename
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__image_filename
+msgid "Image Filename"
+msgstr "Nombre del Archivo de Imagen"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__image_1920
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__image_1920
+msgid "Imagen"
+msgstr "Imagen"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rent_issue__status__in_progress
+msgid "In Progress"
+msgstr "En Progreso"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_communication_history__communication_type__in_person
+msgid "In-Person"
+msgstr "En Persona"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_incident_history__incident_date
+msgid "Incident Date"
+msgstr "Fecha del Incidente"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_incident_history
+#: model:ir.model,name:alquileres.model_rental_incident_history
+#: model:ir.model.fields,field_description:alquileres.field_rental_incident_history__name
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__incident_history_ids
+#: model:ir.model.fields,field_description:alquileres.field_res_users__incident_history_ids
+#: model:ir.ui.menu,name:alquileres.rental_menu_incident_history
+#: model_terms:ir.ui.view,arch_db:alquileres.partner_view_buttons_inherit
+#: model_terms:ir.ui.view,arch_db.alquileres.view_rent_incident_history_form
+msgid "Incident History"
+msgstr "Historial de Incidentes"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__incident_history_count
+#: model:ir.model.fields,field_description:alquileres.field_res_users__incident_history_count
+msgid "Incident History Count"
+msgstr "Número de Incidentes en el Historial"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__income_proof
+#: model:ir.model.fields,field_description:alquileres.field_res_users__income_proof
+msgid "Income Proof (Payslips, Tax Returns, etc.)"
+msgstr "Comprobante de Ingresos (Nóminas, Declaraciones de la Renta, etc.)"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rent_empadronamiento__status__incomplete
+msgid "Incomplete"
+msgstr "Incompleto"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_room__room_type__individual
+msgid "Individual"
+msgstr "Individual"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history__inmueble
+msgid "Inmueble"
+msgstr "Propiedad"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history__invoice_id
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history__invoice_count
+msgid "Invoice Count"
+msgstr "Cantidad de Facturas"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__message_is_follower
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__message_is_follower
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_issue__name
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_issue_form
+msgid "Issue"
+msgstr "Incidencia"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_issue__description
+msgid "Issue Description"
+msgstr "Descripción de la Incidencia"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_rent_issue
+msgid "Issue Management"
+msgstr "Gestión de Incidencias"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_issue
+#: model:ir.ui.menu,name:alquileres.rental_menu_issue
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_issue_tree
+msgid "Issues"
+msgstr "Incidencias"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_furniture_room_item__write_uid
+# ... (other fields with similar structure)
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_furniture_room_item__write_date
+# ... (other fields with similar structure)
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__lease_end_date
+#: model:ir.model.fields,field_description:alquileres.field_res_users__lease_end_date
+msgid "Lease End Date"
+msgstr "Fecha de Fin del Contrato"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__lease_start_date
+#: model:ir.model.fields,field_description:alquileres.field_res_users__lease_start_date
+msgid "Lease Start Date"
+msgstr "Fecha de Inicio del Contrato"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_maintenance__made_by
+msgid "Made By"
+msgstr "Realizado por"
+
+#. module: alquileres
+#: model:ir.ui.menu,name:alquileres.rental_menu_maintenance
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_maintenance_form
+#: model_terms:ir.ui.view,arch_db:alquileres.view_room_maintenance_form
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_maintenance__maintenance_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_maintenance__maintenance_date
+msgid "Maintenance Date"
+msgstr "Fecha de Mantenimiento"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_rental_property_maintenance
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__maintenance_history_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_maintenance__name
+#: model:ir.model.fields,field_description.alquileres.field_rental_room__maintenance_history_ids
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_form
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_room_form
+msgid "Maintenance History"
+msgstr "Historial de Mantenimiento"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__maintenance_history_count
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__maintenance_history_count
+msgid "Maintenance History Count"
+msgstr "Cantidad de Historial de Mantenimiento"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_maintenance__made_by
+msgid "Maintenance Made By"
+msgstr "Realizado por"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__product_template__status__malo
+msgid "Malo"
+msgstr "Malo"  # No change needed, "Malo" is already correct
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__marital_status
+#: model:ir.model.fields,field_description:alquileres.field_res_users__marital_status
+msgid "Marital Status"
+msgstr "Estado Civil"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__res_partner__marital_status__married
+msgid "Married"
+msgstr "Casado"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__message_has_error
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__message_has_error
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensaje"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__message_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__message_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_contract__payment_frequency__monthly
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_payment_history__payment_type__monthly
+msgid "Monthly"
+msgstr "Mensual"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__monthly_income
+#: model:ir.model.fields,field_description:alquileres.field_res_users__monthly_income
+#: model:ir.model.fields,field_description:alquileres.field_tenant_co_signer__monthly_income
+msgid "Monthly Income"
+msgstr "Ingresos Mensuales"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__monthly_rent
+msgid "Monthly Rent"
+msgstr "Alquiler Mensual"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__monthly_rent
+#: model:ir.model.fields,field_description:alquileres.field_res_users__monthly_rent
+msgid "Monthly Rent Amount"
+msgstr "Monto del Alquiler Mensual"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__my_activity_date_deadline
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__my_activity_date_deadline
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha Límite de Mi Actividad"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_furniture_room_item__name
+#: model:ir.model.fields,field_description:alquileres.field_services_room_item__name
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_form
+msgid "Name"
+msgstr "Nombre"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__nationality
+#: model:ir.model.fields,field_description:alquileres.field_res_users__nationality
+msgid "Nationality"
+msgstr "Nacionalidad"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__activity_date_deadline
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__activity_date_deadline
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Próxima Fecha Límite de Actividad"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__activity_summary
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__activity_summary
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la Próxima Actividad"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__activity_type_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__activity_type_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de Próxima Actividad"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_list
+msgid "No properties available at this time."
+msgstr "No hay propiedades disponibles en este momento."
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__message_needaction_counter
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__message_needaction_counter
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__number_of_bathrooms
+msgid "Number of Bathrooms"
+msgstr "Número de baños"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__number_of_rooms
+msgid "Number of Rooms"
+msgstr "Número de habitaciones"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__message_has_error_counter
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__message_has_error_counter
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: alquileres
+#: model:ir.model.fields,help:alquileres.field_rental_contract__message_needaction_counter
+#: model:ir.model.fields,help:alquileres.field_rental_property__message_needaction_counter
+#: model:ir.model.fields,help:alquileres.field_rental_room__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren acción"
+
+#. module: alquileres
+#: model:ir.model.fields,help:alquileres.field_rental_contract__message_has_error_counter
+#: model:ir.model.fields,help:alquileres.field_rental_property__message_has_error_counter
+#: model:ir.model.fields,help:alquileres.field_rental_room__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history_lines__observations
+msgid "Observations"
+msgstr "Observaciones"
+
+#. module: alquileres
+#: model:ir.ui.menu,name:alquileres.rental_menu_occupancy
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_occupancy_form
+msgid "Occupancy"
+msgstr "Ocupación"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_occupancy_history
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__occupancy_history_ids
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_room_form
+msgid "Occupancy History"
+msgstr "Historial de ocupación"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__occupancy_history_count
+msgid "Occupancy History Count"
+msgstr "Conteo del historial de ocupación"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_room_form
+msgid "Occupants"
+msgstr "Ocupantes"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_property__status__occupied
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_room__status__occupied
+msgid "Occupied"
+msgstr "Ocupado"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_room__room_type__other
+msgid "Other"
+msgstr "Otros"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rent_empadronamiento__relationship__other
+msgid "Otro"
+msgstr "Otros"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__owner_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__owner_id
+#: model:ir.model.fields.selection,name:alquileres.selection__res_partner__owner_or_tenant__owner
+msgid "Owner"
+msgstr "Propietario"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__owner_responsibilities
+msgid "Owner Responsibilities"
+msgstr "Responsabilidades del propietario"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__owner_or_tenant
+#: model:ir.model.fields,field_description:alquileres.field_res_users__owner_or_tenant
+msgid "Owner or Tenant"
+msgstr "Propietario o inquilino"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history_lines__payment_id
+msgid "Payment"
+msgstr "Pago"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__payment_frequency
+msgid "Payment Frequency"
+msgstr "Frecuencia de pago"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_product_product__payment_id
+#: model:ir.model.fields,field_description:alquileres.field_product_template__payment_id
+msgid "Payment History"
+msgstr "Historial de pagos"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history__payment_type
+msgid "Payment Type"
+msgstr "Tipo de pago"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__penalty_terms
+msgid "Penalty for Non-payment or Early Termination"
+msgstr "Penalización por falta de pago o terminación anticipada"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_communication_history__communication_type__phone
+msgid "Phone Call"
+msgstr "Llamado telefónico"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_tenant_co_signer__phone
+msgid "Phone Number"
+msgstr "Teléfono"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history__alquiler_price
+msgid "Precio Alquiler($)"
+msgstr "Precio del alquiler ($)"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history_lines__price
+msgid "Price"
+msgstr "Precio"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_list
+msgid "Price per room: $"
+msgstr "Precio por habitación: $"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_product_template
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history_lines__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_rental_property
+#: model:ir.ui.menu,name:alquileres.rental_menu_property
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_tree
+msgid "Properties"
+msgstr "Propiedades"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__property_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__name
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_maintenance__property_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_tenant_history__property_id
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_payment_history__inmueble__property
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_payment_history__reference_field__rental_property
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_form
+msgid "Property"
+msgstr "Propiedad"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__property_deed
+msgid "Property Deed"
+msgstr "Escritura de propiedad"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_details
+#: model_terms:ir.ui.view,arch_db:alquileres.property_list
+msgid "Property Image"
+msgstr "Imagen del inmueble"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_details
+msgid "Property Information"
+msgstr "Información del inmueble"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_property_maintenance
+msgid "Property Maintenance"
+msgstr "Mantenimiento del inmueble"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_rental_property
+msgid "Property Management"
+msgstr "Gestión de propiedades"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__property_reference
+msgid "Property Reference Number"
+msgstr "Número de referencia del inmueble"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__property_type
+msgid "Property Type"
+msgstr "Tipo de propiedad"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history_lines__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_contract__payment_frequency__quarterly
+msgid "Quarterly"
+msgstr "Cuatrimestral"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__rating_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__rating_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__rating_ids
+msgid "Ratings"
+msgstr "Calificaciones"
+
+#. module: alquileres
+#: model:ir.ui.menu,name:alquileres.menu_empadronamiento
+msgid "Registration"
+msgstr "Empadronamiento"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__registration_date
+msgid "Registration Date"
+msgstr "Fecha del empadronamiento"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_empadronamiento
+#: model_terms:ir.ui.view,arch_db:alquileres.view_form_empadronamiento
+msgid "Registration Management"
+msgstr "Gestión del empadronamiento"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__status
+msgid "Registration Status"
+msgstr "Estado del empadronamiento"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__name
+msgid "Registration number"
+msgstr "Número de empadronamiento"
+
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__product_template__status__regular
+msgid "Regular"
+msgstr "Regular"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history__reference_field
+msgid "Related Reference"
+msgstr "Referencia relacionada"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__relationship
+msgid "Relationship with Other Registered Members"
+msgstr "Relación con otros miembros empadronados"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__renewal_terms
+msgid "Renewal or Termination Conditions"
+msgstr "Condiciones de renovación o terminación"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_issue__rental_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__rental_id
+msgid "Rental"
+msgstr "Alquiler"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__rental_contract
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_contract_form
+msgid "Rental Contract"
+msgstr "Contrato de alquiler"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_rental_contract
+msgid "Rental Contract Management"
+msgstr "Gestión de contratos de alquiler"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_rental_contract
+msgid "Rental Contracts"
+msgstr "Contratos de alquiler"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_tenant_form
+msgid "Rental Information"
+msgstr "Información del alquiler"
+
+#. module: alquileres
+#: model:ir.ui.menu,name:alquileres.rental_menu_main_root
+msgid "Rental Management"
+msgstr "Gestión de alquileres"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__rental_payment_count
+#: model:ir.model.fields,field_description:alquileres.field_res_users__rental_payment_count
+msgid "Rental Payment Count"
+msgstr "Conteo de pagos de alquiler"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_rental_payment_history
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_payment_history_tree
+msgid "Rental Payment Histories"
+msgstr "Historiales de pagos de alquiler"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_rental_payment_history
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__rental_payment_history_ids
+#: model:ir.model.fields,field_description:alquileres.field_res_users__rental_payment_history_ids
+#: model_terms:ir.ui.view,arch_db:alquileres.partner_view_buttons_inherit
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_payment_history_form
+msgid "Rental Payment History"
+msgstr "Historial de pagos de alquiler"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_payment_history_lines_form
+msgid "Rental Payment History Line"
+msgstr "Línea del historial de pagos de alquiler"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_rental_payment_history_lines
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_payment_history_lines_tree
+msgid "Rental Payment History Lines"
+msgstr "Líneas del historial de pagos de alquiler"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__rental_price
+msgid "Rental Price"
+msgstr "Precio de alquiler"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__rental_price_per_room
+msgid "Rental Price per Room"
+msgstr "Precio de alquiler por habitación"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_property_kanban
+msgid "Rental Properties"
+msgstr "Propiedades de alquiler"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_property__property_status__rented
+msgid "Rented"
+msgstr "Alquilado"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__property_id
+#: model:ir.model.fields,field_description:alquileres.field_res_users__property_id
+msgid "Rented Property"
+msgstr "Propiedad alquilada"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__room_id
+#: model:ir.model.fields,field_description:alquileres.field_res_users__room_id
+msgid "Rented Room"
+msgstr "Habitación alquilada"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_issue__report_date
+msgid "Report Date"
+msgstr "Fecha del informe"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rent_issue__status__reported
+msgid "Reported"
+msgstr "Informado"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_form_empadronamiento
+msgid "Required Documentation"
+msgstr "Documentación requerida"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rent_issue__status__resolved
+msgid "Resolved"
+msgstr "Resuelto"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_contract_form
+msgid "Responsibilities"
+msgstr "Responsabilidades"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__responsible_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__activity_user_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__activity_user_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_product_product__room_id
+#: model:ir.model.fields,field_description:alquileres.field_product_template__room_id
+#: model:ir.model.fields,field_description:alquileres.field_rent_issue__room_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__room_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__name
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_maintenance__room_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_occupancy__room_id
+#: model:ir.model.fields,field_description:alquileres.field_room_sections__room_id
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_payment_history__inmueble__room
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_payment_history__reference_field__rental_room
+msgid "Room"
+msgstr "Habitación"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__room_inventory
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_room_form
+msgid "Room Inventory"
+msgstr "Inventario de habitaciones"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_room_maintenance
+msgid "Room Maintenance"
+msgstr "Mantenimiento de habitaciones"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_rental_room_maintenance
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_maintenance__name
+msgid "Room Maintenance History"
+msgstr "Historial de mantenimiento de habitaciones"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_rental_room
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_room_form
+msgid "Room Management"
+msgstr "Gestión de habitaciones"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_rental_room_occupancy
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_occupancy__name
+msgid "Room Occupancy History"
+msgstr "Historial de ocupación de habitaciones"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__room_photos
+msgid "Room Pictures"
+msgstr "Fotos de habitaciones"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__room_type
+msgid "Room Type"
+msgstr "Tipo de habitación"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_details
+msgid "Room:"
+msgstr "Habitación:"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_rental_room
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__rooms
+#: model:ir.ui.menu,name:alquileres.rental_menu_room
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_form
+msgid "Rooms"
+msgstr "Habitaciones"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_details
+msgid "Rooms Available"
+msgstr "Habitaciones disponibles"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__message_has_sms_error
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__message_has_sms_error
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error en el envío por SMS"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_room_sections__name
+msgid "Seccion"
+msgstr "Sección"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_room_sections
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__size_m2
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_room_form
+msgid "Sections"
+msgstr "Secciones"
+
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__security_deposit
+msgid "Security Deposit"
+msgstr "Depósito de seguridad"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__res_partner__employment_status__self_employed
+#: model:ir.model.fields.selection,name:alquileres.selection__tenant_co_signer__employment_status__self_employed
+msgid "Self-employed"
+msgstr "Autónomo"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history__service_ids
+msgid "Service"
+msgstr "Servicio"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_payment_history__payment_type__services
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rental_payment_history_form
+msgid "Services"
+msgstr "Servicios"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_services_room_item_form
+msgid "Services Item"
+msgstr "Item de servicio"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_rent_services_room_item
+#: model:ir.ui.menu,name:alquileres.rental_menu_services_items
+msgid "Services Items"
+msgstr "Items de servicios"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_services_room_item
+msgid "Services Items for Room"
+msgstr "Items de servicios para habitaciones"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__services_included
+msgid "Services List"
+msgstr "Lista de servicios incluidos"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__contract_date
+msgid "Signature Date"
+msgstr "Fecha de firma"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__signed_contract
+msgid "Signed Contract"
+msgstr "Contrato firmado"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_res_partner__signed_lease_contract
+#: model:ir.model.fields,field_description:alquileres.field_res_users__signed_lease_contract
+msgid "Signed Lease Contract"
+msgstr "Contrato de arrendatario firmado"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__res_partner__marital_status__single
+msgid "Single"
+msgstr "Soltero/a"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_list
+msgid "Size:"
+msgstr "Tamaño:"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__special_permits
+msgid "Special Permits or Licenses"
+msgstr "Permitos o licencias especiales"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__contract_start_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_tenant_history__start_date
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_occupancy__start_date
+msgid "Start Date"
+msgstr "Fecha de inicio"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_issue__status
+msgid "Status"
+msgstr "Estado"
+
+#. module: alquileres
+#: model:ir.model.fields,help:alquileres.field_rental_contract__activity_state
+#: model:ir.model.fields,help:alquileres.field_rental_property__activity_state
+#: model:ir.model.fields,help:alquileres.field_rental_room__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__res_partner__employment_status__student
+#: model:ir.model.fields.selection,name:alquileres.selection__tenant_co_signer__employment_status__student
+msgid "Student"
+msgstr "Estudiante"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__size_m2
+msgid "Surface Area (m²)"
+msgstr "Superficie (m²)"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_communication_history__tenant_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__tenant_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_incident_history__tenant_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_payment_history__tenant_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_tenant_history__tenant_id
+#: model:ir.model.fields,field_description:alquileres.field_rental_room_occupancy__tenant_id
+#: model:ir.model.fields,field_description:alquileres.field_tenant_co_signer__tenant_id
+#: model:ir.model.fields.selection,name:alquileres.selection__res_partner__owner_or_tenant__tenant
+msgid "Tenant"
+msgstr "Arrendatario"
+
+#. module: alquileres
+#: model:ir.model,name:alquileres.model_tenant_co_signer
+msgid "Tenant Co-Signer"
+msgstr "Co-firmante del arrendatario"
+
+#. module: alquileres
+#: model:ir.actions.act_window,name:alquileres.action_tenant_history
+#: model:ir.model,name:alquileres.model_rental_property_tenant_history
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__tenant_history_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_property_tenant_history__name
+#: model:ir.ui.menu,name:alquileres.rental_menu_tenant_history
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_property_form
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_tenant_history_form
+msgid "Tenant History"
+msgstr "Historial del arrendatario"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__tenant_history_count
+msgid "Tenant History Count"
+msgstr "Conteo de historial del arrendatario"
+
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.view_rent_tenant_history_tree
+msgid "Tenant History List"
+msgstr "Lista de historial del arrendatario"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__tenant_responsibilities
+msgid "Tenant Responsibilities"
+msgstr "Responsabilidades del arrendatario"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__tenant_ids
+msgid "Tenants"
+msgstr "Arrendatarios"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rent_empadronamiento__tenant_name
+msgid "Tenants Full Name"
+msgstr "Nombre completo de los arrendatarios"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_room__room_type__triple
+msgid "Triple"
+msgstr "Triplo"
+
+#. module: alquileres
+#: model:ir.model.fields,help:alquileres.field_rental_contract__activity_exception_decoration
+#: model:ir.model.fields,help:alquileres.field_rental_property__activity_exception_decoration
+#: model:ir.model.fields,help:alquileres.field_rental_room__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_property__property_status__maintenance
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_property__status__maintenance
+#: model:ir.model.fields.selection,name:alquileres.selection__rental_room__status__maintenance
+msgid "Under Maintenance"
+msgstr "En mantenimiento"
+
+#. module: alquileres
+#: model:ir.model.fields.selection,name:alquileres.selection__res_partner__employment_status__unemployed
+#: model:ir.model.fields.selection,name:alquileres.selection__tenant_co_signer__employment_status__unemployed
+msgid "Unemployed"
+msgstr "Desempleado"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_list
+msgid "View Details"
+msgstr "Ver detalles"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_contract__website_message_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__website_message_ids
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: alquileres
+#: model:ir.model.fields,help:alquileres.field_rental_contract__website_message_ids
+#: model:ir.model.fields,help:alquileres.field_rental_property__website_message_ids
+#: model:ir.model.fields,help:alquileres.field_rental_room__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación por sitio web"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_property__is_property
+msgid "is_property"
+msgstr ""
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_rental_room__is_room
+msgid "is_room"
+msgstr ""
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_details
+#: model_terms:ir.ui.view,arch_db:alquileres.property_list
+msgid "m²"
+msgstr "m²"
+
+#. module: alquileres
+#: model_terms:ir.ui.view,arch_db:alquileres.property_details
+msgid "m², Price: $"
+msgstr "m², Precio: $"
+
+#. module: alquileres
+#: model:ir.model.fields,field_description:alquileres.field_room_sections__area
+msgid "Área (m²)"
+msgstr "Área (m²)"
+
