@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_rent_tenant_form" model="ir.ui.view">
+        <field name="name">rent.tenant.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='contact_addresses']" position="after">
+                <page string="Rental Information">
+                    <group>
+                        <group class="oe_subgroup">
+                            <field name="owner_or_tenant"/>
+                            <field name="birth_date"/>
+                            <field name="identification_number"/>
+                            <field name="marital_status"/>
+                            <field name="nationality"/>
+                            <field name="employment_status"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="monthly_income" widget="monetary"/>
+                            <field name="property_id"/>
+                            <field name="room_id"/>
+                            <field name="lease_start_date"/>
+                            <field name="lease_end_date"/>
+                            <field name="monthly_rent" widget="monetary"/>
+                            <field name="deposit_amount" widget="monetary"/>
+                            <field name="guarantees"/>
+                        </group>
+
+                        <group string="Co-signers" colspan="2">
+                            <field name="co_signer_ids" widget="many2many_avatar"/>
+                        </group>
+
+
+                    </group>
+                </page>
+                <page string="Contract information">
+                    <group class="oe_subgroup">
+                        <field name="signed_lease_contract"/>
+                        <field name="id_document"/>
+                        <field name="deposit_receipt" widget="monetary"/>
+                        <field name="income_proof"/>
+                        <field name="additional_guarantees"/>
+                    </group>
+                </page>
+                <page string="Rental Payments History">
+                    <field name="rental_payment_history_ids" readonly="1"/>
+                </page>
+            </xpath>
+
+            <!-- Botones para Check-In y Check-Out -->
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <!-- Botón para Check-In -->
+                    <button name="action_open_check_in_wizard"
+                            string="Abrir Contrato"
+                            type="object"
+                            class="btn-primary"/>
+                    <!-- Botón para Check-Out -->
+                    <button name="action_open_check_out_wizard"
+                            string="Cerrar Contrato"
+                            type="object"
+                            class="btn-secondary"/>
+                    <button name="action_open_rental_payment_wizard"
+                            string="Pago de Renta"
+                            type="object"
+                            class="btn-secondary"/>
+                </header>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="partner_view_buttons_inherit" model="ir.ui.view">
+        <field name="name">partner.view.buttons.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.partner_view_buttons"/>
+        <field name="arch" type="xml">
+            <!-- Insertamos el nuevo botón justo después del botón de facturas -->
+            <xpath expr="//button[@name='action_view_partner_invoices']" position="after">
+                <div class="oe_button_box" name="button_box" modifiers="{}">
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Incident History"
+                            context="{'xml_id': 'action_incident_history'}"
+                            icon="fa-exclamation-circle">
+                        <field string="Incident History"
+                               name="incident_history_count"
+                               widget="statinfo"/>
+                    </button>
+
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Rental Payment History"
+                            context="{'xml_id': 'action_rental_payment_history'}"
+                            icon="fa-money">
+                        <field string="Rental Payment History"
+                               name="rental_payment_count"
+                               widget="statinfo"/>
+                    </button>
+
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Communication History"
+                            context="{'xml_id': 'action_communication_history'}"
+                            icon="fa-comment">
+                        <field string="Communication History"
+                               name="communication_history_count"
+                               widget="statinfo"/>
+                    </button>
+
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Contracts History"
+                            context="{'xml_id': 'action_rental_contract'}"
+                            icon="fa-book">
+                        <field string="Contracts History"
+                               name="rental_contract_count"
+                               widget="statinfo"/>
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_owner_partner" model="ir.actions.act_window">
+        <field name="name">Owners</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('owner_or_tenant', '=', 'owner')]</field>
+    </record>
+
+    <record id="action_tenant_partner" model="ir.actions.act_window">
+        <field name="name">Tenants</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('owner_or_tenant', '=', 'tenant')]</field>
+    </record>
+
+</odoo>
