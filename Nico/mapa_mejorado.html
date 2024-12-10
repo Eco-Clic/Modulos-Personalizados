@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_97c9171be8c3d4b7f58bef331fecb71b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_97c9171be8c3d4b7f58bef331fecb71b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_97c9171be8c3d4b7f58bef331fecb71b = L.map(
+                "map_97c9171be8c3d4b7f58bef331fecb71b",
+                {
+                    center: [41.4594893423169, 2.250681454063872],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_7197f5a6288b57746df5bdd5cc7295bf = L.tileLayer(
+                "Stamen Terrain",
+                {"attribution": "Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.", "detectRetina": false, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_7197f5a6288b57746df5bdd5cc7295bf.addTo(map_97c9171be8c3d4b7f58bef331fecb71b);
+        
+    
+            var tile_layer_5774036c943c68e47466ae108e964263 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_d35a669075860cc9c3f1da732aa1c36d = new L.Control.MiniMap(
+                tile_layer_5774036c943c68e47466ae108e964263,
+                {"autoToggleDisplay": false, "centerFixed": false, "collapsedHeight": 25, "collapsedWidth": 25, "height": 150, "minimized": false, "position": "bottomright", "toggleDisplay": true, "width": 150, "zoomAnimation": false, "zoomLevelOffset": -5}
+            );
+            map_97c9171be8c3d4b7f58bef331fecb71b.addControl(mini_map_d35a669075860cc9c3f1da732aa1c36d);
+        
+    
+            L.control.fullscreen(
+                {"forceSeparateButton": false, "position": "topleft", "title": "Full Screen", "titleCancel": "Exit Full Screen"}
+            ).addTo(map_97c9171be8c3d4b7f58bef331fecb71b);
+        
+    
+            var measure_control_42961b5bdca699e3c2da39746e444073 = new L.Control.Measure(
+                {"position": "topright", "primaryAreaUnit": "sqmeters", "primaryLengthUnit": "meters", "secondaryAreaUnit": "acres", "secondaryLengthUnit": "miles"});
+            map_97c9171be8c3d4b7f58bef331fecb71b.addControl(measure_control_42961b5bdca699e3c2da39746e444073);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+            var marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3 = L.markerClusterGroup(
+                {}
+            );
+        
+    
+            var marker_49acd60c74e997e26b5de7a46fae64bd = L.marker(
+                [41.4594893423169, 2.250681454063872],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_54ad7d1da4041bb58955641261c9eec6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "orange", "prefix": "fa"}
+            );
+            marker_49acd60c74e997e26b5de7a46fae64bd.setIcon(icon_54ad7d1da4041bb58955641261c9eec6);
+        
+    
+        var popup_94169045b08ecde9311cbc074510aaab = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_80b11b420e60bfa2405f460b74809b3a = $(`<div id="html_80b11b420e60bfa2405f460b74809b3a" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Carrer del Dipòsit, 13, 08915 Badalona, Barcelona, Espanya<br>                 <b>Habitaciones:</b> 3<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.4594893423169,2.250681454063872' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_94169045b08ecde9311cbc074510aaab.setContent(html_80b11b420e60bfa2405f460b74809b3a);
+            
+        
+
+        marker_49acd60c74e997e26b5de7a46fae64bd.bindPopup(popup_94169045b08ecde9311cbc074510aaab)
+        ;
+
+        
+    
+    
+            marker_49acd60c74e997e26b5de7a46fae64bd.bindTooltip(
+                `<div>
+                     Carrer del Dipòsit, 13, 08915 Badalona, Barcelona, Espanya
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_56058c7ba717020cc65833f31a7fbf01 = L.marker(
+                [41.45018429541878, 2.2474933810516156],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_a4a397207ebf3ec179bfcab6268bd176 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_56058c7ba717020cc65833f31a7fbf01.setIcon(icon_a4a397207ebf3ec179bfcab6268bd176);
+        
+    
+        var popup_2414c24277d621ad022b21f79e817f1f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ca28ffb8da3cb849058bcc1469d1697e = $(`<div id="html_ca28ffb8da3cb849058bcc1469d1697e" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Plaça de la Vila, 1, 08911 Badalona, Barcelona<br>                 <b>Habitaciones:</b> 1<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.45018429541878,2.2474933810516156' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_2414c24277d621ad022b21f79e817f1f.setContent(html_ca28ffb8da3cb849058bcc1469d1697e);
+            
+        
+
+        marker_56058c7ba717020cc65833f31a7fbf01.bindPopup(popup_2414c24277d621ad022b21f79e817f1f)
+        ;
+
+        
+    
+    
+            marker_56058c7ba717020cc65833f31a7fbf01.bindTooltip(
+                `<div>
+                     Plaça de la Vila, 1, 08911 Badalona, Barcelona
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0a0cfab79949471c19d6af6f6e25cfe1 = L.marker(
+                [41.44554920403716, 2.2393278098866722],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_a4605e650ec99aa970bc5174c02bf978 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "red", "prefix": "fa"}
+            );
+            marker_0a0cfab79949471c19d6af6f6e25cfe1.setIcon(icon_a4605e650ec99aa970bc5174c02bf978);
+        
+    
+        var popup_0b13ae5a3e5b4572da960dc81912eb83 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_acf573c64580a5721f0c11d5d9ab552d = $(`<div id="html_acf573c64580a5721f0c11d5d9ab552d" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Plaça de Pep Ventura, 34, Badalona, España<br>                 <b>Habitaciones:</b> 4<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.44554920403716,2.2393278098866722' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_0b13ae5a3e5b4572da960dc81912eb83.setContent(html_acf573c64580a5721f0c11d5d9ab552d);
+            
+        
+
+        marker_0a0cfab79949471c19d6af6f6e25cfe1.bindPopup(popup_0b13ae5a3e5b4572da960dc81912eb83)
+        ;
+
+        
+    
+    
+            marker_0a0cfab79949471c19d6af6f6e25cfe1.bindTooltip(
+                `<div>
+                     Plaça de Pep Ventura, 34, Badalona, España
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d2c214530801e7161e44a009b4b81f68 = L.marker(
+                [41.44645984442209, 2.2381054540631715],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_9441d3e5717e8cf3be572f6dd7debf71 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "orange", "prefix": "fa"}
+            );
+            marker_d2c214530801e7161e44a009b4b81f68.setIcon(icon_9441d3e5717e8cf3be572f6dd7debf71);
+        
+    
+        var popup_2244e58da067b3b571c03e0b0e9ef2a9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8683fcbc3ad6ed716d198f7236af6fed = $(`<div id="html_8683fcbc3ad6ed716d198f7236af6fed" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Carrer de Saragossa, 38, Badalona, España<br>                 <b>Habitaciones:</b> 3<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.44645984442209,2.2381054540631715' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_2244e58da067b3b571c03e0b0e9ef2a9.setContent(html_8683fcbc3ad6ed716d198f7236af6fed);
+            
+        
+
+        marker_d2c214530801e7161e44a009b4b81f68.bindPopup(popup_2244e58da067b3b571c03e0b0e9ef2a9)
+        ;
+
+        
+    
+    
+            marker_d2c214530801e7161e44a009b4b81f68.bindTooltip(
+                `<div>
+                     Carrer de Saragossa, 38, Badalona, España
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2dad05c81c2e79d317d77b0baa8d9215 = L.marker(
+                [41.4462327448726, 2.22505268289848],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_2e8a5a31863320f785799572dfcb9eb7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "red", "prefix": "fa"}
+            );
+            marker_2dad05c81c2e79d317d77b0baa8d9215.setIcon(icon_2e8a5a31863320f785799572dfcb9eb7);
+        
+    
+        var popup_546a10672382b6e27f4832c17d46a087 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fe5e616931ef4fa001f4f8fddabfe1b8 = $(`<div id="html_fe5e616931ef4fa001f4f8fddabfe1b8" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Grup Verge de la Salut, 5, 08914 Badalona, Barcelona, España<br>                 <b>Habitaciones:</b> 4<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.4462327448726,2.22505268289848' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_546a10672382b6e27f4832c17d46a087.setContent(html_fe5e616931ef4fa001f4f8fddabfe1b8);
+            
+        
+
+        marker_2dad05c81c2e79d317d77b0baa8d9215.bindPopup(popup_546a10672382b6e27f4832c17d46a087)
+        ;
+
+        
+    
+    
+            marker_2dad05c81c2e79d317d77b0baa8d9215.bindTooltip(
+                `<div>
+                     Grup Verge de la Salut, 5, 08914 Badalona, Barcelona, España
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c3b568eb20da630f6f07dc2c9342a8ed = L.marker(
+                [41.411517560106915, 2.204531865708402],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_f2ce99a11fa40c77f075ef07c3ba236c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "orange", "prefix": "fa"}
+            );
+            marker_c3b568eb20da630f6f07dc2c9342a8ed.setIcon(icon_f2ce99a11fa40c77f075ef07c3ba236c);
+        
+    
+        var popup_b2956b04a22aec9f8bf428d550027601 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c828e250b33e84de8b365588dc21644c = $(`<div id="html_c828e250b33e84de8b365588dc21644c" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Carrer del Marroc, Barcelona, España<br>                 <b>Habitaciones:</b> 3<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.411517560106915,2.204531865708402' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_b2956b04a22aec9f8bf428d550027601.setContent(html_c828e250b33e84de8b365588dc21644c);
+            
+        
+
+        marker_c3b568eb20da630f6f07dc2c9342a8ed.bindPopup(popup_b2956b04a22aec9f8bf428d550027601)
+        ;
+
+        
+    
+    
+            marker_c3b568eb20da630f6f07dc2c9342a8ed.bindTooltip(
+                `<div>
+                     Carrer del Marroc, Barcelona, España
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b9be3a841cfea54cbc65735a98e0f263 = L.marker(
+                [41.406512705802655, 2.1977184963904626],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_734ad5f6b6ba13de339c46272147e3ca = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_b9be3a841cfea54cbc65735a98e0f263.setIcon(icon_734ad5f6b6ba13de339c46272147e3ca);
+        
+    
+        var popup_3355beb4366765dffca410e0fb079bc5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e13829a4e4548a3f029268755482192f = $(`<div id="html_e13829a4e4548a3f029268755482192f" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Carrer del Marroc, 1, Barcelona, España<br>                 <b>Habitaciones:</b> 1<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.406512705802655,2.1977184963904626' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_3355beb4366765dffca410e0fb079bc5.setContent(html_e13829a4e4548a3f029268755482192f);
+            
+        
+
+        marker_b9be3a841cfea54cbc65735a98e0f263.bindPopup(popup_3355beb4366765dffca410e0fb079bc5)
+        ;
+
+        
+    
+    
+            marker_b9be3a841cfea54cbc65735a98e0f263.bindTooltip(
+                `<div>
+                     Carrer del Marroc, 1, Barcelona, España
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3d9e87523b091b1345fc2ce39c189524 = L.marker(
+                [41.41551284352379, 2.1872189252262313],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_f843eca9300558b8685814c52d93a03f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "orange", "prefix": "fa"}
+            );
+            marker_3d9e87523b091b1345fc2ce39c189524.setIcon(icon_f843eca9300558b8685814c52d93a03f);
+        
+    
+        var popup_5dbe69b6939dcbc4db12d5411b3d028a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6fc0c5262e6d1834e0baa48c131aa3b3 = $(`<div id="html_6fc0c5262e6d1834e0baa48c131aa3b3" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Avenida Meridiana, 214, Barcelona, España<br>                 <b>Habitaciones:</b> 3<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.41551284352379,2.1872189252262313' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_5dbe69b6939dcbc4db12d5411b3d028a.setContent(html_6fc0c5262e6d1834e0baa48c131aa3b3);
+            
+        
+
+        marker_3d9e87523b091b1345fc2ce39c189524.bindPopup(popup_5dbe69b6939dcbc4db12d5411b3d028a)
+        ;
+
+        
+    
+    
+            marker_3d9e87523b091b1345fc2ce39c189524.bindTooltip(
+                `<div>
+                     Avenida Meridiana, 214, Barcelona, España
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2195403ae640ad9531a126dad83715df = L.marker(
+                [41.37717008174868, 2.1684825963889334],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_1b168d93632c6a52d14096623dc526a9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "red", "prefix": "fa"}
+            );
+            marker_2195403ae640ad9531a126dad83715df.setIcon(icon_1b168d93632c6a52d14096623dc526a9);
+        
+    
+        var popup_aba5ab9729126277a7305c62fec9b55b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_05769533c68c11b178e80929d294f752 = $(`<div id="html_05769533c68c11b178e80929d294f752" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Carrer de Santa Elena, 10, Barcelona, Espanya<br>                 <b>Habitaciones:</b> 4<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.37717008174868,2.1684825963889334' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_aba5ab9729126277a7305c62fec9b55b.setContent(html_05769533c68c11b178e80929d294f752);
+            
+        
+
+        marker_2195403ae640ad9531a126dad83715df.bindPopup(popup_aba5ab9729126277a7305c62fec9b55b)
+        ;
+
+        
+    
+    
+            marker_2195403ae640ad9531a126dad83715df.bindTooltip(
+                `<div>
+                     Carrer de Santa Elena, 10, Barcelona, Espanya
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f73f8903ab5ecb879194a6089ae25f9c = L.marker(
+                [41.50941741948244, 2.1107906387253323],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_f5772818bf666001876cdba3d495225a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
+            );
+            marker_f73f8903ab5ecb879194a6089ae25f9c.setIcon(icon_f5772818bf666001876cdba3d495225a);
+        
+    
+        var popup_ca3d42b37d1bdab03b8510857053c2a7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ebd41bf1eced702e152e63942ca8eb76 = $(`<div id="html_ebd41bf1eced702e152e63942ca8eb76" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Carrer de l'Algarve, 7, Badia del Vallès, Espanya<br>                 <b>Habitaciones:</b> 2<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.50941741948244,2.1107906387253323' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_ca3d42b37d1bdab03b8510857053c2a7.setContent(html_ebd41bf1eced702e152e63942ca8eb76);
+            
+        
+
+        marker_f73f8903ab5ecb879194a6089ae25f9c.bindPopup(popup_ca3d42b37d1bdab03b8510857053c2a7)
+        ;
+
+        
+    
+    
+            marker_f73f8903ab5ecb879194a6089ae25f9c.bindTooltip(
+                `<div>
+                     Carrer de l'Algarve, 7, Badia del Vallès, Espanya
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_01c64bda4c3beb0175ccba1de8beaa74 = L.marker(
+                [41.512818748128815, 2.1234842387255006],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_dc815e8beb6f5dad981c8d49ec453b08 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "red", "prefix": "fa"}
+            );
+            marker_01c64bda4c3beb0175ccba1de8beaa74.setIcon(icon_dc815e8beb6f5dad981c8d49ec453b08);
+        
+    
+        var popup_355ecf9557b5bb802a5668a6ee88e99e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d24b265eb3de8c1d9d87669591fcbcc3 = $(`<div id="html_d24b265eb3de8c1d9d87669591fcbcc3" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Ronda de ľEst, Barberà del Vallès, España<br>                 <b>Habitaciones:</b> 4<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.512818748128815,2.1234842387255006' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_355ecf9557b5bb802a5668a6ee88e99e.setContent(html_d24b265eb3de8c1d9d87669591fcbcc3);
+            
+        
+
+        marker_01c64bda4c3beb0175ccba1de8beaa74.bindPopup(popup_355ecf9557b5bb802a5668a6ee88e99e)
+        ;
+
+        
+    
+    
+            marker_01c64bda4c3beb0175ccba1de8beaa74.bindTooltip(
+                `<div>
+                     Ronda de ľEst, Barberà del Vallès, España
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_086ad0844228ee23c8dc513e18f21752 = L.marker(
+                [41.533918626975144, 2.1146628963972094],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_bb31bbf443a343f4afb8d35a7d749293 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "orange", "prefix": "fa"}
+            );
+            marker_086ad0844228ee23c8dc513e18f21752.setIcon(icon_bb31bbf443a343f4afb8d35a7d749293);
+        
+    
+        var popup_80ca5c9c45cf95e60f3f370ae9d801b8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d8479a507b92f79e1f82ec4afcdaf5b8 = $(`<div id="html_d8479a507b92f79e1f82ec4afcdaf5b8" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Carrer de Martí l'Humà, 1-9, Sabadell, España<br>                 <b>Habitaciones:</b> 3<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.533918626975144,2.1146628963972094' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_80ca5c9c45cf95e60f3f370ae9d801b8.setContent(html_d8479a507b92f79e1f82ec4afcdaf5b8);
+            
+        
+
+        marker_086ad0844228ee23c8dc513e18f21752.bindPopup(popup_80ca5c9c45cf95e60f3f370ae9d801b8)
+        ;
+
+        
+    
+    
+            marker_086ad0844228ee23c8dc513e18f21752.bindTooltip(
+                `<div>
+                     Carrer de Martí l'Humà, 1-9, Sabadell, España
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b5aafbcbe2c50a335d298bd19bccd3cf = L.marker(
+                [41.46951097714468, 2.079325967298701],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_fe85a473d71842645696320fb1865cb8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "red", "prefix": "fa"}
+            );
+            marker_b5aafbcbe2c50a335d298bd19bccd3cf.setIcon(icon_fe85a473d71842645696320fb1865cb8);
+        
+    
+        var popup_dfb286e1f8e9945217ddb015213c6ba9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9522be93605a57b32789efa746ebd5cc = $(`<div id="html_9522be93605a57b32789efa746ebd5cc" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Carrer del Rosselló, 15 Habitación 1<br>                 <b>Habitaciones:</b> 4<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.46951097714468,2.079325967298701' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_dfb286e1f8e9945217ddb015213c6ba9.setContent(html_9522be93605a57b32789efa746ebd5cc);
+            
+        
+
+        marker_b5aafbcbe2c50a335d298bd19bccd3cf.bindPopup(popup_dfb286e1f8e9945217ddb015213c6ba9)
+        ;
+
+        
+    
+    
+            marker_b5aafbcbe2c50a335d298bd19bccd3cf.bindTooltip(
+                `<div>
+                     Carrer del Rosselló, 15 Habitación 1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_00a9b2baea039a20e70638b5e1466943 = L.marker(
+                [41.36811410325441, 2.1312363249655544],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_6b7322d06af2322bb9cebf326519a7db = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "orange", "prefix": "fa"}
+            );
+            marker_00a9b2baea039a20e70638b5e1466943.setIcon(icon_6b7322d06af2322bb9cebf326519a7db);
+        
+    
+        var popup_a207ee8148d21609b820751fbfdea06f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8c8ee785b08c6becdfcaa794c2792500 = $(`<div id="html_8c8ee785b08c6becdfcaa794c2792500" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Carrer Santa Eulàlia, 7, L'Hospitalet de Llobregat<br>                 <b>Habitaciones:</b> 3<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.36811410325441,2.1312363249655544' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_a207ee8148d21609b820751fbfdea06f.setContent(html_8c8ee785b08c6becdfcaa794c2792500);
+            
+        
+
+        marker_00a9b2baea039a20e70638b5e1466943.bindPopup(popup_a207ee8148d21609b820751fbfdea06f)
+        ;
+
+        
+    
+    
+            marker_00a9b2baea039a20e70638b5e1466943.bindTooltip(
+                `<div>
+                     Carrer Santa Eulàlia, 7, L'Hospitalet de Llobregat
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_eaddb9d33d35ef88a28dac78aa29532b = L.marker(
+                [41.37781383457292, 2.1160992384574717],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_39bd85cea4230d0fb71dbce4b2f26aa5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "orange", "prefix": "fa"}
+            );
+            marker_eaddb9d33d35ef88a28dac78aa29532b.setIcon(icon_39bd85cea4230d0fb71dbce4b2f26aa5);
+        
+    
+        var popup_cf9f3d3b5dd4e7f45aaf2461be6a3378 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b06e4cfbcc343d821053e14c4beb9ecd = $(`<div id="html_b06e4cfbcc343d821053e14c4beb9ecd" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Carrer del Cardenal Reig, 28, L'Hospitalet de Llobregat<br>                 <b>Habitaciones:</b> 3<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.37781383457292,2.1160992384574717' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_cf9f3d3b5dd4e7f45aaf2461be6a3378.setContent(html_b06e4cfbcc343d821053e14c4beb9ecd);
+            
+        
+
+        marker_eaddb9d33d35ef88a28dac78aa29532b.bindPopup(popup_cf9f3d3b5dd4e7f45aaf2461be6a3378)
+        ;
+
+        
+    
+    
+            marker_eaddb9d33d35ef88a28dac78aa29532b.bindTooltip(
+                `<div>
+                     Carrer del Cardenal Reig, 28, L'Hospitalet de Llobregat
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d899d291604857fc88909542792fa2a8 = L.marker(
+                [41.490503213384656, 2.3548212961360244],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_bef5ea6476915fd39f271ca280db4799 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "red", "prefix": "fa"}
+            );
+            marker_d899d291604857fc88909542792fa2a8.setIcon(icon_bef5ea6476915fd39f271ca280db4799);
+        
+    
+        var popup_a5534ae8adc610e1889574199fa34b6e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_19867b4679c081210498810077ca2fd5 = $(`<div id="html_19867b4679c081210498810077ca2fd5" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Carrer Jaume Balmes, 4, Premià de Mar<br>                 <b>Habitaciones:</b> 4<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.490503213384656,2.3548212961360244' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_a5534ae8adc610e1889574199fa34b6e.setContent(html_19867b4679c081210498810077ca2fd5);
+            
+        
+
+        marker_d899d291604857fc88909542792fa2a8.bindPopup(popup_a5534ae8adc610e1889574199fa34b6e)
+        ;
+
+        
+    
+    
+            marker_d899d291604857fc88909542792fa2a8.bindTooltip(
+                `<div>
+                     Carrer Jaume Balmes, 4, Premià de Mar
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bdc64c481f7746389bcc8ff978916b8f = L.marker(
+                [41.55780832121032, 2.096908682648302],
+                {}
+            ).addTo(marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3);
+        
+    
+            var icon_fe31d51daa09dcf357e19c86b5b7de97 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "red", "prefix": "fa"}
+            );
+            marker_bdc64c481f7746389bcc8ff978916b8f.setIcon(icon_fe31d51daa09dcf357e19c86b5b7de97);
+        
+    
+        var popup_22353247c238b8d8f11fc772f126ebd5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b3d1dd6842f5048af26801cb48b911c1 = $(`<div id="html_b3d1dd6842f5048af26801cb48b911c1" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 14px;">                 <b>Dirección:</b> Avenida Francesc Macià, 51, Sabadell<br>                 <b>Habitaciones:</b> 4<br>                 <b>Ver en Google Maps:</b>                  <a href='https://www.google.com/maps?q=41.55780832121032,2.096908682648302' target='_blank'>Link</a>             </div>             </div>`)[0];
+                popup_22353247c238b8d8f11fc772f126ebd5.setContent(html_b3d1dd6842f5048af26801cb48b911c1);
+            
+        
+
+        marker_bdc64c481f7746389bcc8ff978916b8f.bindPopup(popup_22353247c238b8d8f11fc772f126ebd5)
+        ;
+
+        
+    
+    
+            marker_bdc64c481f7746389bcc8ff978916b8f.bindTooltip(
+                `<div>
+                     Avenida Francesc Macià, 51, Sabadell
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3.addTo(map_97c9171be8c3d4b7f58bef331fecb71b);
+        
+    
+            var layer_control_3591cea0fd5cde30c8800dff17ab7641_layers = {
+                base_layers : {
+                    "stamenterrain" : tile_layer_7197f5a6288b57746df5bdd5cc7295bf,
+                },
+                overlays :  {
+                    "macro_element_42fba2e6b554aebe4eaff4ed36d72aa3" : marker_cluster_42fba2e6b554aebe4eaff4ed36d72aa3,
+                },
+            };
+            let layer_control_3591cea0fd5cde30c8800dff17ab7641 = L.control.layers(
+                layer_control_3591cea0fd5cde30c8800dff17ab7641_layers.base_layers,
+                layer_control_3591cea0fd5cde30c8800dff17ab7641_layers.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "topright"}
+            ).addTo(map_97c9171be8c3d4b7f58bef331fecb71b);
+
+        
+</script>
+</html>

@@ -68,10 +68,164 @@
 
             <label for="any-furnishing">Any furnishing</label>
             <select name="any-furnishing" id="any-furnishing">
-                
+                <div class="chechkbox-anyfurnishing">
+                    <input type = "checkbox" value = "furnished" id = "checkbox-furnished"/>
+                    <p>Furnished</p>
+                </div>
+                <div class="checkbox-anyfurnishing">
+                    <input type= "checkbox" value = "unfurnished" id = "checkbox-unfurnished"/>
+                    <p>Unfurnished</p>
+                </div>
+                <hr/>
+                <input type = "submit" value = "Clear" id= "clear"/>
             </select>
+            
+            <div class="all-filters">
+            
+                <div id="boton-filters">
+                    <input type = "submit" value = "All filters" id="boton-all-filters"/>
+                </div>
 
+                <div id="contenido-all-filters" hidden = "hidden"> 
+                    <h4>Filters</h4>
+                    <hr/>
+                    <header>
+                        <h4>Monthly rent</h4>
+                        <select name="coins" id="coins">
+                            <option value="euros">Euros €</option>
+                            <option value="usd">Dólares USD $</option>
+                            <option value="gbp">Libras Esterlinas GBP £</option>
+                            <option value="jpy">Yen Japonés JPY ¥</option>
+                            <option value="cny">Yuan Chino CNY ¥</option>
+                            <option value="inr">Rupia India INR ₹</option>
+                            <option value="cad">Dólar Canadiense CAD $</option>
+                            <option value="aud">Dólar Australiano AUD $</option>
+                            <option value="chf">Franco Suizo CHF ₣</option>
+                            <option value="brl">Real Brasileño BRL R$</option>
+                            <option value="mxn">Peso Mexicano MXN $</option>
+                            <option value="rub">Rublo Ruso RUB ₽</option>
+                        </select>
+                    </header>
+
+                    <article class = "imagen-grafica">
+                        <img src = "grafica.png" width = "120px" height = "80px" style = "object-fit:cover;"/>
+                    </article>
+
+                    <main>
+                        <div class="minimum-allfilters">
+                            <p>Minimum</p>
+                            <input type = "number" min = "400" placeholder = "400€"/>
+                        </div>
+
+                        <div class="maxmimum-allfilters">
+                            <p>Maximum</p>
+                            <input type = "number" max = "4328" placeholder = "4328€"/>
+                        </div>
+                        
+                        <div class="checkbox-allfilters">
+                            <input type = "checkbox" value = "bills-included" id = "bills-included"/>
+                            <p>Bills included</p>
+                        </div>
+                    
+                    </main>
+
+                    <article class="property-type">
+                        <h3>Property Type</h3>
+
+                        <div class="checkbox-property-type">
+                            <input type = "checkbox"/>
+                            <p>Shared room</p>
+                        </div>
+
+                        <div class="checkbox-property-type">
+                            <input type = "checkbox"/>
+                            <p>Private room</p>
+                        </div>
+
+                        <div class="checkbox-property-type">
+                            <input type = "checkbox"/>
+                            <p>Studio</p>
+                        </div>
+                        <div class="checkbox-property-type">
+                            <input type = "checkbox"/>
+                            <p>Apartment</p>
+                        </div>
+                        <div class="checkbox-property-type">
+                            <input type = "checkbox"/>
+                            <p>1 bedroom</p>
+                        </div>
+                        <div class="checkbox-property-type">
+                            <input type = "checkbox"/>
+                            <p>2 bedroom</p>
+                        </div>
+                        <div class="checkbox-property-type">
+                            <input type = "checkbox"/>
+                            <p>3 bedroom</p>
+                        </div>
+                        <div class="checkbox-property-type">
+                            <input type = "checkbox"/>
+                            <p>+4 bedroom</p>
+                        </div>
+                        <div class="checkbox-property-type">
+                            <input type = "checkbox"/>
+                            <p>Student residence</p>
+                        </div>
+                    
+                    </article>
+
+                    <main class="suitable-for">
+
+                        <h3>Suitable for</h3>
+                        <button>Any gender</button>
+                        <button>Female</button>
+                        <button>Male</button>
+
+                        <div class="checkbox-suitable-for">
+                            <input type = "checkbox"/>
+                            <p>Suitable for couples</p>
+                        </div>
+                    </main>
+
+                    <div class="size">
+                    
+                        <div class="select-minimum">
+                            <label for = "select-minimum">Minimum</label>
+                            <select name = "minimum" id = "select-minimum">
+                                <option value="m20">0 m</option>
+                                <option value="m220">20 m</option>
+                                <option value="m240">40 m</option>
+                                <option value="m255">55 m</option>
+                                <option value="m275">75 m</option>
+                                <option value="m2100">100 m</option>
+                                <option value="m2150">150 m</option>
+                                <option value="m2200">200 m</option>
+                            </select>
+                        </div>
+
+                        <div class="select-maximum">
+                            <label for = "select-maximum">Maximum</label>
+                            <select name = "maximum" id = "select-maximum">
+                                <option value="m20">No maximum</option>
+                                <option value="m220">20 m</option>
+                                <option value="m240">40 m</option>
+                                <option value="m255">55 m</option>
+                                <option value="m275">75 m</option>
+                                <option value="m2100">100 m</option>
+                                <option value="m2150">150 m</option>
+                                <option value="m2200">200 m</option>
+                            </select>
+                        </div>
+                    
+                    </div>
+                
+                </div>
+            
+            </div>
         </main>
+
+        <hr/>
+
+
 
         <template id="property_list" name="Property List">
             <t t-call="website.layout">
