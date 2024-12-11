@@ -299,7 +299,8 @@ class ElectronicInvoice(models.TransientModel):
                         "name": tax.name,
                         "type": tax.type_tax_use,
                         "amount": tax.amount,
-                        "total": ((tax.amount/100) * tax_total_line) * tax_total_line,
+                        "total_tax": ((tax.amount/100) * tax_total_line) * tax_total_line,
+                        "taxable_base": tax_total_line,
                     }
                 )
 
@@ -310,13 +311,14 @@ class ElectronicInvoice(models.TransientModel):
                 tax_type.text = "01" # tax_code_str
                 tax_rate = etree.SubElement(invoice_taxes, "TaxRate")
                 tax_rate.text = f"{ round(tax['amount'], 4)}" or ""
+                # taxable-base
                 tax_table = etree.SubElement(invoice_taxes, "TaxableBase")
                 tax_total = etree.SubElement(tax_table, "TotalAmount")
-                tax_total.text = f"{ round(tax['total'], 4)}" or ""
-
-        tax_amount_tag = etree.SubElement(invoice_taxes, "TaxAmount")  # <TaxAmount>
-        tax_amount_total = etree.SubElement(tax_amount_tag, "TotalAmount")  # <TotalAmount>
-        tax_amount_total.text = f"{round(invoice_data.amount_tax, 4)}" if invoice_data.amount_tax else "0.00"
+                tax_total.text = f"{ round(tax['taxable_base'], 4)}" or ""
+                # tax amount
+                tax_amount_tag = etree.SubElement(invoice_taxes, "TaxAmount")  # <TaxAmount>
+                tax_amount_total = etree.SubElement(tax_amount_tag, "TotalAmount")  # <TotalAmount>
+                tax_amount_total.text = f"{round(tax['total_tax'], 4)}" if invoice_data.amount_tax else "0.00"
 
         # Invoice <InvoiceTotals>
         invoice_totals = etree.SubElement(invoice_element, "InvoiceTotals")
