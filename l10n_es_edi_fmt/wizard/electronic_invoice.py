@@ -1,10 +1,13 @@
 import base64
 from lxml import etree
-
+from odoo.exceptions import ValidationError
 from odoo import models, fields
 import logging
 
 _logger = logging.getLogger(__name__)
+countries = ['AFG', 'ALB', 'DZA', 'ASM', 'AND', 'AGO', 'AIA', 'ATG', 'ARG', 'ARM', 'ABW', 'AUS', 'AUT', 'AZE', 'BHS', 'BHR', 'BGD', 'BRB', 'BLR', 'BEL', 'BLZ', 'BEN', 'BMU', 'BTN', 'BOL', 'BIH', 'BWA', 'BRA', 'BRN', 'BGR', 'BFA', 'BDI', 'KHM', 'CMR', 'CAN', 'CPV', 'CYM', 'CAF', 'TCD', 'CHL', 'CHN', 'COD', 'COL', 'COM', 'COG', 'COK', 'CRI', 'CIV', 'HRV', 'CUB', 'CYP', 'CZE', 'DNK', 'DJI', 'DMA', 'DOM', 'ECU', 'EGY', 'SLV', 'GNQ', 'ERI', 'EST', 'ETH', 'FLK', 'FRO', 'FJI', 'FIN', 'FRA', 'GUF', 'PYF', 'GAB', 'GMB', 'GEO', 'GGY', 'DEU', 'GHA', 'GIB', 'GRC', 'GRL', 'GRD', 'GLP', 'GUM', 'GTM', 'GIN', 'GNB', 'GUY', 'HTI', 'HND', 'HKG', 'HUN', 'ISL', 'IND', 'IDN', 'IMN', 'IRN', 'IRQ', 'IRL', 'ISR', 'ITA', 'JAM', 'JEY', 'JPN', 'JOR', 'KAZ', 'KEN', 'KIR', 'PRK', 'KOR', 'KWT', 'KGZ', 'LAO', 'LVA', 'LBN', 'LSO', 'LBR', 'LBY', 'LIE', 'LTU', 'LUX', 'MAC', 'MKD', 'MDG', 'MWI', 'MYS', 'MDV', 'MLI', 'MLT', 'MHL', 'MTQ', 'MRT', 'MUS', 'MYT', 'MEX', 'FSM', 'MDA', 'MCO', 'MNE', 'MNG', 'MSR', 'MAR', 'MOZ', 'MMR', 'NAM', 'NRU', 'NPL', 'NLD', 'ANT', 'NCL', 'NZL', 'NIC', 'NER', 'NGA', 'NIU', 'NFK', 'MNP', 'NOR', 'OMN', 'PAK', 'PLW', 'PAN', 'PNG', 'PRY', 'PSE', 'PER', 'PHL', 'PCN', 'POL', 'PRT', 'PRI', 'QAT', 'REU', 'ROU', 'RUS', 'RWA', 'KNA', 'LCA', 'VCT', 'WSM', 'SMR', 'STP', 'SAU', 'SEN', 'SRB', 'SYC', 'SLE', 'SGP', 'SVK', 'SVN', 'SLB', 'SOM', 'ZAF', 'ESP', 'LKA', 'SHN', 'SPM', 'SDN', 'SUR', 'SJM', 'SWZ', 'SWE', 'CHE', 'SYR', 'TWN', 'TJK', 'TZA', 'THA', 'TGO', 'TKL', 'TON', 'TTO', 'TUN', 'TUR', 'TKM', 'TLS', 'TCA', 'TUV', 'UGA', 'UKR', 'ARE', 'GBR', 'USA', 'URY', 'UZB', 'VUT', 'VAT', 'VEN', 'VNM', 'VGB', 'VIR', 'WLF', 'ESH', 'YEM', 'ZAR', 'ZMB', 'ZWE']
+tax_currency_codes = ['AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAD', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BRR', 'BSD', 'BWP', 'BYR', 'BZD', 'CAD', 'CDF', 'CDP', 'CHF', 'CLP', 'CNY', 'COP', 'CRC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DRP', 'DZD', 'EEK', 'EGP', 'ESP', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEK', 'GHC', 'GIP', 'GMD', 'GNF', 'GTQ', 'GWP', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'ISK', 'JMD', 'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KMF', 'KPW', 'KRW', 'KWD', 'KYD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LTL', 'LVL', 'LYD', 'MAD', 'MDL', 'MGF', 'MNC', 'MNT', 'MOP', 'MRO', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZM', 'NGN', 'NIC', 'NIO', 'NIS', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEI', 'PEN', 'PES', 'PGK', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RMB', 'RON', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDP', 'SEK', 'SGD', 'SHP', 'SKK', 'SLL', 'SOL', 'SOS', 'SRD', 'STD', 'SVC', 'SYP', 'SZL', 'THB', 'TJS', 'TMM', 'TND', 'TOP', 'TPE', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGS', 'USD', 'UYP', 'UYU', 'VEF', 'VND', 'VUV', 'WST', 'XAF', 'XCD', 'XOF', 'YER', 'ZAR', 'ZMK', 'ZWD']
+tax_codes = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29']
 
 
 class ElectronicInvoice(models.TransientModel):
@@ -121,7 +124,9 @@ class ElectronicInvoice(models.TransientModel):
         province.text = invoice_data.partner_id.state_id.name or ""
 
         country_code = etree.SubElement(address_in_spain, "CountryCode")
-        country_code.text = invoice_data.partner_id.country_id.code or ""
+        code_spain = invoice_data.partner_id.country_id.code
+        t_code_spain = next((country for country in countries if code_spain in country), None)
+        country_code.text = t_code_spain or ""
 
         contact_details = etree.SubElement(individual, "ContactDetails")
         electronic_mail = etree.SubElement(contact_details, "ElectronicMail")
@@ -176,7 +181,9 @@ class ElectronicInvoice(models.TransientModel):
             country_code_centre = etree.SubElement(
                 address_in_spain_centre, "CountryCode"
             )
-            country_code_centre.text = invoice_data.country_code or ""
+            # buscar en el array code
+            box_country_code = next((country for country in countries if invoice_data.country_code in country), None)
+            country_code_centre.text = box_country_code or ""
 
             centre_description = etree.SubElement(
                 administrative_centre, "CentreDescription"
@@ -205,7 +212,9 @@ class ElectronicInvoice(models.TransientModel):
         province_legal = etree.SubElement(address_in_spain_legal, "Province")
         province_legal.text = invoice_data.partner_id.state_id.name or ""
         country_code_legal = etree.SubElement(address_in_spain_legal, "CountryCode")
-        country_code_legal.text = invoice_data.partner_id.country_id.code or ""
+        code_legal = invoice_data.partner_id.country_id.code
+        t_code = next((country for country in countries if code_legal in country), None)
+        country_code_legal.text = t_code or ""
 
         contact_details_legal = etree.SubElement(legal_entity, "ContactDetails")
         electronic_mail_legal = etree.SubElement(
@@ -246,7 +255,10 @@ class ElectronicInvoice(models.TransientModel):
         tax_currency_code_element = etree.SubElement(
             invoice_issue_data_element, "TaxCurrencyCode"
         )
-        tax_currency_code_element.text = invoice_data.tax_country_id.code
+        code_tax = invoice_data.currency_id.name
+        tax_country_currency = next((country for country in tax_currency_codes if code_tax in country), None)
+
+        tax_currency_code_element.text = tax_country_currency or ""
         language_name_element = etree.SubElement(
             invoice_issue_data_element, "LanguageName"
         )
@@ -258,7 +270,7 @@ class ElectronicInvoice(models.TransientModel):
         taxes_info = []
 
         # Recorrer todas las líneas del Invoice para ver los taxes
-        for line in invoice_data.line_ids:
+        for line in invoice_data.invoice_line_ids:
             tax_total_line = line.price_total
             for tax in line.tax_ids:
                 taxes_info.append(
@@ -269,10 +281,12 @@ class ElectronicInvoice(models.TransientModel):
                         "total": ((tax.amount/100) * tax_total_line) * tax_total_line,
                     }
                 )
+
         if len(taxes_info) > 0:
             for tax in taxes_info:
                 tax_type = etree.SubElement(invoice_taxes, "TaxTypeCode")
-                tax_type.text = tax['name'] or ""
+                tax_code_str = f"{int(tax['amount'] ):02}" # convertirlo a formato '04'
+                tax_type.text = tax_code_str or ""
                 tax_rate = etree.SubElement(invoice_taxes, "TaxRate")
                 tax_rate.text = f"{tax['amount']}" or ""
                 tax_table = etree.SubElement(invoice_taxes, "TaxableBase")
@@ -314,7 +328,8 @@ class ElectronicInvoice(models.TransientModel):
             item_qty = etree.SubElement(invoice_line, "Quantity")
             item_qty.text = f"{line.quantity}" or ""
             item_uom = etree.SubElement(invoice_line, "UnitOfMeasure")
-            item_uom.text = f"{line.product_id.uom_id.id}" or ""
+            uom_code_str = f"{int(line.product_id.uom_id.id):02}"
+            item_uom.text = uom_code_str or ""
             item_price_untax = etree.SubElement(invoice_line, "UnitPriceWithoutTax")
             item_price_untax.text = f"{line.price_unit}" or ""
             item_total_cost = etree.SubElement(invoice_line, "TotalCost")
@@ -326,7 +341,10 @@ class ElectronicInvoice(models.TransientModel):
             for tax in line.tax_ids:
                 item_tax_line = etree.SubElement(item_taxes_output, "Tax")
                 item_tax_code = etree.SubElement(item_tax_line, "TaxTypeCode")
-                item_tax_code.text = f"{tax.id}" or ""
+                tax_code_type = tax.amount # Supongamos que es un float, por ejemplo, 4.000
+                # Convertir a entero y luego a string con ceros delante si es necesario
+                tax_code_str = f"{int(tax_code_type):02}"
+                item_tax_code.text = tax_code_str or ""
                 item_tax_rate = etree.SubElement(item_tax_line, "TaxRate")
                 item_tax_rate.text = f"{tax.amount}" or ""
                 # TaxaTable
@@ -358,14 +376,23 @@ class ElectronicInvoice(models.TransientModel):
         additional_information = etree.SubElement(additional_data_tag, "InvoiceAdditionalInformation")
         additional_information.text = f"Factura Electrónica generada a través de Odoo"
 
-        # Convertir el árbol XML a una cadena de texto
         xml_string = etree.tostring(
             root, pretty_print=True, xml_declaration=True, encoding="UTF-8"
         )
+
+        # Dividir la cadena XML en líneas
+        xml_lines = xml_string.decode("UTF-8").splitlines()
+
+        # Cambiar las líneas necesarias
+        xml_lines[0] = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        xml_lines[1] = '<ns3:Facturae xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml">'
+        xml_lines[-1] = '</ns3:Facturae>'
+
+        # Reconstruir el XML modificado
+        modified_xml = "\n".join(xml_lines)
+
         # Codificar el XML en base64
-        xml_base64 = base64.b64encode(xml_string)
-        _logger.info(f"ROOT INFO XML {root}")
-        _logger.info(f"ROOT STRING XML {xml_string}")
+        xml_base64 = base64.b64encode(modified_xml.encode("UTF-8"))
 
         # Guardar el XML en el campo binary de la factura
         invoice_data.write(
