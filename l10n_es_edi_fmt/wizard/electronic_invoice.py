@@ -87,7 +87,7 @@ class ElectronicInvoice(models.TransientModel):
         total_amount_executable = etree.SubElement(
             total_executable_amount, "TotalAmount"
         )
-        total_amount_executable.text = str(invoice_data.amount_total) or ""
+        total_amount_executable.text = str(round(invoice_data.amount_total,4)) or ""
 
         invoice_currency_code = etree.SubElement(batch_tag, "InvoiceCurrencyCode")
         invoice_currency_code.text = invoice_data.currency_id.name
@@ -290,6 +290,8 @@ class ElectronicInvoice(models.TransientModel):
 
         # Recorrer todas las líneas del Invoice para ver los taxes
         for line in invoice_data.invoice_line_ids:
+            if line.display_type != 'product':
+                continue
             tax_total_line = line.price_total
             for tax in line.tax_ids:
                 taxes_info.append(
@@ -304,13 +306,13 @@ class ElectronicInvoice(models.TransientModel):
         if len(taxes_info) > 0:
             for tax in taxes_info:
                 tax_type = etree.SubElement(invoice_taxes, "TaxTypeCode")
-                tax_code_str = f"{int(tax['amount'] ):02}" # convertirlo a formato '04'
-                tax_type.text = "TaxAmount" # tax_code_str
+                # tax_code_str = f"{int(tax['amount'] ):02}" # convertirlo a formato '04'
+                tax_type.text = "01" # tax_code_str
                 tax_rate = etree.SubElement(invoice_taxes, "TaxRate")
-                tax_rate.text = f"{tax['amount']}" or ""
+                tax_rate.text = f"{ round(tax['amount'], 4)}" or ""
                 tax_table = etree.SubElement(invoice_taxes, "TaxableBase")
                 tax_total = etree.SubElement(tax_table, "TotalAmount")
-                tax_total.text = f"{tax['total']}" or ""
+                tax_total.text = f"{ round(tax['total'], 4)}" or ""
 
         tax_amount_tag = etree.SubElement(invoice_taxes, "TaxAmount")  # <TaxAmount>
         tax_amount_total = etree.SubElement(tax_amount_tag, "TotalAmount")  # <TotalAmount>
@@ -336,8 +338,10 @@ class ElectronicInvoice(models.TransientModel):
 
         # Start for <Items>
         invoice_items = etree.SubElement(invoice_element, "Items")
-        # <InvoiceLine>
+        # <InvoiceLine> mostrar solo las de display_type = product
         for line in invoice_data.line_ids:
+            if line.display_type != 'product':
+                continue
             invoice_line = etree.SubElement(invoice_items, "InvoiceLine")
             receiverContRef = etree.SubElement(invoice_line, "ReceiverContractReference")
             receiverTansRef = etree.SubElement(invoice_line, "ReceiverTransactionReference")
@@ -370,24 +374,25 @@ class ElectronicInvoice(models.TransientModel):
                 # TaxaTable
                 item_tax_table = etree.SubElement(item_tax_line, "TaxableBase")
                 item_tax_total_amount = etree.SubElement(item_tax_table, "TotalAmount")
-                item_tax_total_amount.text = f"{line.price_total}" or ""
+                item_tax_total_amount.text = f"{ round(line.price_total,4)}" or ""
                 # TaxAmount
                 item_tax_end_amount = etree.SubElement(item_tax_line, "TaxAmount")
                 item_tax_end_total_amount = etree.SubElement(item_tax_end_amount, "TotalAmount")
-                item_tax_end_total_amount.text = f"{line.price_subtotal}" or ""
+                item_tax_end_total_amount.text = f"{round(line.price_total,4)}" or ""
         # <PaymentDetails>
         payment_details_tag = etree.SubElement(invoice_element, "PaymentDetails")
         payment_installment_tag = etree.SubElement(payment_details_tag, "Installment")
         installment_due_tag = etree.SubElement(payment_installment_tag, "InstallmentDueDate")
-        installment_due_tag.text = line.payment_id.payment_date.strftime("%Y-%m-%dT%H:%M:%S") if line.payment_id else "" # date format ISO 8601:2004
+        installment_due_tag.text = invoice_data.payment_id.date.strftime("%Y-%m-%d") if invoice_data.payment_id else "" # date format ISO 8601:2004
         installment_mount = etree.SubElement(payment_installment_tag, "InstallmentAmount")
-        installment_mount.text = f"{line.payment_id.amount}" if line.payment_id else ""
-        payment_means = etree.SubElement(payment_installment_tag, "PaymentMeans")
-        payment_means.text = f"{line.payment_id.payment_type}" if line.payment_id else ""
-        raise ValidationError(f"{line.payment_id}")
+        installment_mount.text = f"{round(invoice_data.payment_id.amount, 2):0>6.2f}" if invoice_data.payment_id else ""
+        payment_means = etree.SubElement(payment_installment_tag, "PaymentMeans") # del array payment_means_array
+        #payment_means.text = f"{invoice_data.payment_id.payment_method_line_id}" if invoice_data.payment_id else ""
+        payment_means.text = '01' # in cash
+
         account_credited_tag = etree.SubElement(payment_installment_tag, "AccountToBeCredited")
         iban_account_tag = etree.SubElement(account_credited_tag, "IBAN")
-        iban_account_tag.text = f"{line.payment_id.partner_bank_id.acc_number}" if line.payment_id.partner_bank_id else ""
+        iban_account_tag.text = f"{invoice_data.payment_id.partner_bank_id.acc_number}" if invoice_data.payment_id.partner_bank_id else ""
         #<LegalLiterals>
         legal_literals_tag = etree.SubElement(invoice_element, "LegalLiterals")
         legal_reference = etree.SubElement(legal_literals_tag, "LegalReference")
