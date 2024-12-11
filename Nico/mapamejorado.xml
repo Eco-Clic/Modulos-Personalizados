@@ -9,8 +9,27 @@
             L_DISABLE_3D = false;
         </script>
     
-    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
-    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+<stylesheet>
+    <style>
+        <body>
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+        </body>
+        <html>
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+        </html>
+        <map>
+            height: 40%;
+            width: 40%; 
+        </map>
+    </style>
+</stylesheet>
+
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -24,16 +43,6 @@
     
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <style>
-                #map_b073b444623aabb5b4aad0f82d5dec7b {
-                    position: relative;
-                    width: 100.0%;
-                    height: 100.0%;
-                    left: 0.0%;
-                    top: 0.0%;
-                }
-                .leaflet-container { font-size: 1rem; }
-            </style>
         
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
