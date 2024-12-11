@@ -1,13 +1,27 @@
 import base64
+import datetime
+
 from lxml import etree
 from odoo.exceptions import ValidationError
 from odoo import models, fields
 import logging
 
 _logger = logging.getLogger(__name__)
+
+# Codes enumerators from Facturaev3_2_2.xml
 countries = ['AFG', 'ALB', 'DZA', 'ASM', 'AND', 'AGO', 'AIA', 'ATG', 'ARG', 'ARM', 'ABW', 'AUS', 'AUT', 'AZE', 'BHS', 'BHR', 'BGD', 'BRB', 'BLR', 'BEL', 'BLZ', 'BEN', 'BMU', 'BTN', 'BOL', 'BIH', 'BWA', 'BRA', 'BRN', 'BGR', 'BFA', 'BDI', 'KHM', 'CMR', 'CAN', 'CPV', 'CYM', 'CAF', 'TCD', 'CHL', 'CHN', 'COD', 'COL', 'COM', 'COG', 'COK', 'CRI', 'CIV', 'HRV', 'CUB', 'CYP', 'CZE', 'DNK', 'DJI', 'DMA', 'DOM', 'ECU', 'EGY', 'SLV', 'GNQ', 'ERI', 'EST', 'ETH', 'FLK', 'FRO', 'FJI', 'FIN', 'FRA', 'GUF', 'PYF', 'GAB', 'GMB', 'GEO', 'GGY', 'DEU', 'GHA', 'GIB', 'GRC', 'GRL', 'GRD', 'GLP', 'GUM', 'GTM', 'GIN', 'GNB', 'GUY', 'HTI', 'HND', 'HKG', 'HUN', 'ISL', 'IND', 'IDN', 'IMN', 'IRN', 'IRQ', 'IRL', 'ISR', 'ITA', 'JAM', 'JEY', 'JPN', 'JOR', 'KAZ', 'KEN', 'KIR', 'PRK', 'KOR', 'KWT', 'KGZ', 'LAO', 'LVA', 'LBN', 'LSO', 'LBR', 'LBY', 'LIE', 'LTU', 'LUX', 'MAC', 'MKD', 'MDG', 'MWI', 'MYS', 'MDV', 'MLI', 'MLT', 'MHL', 'MTQ', 'MRT', 'MUS', 'MYT', 'MEX', 'FSM', 'MDA', 'MCO', 'MNE', 'MNG', 'MSR', 'MAR', 'MOZ', 'MMR', 'NAM', 'NRU', 'NPL', 'NLD', 'ANT', 'NCL', 'NZL', 'NIC', 'NER', 'NGA', 'NIU', 'NFK', 'MNP', 'NOR', 'OMN', 'PAK', 'PLW', 'PAN', 'PNG', 'PRY', 'PSE', 'PER', 'PHL', 'PCN', 'POL', 'PRT', 'PRI', 'QAT', 'REU', 'ROU', 'RUS', 'RWA', 'KNA', 'LCA', 'VCT', 'WSM', 'SMR', 'STP', 'SAU', 'SEN', 'SRB', 'SYC', 'SLE', 'SGP', 'SVK', 'SVN', 'SLB', 'SOM', 'ZAF', 'ESP', 'LKA', 'SHN', 'SPM', 'SDN', 'SUR', 'SJM', 'SWZ', 'SWE', 'CHE', 'SYR', 'TWN', 'TJK', 'TZA', 'THA', 'TGO', 'TKL', 'TON', 'TTO', 'TUN', 'TUR', 'TKM', 'TLS', 'TCA', 'TUV', 'UGA', 'UKR', 'ARE', 'GBR', 'USA', 'URY', 'UZB', 'VUT', 'VAT', 'VEN', 'VNM', 'VGB', 'VIR', 'WLF', 'ESH', 'YEM', 'ZAR', 'ZMB', 'ZWE']
 tax_currency_codes = ['AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAD', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BRR', 'BSD', 'BWP', 'BYR', 'BZD', 'CAD', 'CDF', 'CDP', 'CHF', 'CLP', 'CNY', 'COP', 'CRC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DRP', 'DZD', 'EEK', 'EGP', 'ESP', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEK', 'GHC', 'GIP', 'GMD', 'GNF', 'GTQ', 'GWP', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'ISK', 'JMD', 'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KMF', 'KPW', 'KRW', 'KWD', 'KYD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LTL', 'LVL', 'LYD', 'MAD', 'MDL', 'MGF', 'MNC', 'MNT', 'MOP', 'MRO', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZM', 'NGN', 'NIC', 'NIO', 'NIS', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEI', 'PEN', 'PES', 'PGK', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RMB', 'RON', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDP', 'SEK', 'SGD', 'SHP', 'SKK', 'SLL', 'SOL', 'SOS', 'SRD', 'STD', 'SVC', 'SYP', 'SZL', 'THB', 'TJS', 'TMM', 'TND', 'TOP', 'TPE', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGS', 'USD', 'UYP', 'UYU', 'VEF', 'VND', 'VUV', 'WST', 'XAF', 'XCD', 'XOF', 'YER', 'ZAR', 'ZMK', 'ZWD']
+
+units_measures = {'01': 'Units', '02': 'Hours-HUR', '03': 'Kilograms-KGM', '04': 'Liters-LTR', '05': 'Other', '06': 'Boxes-BX', '07': 'Trays, one layer no cover, plastic-DS', '08': 'Barrels-BA', '09': 'Jerricans, cylindrical-JY', '10': 'Bags-BG', '11': 'Carboys, non-protected-CO', '12': 'Bottles, non-protected, cylindrical-BO', '13': 'Canisters-CI', '14': 'Tetra Briks', '15': 'Centiliters-CLT', '16': 'Centimeters-CMT', '17': 'Bins-BI', '18': 'Dozens', '19': 'Cases-CS', '20': 'Demijohns, non-protected-DJ', '21': 'Grams-GRM', '22': 'Kilometers-KMT', '23': 'Cans, rectangular-CA', '24': 'Bunches-BH', '25': 'Meters-MTR', '26': 'Milimeters-MMT', '27': '6-Packs', '28': 'Packages-PK', '29': 'Portions', '30': 'Rolls-RO', '31': 'Envelopes-EN', '32': 'Tubs-TB', '33': 'Cubic meter-MTQ', '34': 'Second-SEC', '35': 'Watt-WTT', '36': 'Kilowatt per hora-KWh'}
+payment_means_array = {'01': 'In cash', '02': 'Direct debit', '03': 'Receipt', '04': 'Credit transfer', '05': 'Accepted bill of exchange', '06': 'Documentary credit', '07': 'Contract award', '08': 'Bill of exchange', '09': 'Transferable promissory note', '10': 'Non transferable promissory note', '11': 'Cheque', '12': 'Open account reimbursement', '13': 'Special payment', '14': 'Set-off by reciprocal credits', '15': 'Payment by postgiro', '16': 'Certified cheque', '17': 'Banker’s draft', '18': 'Cash on delivery', '19': 'Payment by card'}
+
+tax_type_code = {'01': 'Value-Added Tax', '02': 'Taxes on production, services and imports in Ceuta and Melilla', '03': 'IGIC:Canaries General Indirect Tax', '04': 'IRPF:Personal Income Tax', '05': 'Other', '06': 'ITPAJD:Tax on wealth transfers and stamp duty', '07': 'IE: Excise duties and consumption taxes', '08': 'Ra: Customs duties', '09': 'IGTECM: Sales tax in Ceuta and Melilla', '10': 'IECDPCAC: Excise duties on oil derivates in Canaries', '11': 'IIIMAB: Tax on premises that affect the environment in the Balearic Islands', '12': 'ICIO: Tax on construction, installation and works', '13': 'IMVDN: Local tax on unoccupied homes in Navarre', '14': 'IMSN: Local tax on building plots in Navarre', '15': 'IMGSN: Local sumptuary tax in Navarre', '16': 'IMPN: Local tax on advertising in Navarre', '17': 'REIVA: Special VAT for travel agencies', '18': 'REIGIC: Special IGIC: for travel agencies', '19': 'REIPSI: Special IPSI for travel agencies', '20': 'IPS: Insurance premiums Tax', '21': 'SWUA: Surcharge for Winding Up Activity', '22': 'IVPEE: Tax on the value of electricity generation', '23': 'Tax on the production of spent nuclear fuel and radioactive waste from the generation of nuclear electric power', '24': 'Tax on the storage of spent nuclear energy and radioactive waste in centralised facilities', '25': 'IDEC: Tax on bank deposits', '26': 'Excise duty applied to manufactured tobacco in Canaries', '27': 'IGFEI: Tax on Fluorinated Greenhouse Gases', '28': 'IRNR: Non-resident Income Tax', '29': 'Corporation Tax'}
 tax_codes = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29']
+
+invoice_document_type = {'FC': 'Complete Invoice.', 'FA': 'Abbreviated.', 'AF': 'Self invoice.'} # InvoiceDocumentType
+invoice_class_type = {'OO': 'Original Invoice.', 'OR': 'Corrective.', 'OC': 'Summary.', 'CO': 'Copy of the Original.', 'CR': 'Copy of the Corrective.', 'CC': 'Copy of the Summary.'}
+
+reason_code_type = {'01': '"Invoice number"', '02': '"Invoice serial number"', '03': '"Issue date"', '04': '"Name and surnames/Corporate name – Issuer (Sender)"', '05': '"Name and surnames/Corporate name - Receiver"', '06': '"Issuer’s Tax Identification Number"', '07': '"Receiver’s Tax Identification Number"', '08': '"Issuer’s address"', '09': '"Receiver’s address"', '10': '"Item line"', '11': '"Applicable Tax Rate"', '12': '"Applicable Tax Amount"', '13': '"Applicable Date/Period"', '14': '"Invoice Class"', '15': '"Legal literals"', '16': '"Taxable Base"', '80': '"Calculation of tax outputs"', '81': '"Calculation of tax inputs"', '82': '"Taxable Base modified due to return of packages and packaging materials"', '83': '"Taxable Base modified due to discounts and rebates"', '84': '"Taxable Base modified due to firm court ruling or administrative decision"', '85': '"Taxable Base modified due to unpaid outputs where there is a judgement opening insolvency proceedings"'}
 
 
 class ElectronicInvoice(models.TransientModel):
@@ -238,9 +252,14 @@ class ElectronicInvoice(models.TransientModel):
         invoice_document_type_element = etree.SubElement(
             invoice_header_element, "InvoiceDocumentType"
         )
-        invoice_document_type_element.text = invoice_data.move_type
+        invoice_document_type_element.text = "FC"
+        # InvoiceClass array invoice_class_type
+        if invoice_data.move_type in ('out_refund','in_refund'):
+            text_invoice_class_type = 'OR' # 'Rectificativa.'
+        else:
+            text_invoice_class_type = 'OO' # Original
         invoice_class_element = etree.SubElement(invoice_header_element, "InvoiceClass")
-        invoice_class_element.text = invoice_data.state or ""
+        invoice_class_element.text = text_invoice_class_type
 
         # Invoice Issue Data
         invoice_issue_data_element = etree.SubElement(
@@ -286,7 +305,7 @@ class ElectronicInvoice(models.TransientModel):
             for tax in taxes_info:
                 tax_type = etree.SubElement(invoice_taxes, "TaxTypeCode")
                 tax_code_str = f"{int(tax['amount'] ):02}" # convertirlo a formato '04'
-                tax_type.text = tax_code_str or ""
+                tax_type.text = "TaxAmount" # tax_code_str
                 tax_rate = etree.SubElement(invoice_taxes, "TaxRate")
                 tax_rate.text = f"{tax['amount']}" or ""
                 tax_table = etree.SubElement(invoice_taxes, "TaxableBase")
@@ -295,7 +314,7 @@ class ElectronicInvoice(models.TransientModel):
 
         tax_amount_tag = etree.SubElement(invoice_taxes, "TaxAmount")  # <TaxAmount>
         tax_amount_total = etree.SubElement(tax_amount_tag, "TotalAmount")  # <TotalAmount>
-        tax_amount_total.text = f"{invoice_data.amount_tax}" or ""
+        tax_amount_total.text = f"{round(invoice_data.amount_tax, 4)}" if invoice_data.amount_tax else "0.00"
 
         # Invoice <InvoiceTotals>
         invoice_totals = etree.SubElement(invoice_element, "InvoiceTotals")
@@ -328,8 +347,9 @@ class ElectronicInvoice(models.TransientModel):
             item_qty = etree.SubElement(invoice_line, "Quantity")
             item_qty.text = f"{line.quantity}" or ""
             item_uom = etree.SubElement(invoice_line, "UnitOfMeasure")
-            uom_code_str = f"{int(line.product_id.uom_id.id):02}"
-            item_uom.text = uom_code_str or ""
+            if line.product_id.uom_id:
+                uom_code_str = f"{int(line.product_id.uom_id.id):02}"
+            item_uom.text = uom_code_str if uom_code_str != "00" else "01"
             item_price_untax = etree.SubElement(invoice_line, "UnitPriceWithoutTax")
             item_price_untax.text = f"{line.price_unit}" or ""
             item_total_cost = etree.SubElement(invoice_line, "TotalCost")
@@ -344,7 +364,7 @@ class ElectronicInvoice(models.TransientModel):
                 tax_code_type = tax.amount # Supongamos que es un float, por ejemplo, 4.000
                 # Convertir a entero y luego a string con ceros delante si es necesario
                 tax_code_str = f"{int(tax_code_type):02}"
-                item_tax_code.text = tax_code_str or ""
+                item_tax_code.text = "01"
                 item_tax_rate = etree.SubElement(item_tax_line, "TaxRate")
                 item_tax_rate.text = f"{tax.amount}" or ""
                 # TaxaTable
@@ -359,11 +379,12 @@ class ElectronicInvoice(models.TransientModel):
         payment_details_tag = etree.SubElement(invoice_element, "PaymentDetails")
         payment_installment_tag = etree.SubElement(payment_details_tag, "Installment")
         installment_due_tag = etree.SubElement(payment_installment_tag, "InstallmentDueDate")
-        installment_due_tag.text = f"{line.payment_id.payment_date}" if line.payment_id else ""
+        installment_due_tag.text = line.payment_id.payment_date.strftime("%Y-%m-%dT%H:%M:%S") if line.payment_id else "" # date format ISO 8601:2004
         installment_mount = etree.SubElement(payment_installment_tag, "InstallmentAmount")
         installment_mount.text = f"{line.payment_id.amount}" if line.payment_id else ""
         payment_means = etree.SubElement(payment_installment_tag, "PaymentMeans")
         payment_means.text = f"{line.payment_id.payment_type}" if line.payment_id else ""
+        raise ValidationError(f"{line.payment_id}")
         account_credited_tag = etree.SubElement(payment_installment_tag, "AccountToBeCredited")
         iban_account_tag = etree.SubElement(account_credited_tag, "IBAN")
         iban_account_tag.text = f"{line.payment_id.partner_bank_id.acc_number}" if line.payment_id.partner_bank_id else ""
