@@ -1,6 +1,5 @@
 import folium
 from folium.plugins import MarkerCluster, MiniMap, Fullscreen, MeasureControl
-from lxml import etree
 
 # Coordenadas y cantidad de habitaciones de las ubicaciones
 ubicaciones = {
@@ -42,11 +41,10 @@ ubicaciones = {
 }
 
 # Inicializar mapa con atribución
-mapa = folium.Map(
-    location=[41.4594893423169, 2.250681454063872],
-    zoom_start=10,
-    tiles="Stamen Terrain",
-    attr='Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.'
+mapa = folium.Map( 
+    location=[41.4594893423169, 2.250681454063872], 
+    zoom_start=10, tiles="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", 
+    attr='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors' 
 )
 
 # Añadir MiniMap
@@ -77,7 +75,7 @@ def añadir_marcadores(ubicaciones, cluster):
                 <b>Dirección:</b> {direccion}<br>
                 <b>Habitaciones:</b> {habitaciones}<br>
                 <b>Ver en Google Maps:</b> 
-                <a href='https://www.google.com/maps?q={lat},{lon}' target='_blank'>Link</a>
+                <a href="https://www.google.com/maps?q={direccion}" target='_blank'>Link</a>
             </div>
             """
             folium.Marker(
@@ -87,33 +85,15 @@ def añadir_marcadores(ubicaciones, cluster):
                 icon=folium.Icon(color=obtener_color(habitaciones), icon="home", prefix="fa")
             ).add_to(cluster)
 
-# Añadir los marcadores al cluster
+
 añadir_marcadores(ubicaciones, marker_cluster)
 
-# Añadir control de capas
+
 folium.LayerControl().add_to(mapa)
 
-# Guardar el mapa en un archivo HTML
+
 mapa.save("mapa_mejorado.html")
 
-# Función para generar XML usando lxml
-def generar_xml(ubicaciones):
-    root = etree.Element("root")
-    for region, puntos in ubicaciones.items():
-        region_element = etree.SubElement(root, "region", name=region)
-        for lat, lon, direccion, habitaciones in puntos:
-            punto_element = etree.SubElement(region_element, "punto")
-            etree.SubElement(punto_element, "latitud").text = str(lat)
-            etree.SubElement(punto_element, "longitud").text = str(lon)
-            etree.SubElement(punto_element, "direccion").text = direccion
-            etree.SubElement(punto_element, "habitaciones").text = str(habitaciones)
-
-    tree = etree.ElementTree(root)
-    tree.write("mapa_mejorado.xml", pretty_print=True, xml_declaration=True, encoding="UTF-8")
-
-# Generar el archivo XML
-generar_xml(ubicaciones)
-
-print("Mapa guardado como mapa_mejorado.html y mapa_mejorado.xml")
+print("Mapa guardado como mapa_mejorado.html")
 
 
