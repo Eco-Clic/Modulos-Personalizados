@@ -1,0 +1,8 @@
+<odoo>
+    <record id="action_payment_history" model="ir.actions.act_window">
+        <field name="name">Historial de Pagos de Alquiler</field>
+        <field name="res_model">payment.history</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

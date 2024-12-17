@@ -1,0 +1,414 @@
+<odoo>
+
+    <!-- Form contratos de propiedad -->
+    <record id="view_property_contract_form" model="ir.ui.view">
+        <field name="name">property.contract.form</field>
+        <field name="model">property.contract</field>
+        <field name="arch" type="xml">
+            <form string="Contrato">
+                <sheet>
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                        <button name="action_contract_draft"
+                                type="object"
+                                string="Mover a Borrador"
+                                invisible="status in ('draft')"
+                                class="oe_highlight"/>
+                        <button name="action_contract_open"
+                                type="object"
+                                string="Abrir Contrato"
+                                invisible="status in ('open')"
+                                class="btn-success"/>
+                        <button name="action_contract_closed"
+                                type="object"   
+                                invisible="status in ('closed')"
+                                string="Cerrar Contrato"
+                                class="btn-warning"/>
+                        <button name="action_print_contract_property"
+                                string="Imprimir Contrato de Propeidad"
+                                type="object"
+                                class="btn btn-secondary o_form_button_icon fa fa-print"/>
+                        <button name="action_print_contract_anex_property"
+                                string="Imprimir Anexo habitacion"
+                                type="object"
+                                class="btn btn-secondary o_form_button_icon fa fa-print"/>
+                        <button name="action_print_termination_contract"
+                                string="Imprimir Finalización de contrato"
+                                type="object"
+                                class="btn btn-secondary o_form_button_icon fa fa-print"/>
+                    </header>
+                    <group>
+                        <group class="oe_subgroup">
+                            <field name="contract_number"/>
+                            <field name="is_active" string="Contrato Vigente por Fecha"/>
+                            <field name="active" readonly="1"/>
+                            <field name="contract_date"/>
+                            <field name="property_id"/>
+                            <field name="owner_id"/>
+                            <field name="agency_id"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="contract_start_date"/>
+                            <field name="contract_end_date"/>
+                            <field name="renewal_terms"/>
+                            <field name="monthly_rent" widget="monetary"/>
+                            <field name="security_deposit" widget="monetary"/>
+                            <field name="penalty_terms"/>
+                            <field name="late_payment_fee"/>
+                        </group>
+                        <group string="Responsabilidades" class="oe_subgroup">
+                            <field name="owner_responsibilities"/>
+                            <field name="agency_responsibilities"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="signed_contract" widget="signature"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Adjuntos del Contrato">
+                            <field name="contract_attachments"/>
+                        </page>
+                        <page string="Contratos de habitaciones">
+                            <field name="room_contract_ids" mode="kanban">
+                                <kanban>
+                                    <field name="name"/>
+                                    <field name="status"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_global_click">
+                                                <div class="oe_kanban_details">
+                                                    <div>
+                                                        <strong>
+                                                            <field name="name"/>
+                                                        </strong>
+                                                    </div>
+                                                    <div>
+                                                        <span>Estado:</span>
+                                                        <field name="status"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                    </notebook>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- Form de los contratos de habitacions -->
+    <record id="view_room_contract_form" model="ir.ui.view">
+        <field name="name">room.contract.form</field>
+        <field name="model">room.contract</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                        <button name="action_contract_draft"
+                                type="object"
+                                string="Mover a Borrador"
+                                invisible="status in ('draft')"
+                                class="oe_highlight"/>
+                        <button name="action_contract_open"
+                                type="object"
+                                string="Abrir Contrato"
+                                invisible="status in ('open')"
+                                class="btn-success"/>
+                        <button name="action_contract_closed"
+                                type="object"
+                                invisible="status in ('closed')"
+                                string="Cerrar Contrato"
+                                class="btn-warning"/>
+                        <button name="action_print_contract_room"
+                                string="Imprimir Contrato de Habitacion"
+                                type="object"
+                                class="btn btn-secondary o_form_button_icon fa fa-print"/>
+                        <button name="action_print_contract_anex_room"
+                                string="Imprimir Anexos Contrato"
+                                type="object"
+                                class="btn btn-secondary o_form_button_icon fa fa-print"/>
+                    </header>
+                    <group>
+                        <group class="oe_subgroup">
+                            <field name="contract_number"/>
+                            <field name="is_active" string="Contrato Vigente por Fecha"/>
+                            <field name="active" readonly="1"/>
+                            <field name="contract_date"/>
+                            <field name="property_id" invisible='1'/>
+                            <field name="room_id"/>
+                            <field name="tenant_id"/>
+                            <field name="agency_id"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="contract_start_date"/>
+                            <field name="contract_end_date"/>
+                            <field name="renewal_terms"/>
+                            <field name="monthly_rent" widget="monetary"/>
+                            <field name="penalty_terms"/>
+                            <field name="late_payment_fee"/>
+                        </group>
+                        <group string="Responsabilidades" class="oe_subgroup">
+                            <field name="tenant_responsibilities"/>
+                            <field name="agency_responsibilities"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="signed_contract" widget="signature"/>
+                        </group>
+                    </group>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <!-- Form de los contratos de habitacions (no editable) -->
+    <record id="view_room_contract_form_no_editable" model="ir.ui.view">
+        <field name="name">room.contract.form</field>
+        <field name="model">room.contract</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <sheet>
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                        <button name="action_contract_draft"
+                                type="object"
+                                string="Mover a Borrador"
+                                invisible="status in ('draft')"
+                                class="oe_highlight"/>
+                        <button name="action_contract_open"
+                                type="object"
+                                string="Abrir Contrato"
+                                invisible="status in ('open')"
+                                class="btn-success"/>
+                        <button name="action_contract_closed"
+                                type="object"
+                                invisible="status in ('closed')"
+                                string="Cerrar Contrato"
+                                class="btn-warning"/>
+                        <button name="action_print_contract_room"
+                                string="Imprimir Contrato de Habitacion"
+                                type="object"
+                                class="btn btn-secondary o_form_button_icon fa fa-print"/>
+                        <button name="action_print_contract_anex_room"
+                                string="Imprimir Anexos Contrato"
+                                type="object"
+                                class="btn btn-secondary o_form_button_icon fa fa-print"/>
+                    </header>
+                    <group>
+                        <group class="oe_subgroup">
+                            <field name="contract_number"/>
+                            <field name="is_active" string="Contrato Vigente por Fecha"/>
+                            <field name="active" readonly="1"/>
+                            <field name="contract_date"/>
+                            <field name="property_id" invisible='1'/>
+                            <field name="room_id"/>
+                            <field name="tenant_id"/>
+                            <field name="agency_id"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="contract_start_date"/>
+                            <field name="contract_end_date"/>
+                            <field name="renewal_terms"/>
+                            <field name="monthly_rent" widget="monetary"/>
+                            <field name="penalty_terms"/>
+                            <field name="late_payment_fee"/>
+                        </group>
+                        <group string="Responsabilidades" class="oe_subgroup">
+                            <field name="tenant_responsibilities"/>
+                            <field name="agency_responsibilities"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="signed_contract" widget="signature"/>
+                        </group>
+                    </group>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kanban de los contratos de habitacion -->
+    <record id="view_room_contract_kanban" model="ir.ui.view">
+        <field name="name">room.contract.kanban</field>
+        <field name="model">room.contract</field>
+        <field name="arch" type="xml">
+            <kanban string="Contratos Habitacion" edit="false" create="false">
+                <field name="is_active"/>
+                <field name="contract_start_date"/>
+                <field name="contract_end_date"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_card">
+                                <div class="o_kanban_details">
+                                    <strong>
+                                         <field name="tenant_id"
+                                               widget="many2one_avatar_user"/> 
+                                    </strong>
+                                    <div>
+                                        <span>Estado:</span>
+                                        <t t-if="record.is_active.raw_value">
+                                            <span class="badge badge-success">Activo</span>
+                                        </t>
+                                        <t t-else="">
+                                            <span class="badge badge-danger">Inactivo</span>
+                                        </t>
+                                    </div>
+                                    <div>
+                                        <span>Fecha de Inicio:</span>
+                                        <span class="o_field_date">
+                                            <field name="contract_start_date"/>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>Fecha de Fin:</span>
+                                        <span class="o_field_date">
+                                            <field name="contract_end_date"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Kanbas contratos de propeidad -->
+    <record id="view_property_contract_kanban" model="ir.ui.view">
+        <field name="name">property.contract.kanban</field>
+        <field name="model">property.contract</field>
+        <field name="arch" type="xml">
+            <kanban string="Contratos">
+                <field name="is_active"/>
+                <field name="contract_start_date"/>
+                <field name="contract_end_date"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_card">
+                                <div class="o_kanban_details">
+                                    <strong>
+                                         <field name="owner_id"
+                                               widget="many2one_avatar_user"/> 
+                                    </strong>
+                                    <div>
+                                        <span>Estado:</span>
+                                        <t t-if="record.is_active.raw_value">
+                                            <span class="badge badge-success">Activo</span>
+                                        </t>
+                                        <t t-else="">
+                                            <span class="badge badge-danger">Inactivo</span>
+                                        </t>
+                                    </div>
+                                    <div>
+                                        <span>Fecha de Inicio:</span>
+                                        <span class="o_field_date">
+                                            <field name="contract_start_date"/>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>Fecha de Fin:</span>
+                                        <span class="o_field_date">
+                                            <field name="contract_end_date"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Form de los contratos de habitacions sin poder editar-->
+    <record id="view_room_contract_form" model="ir.ui.view">
+        <field name="name">room.contract.form</field>
+        <field name="model">room.contract</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                        <button name="action_contract_draft"
+                                type="object"
+                                string="Mover a Borrador"
+                                invisible="status in ('draft')"
+                                class="oe_highlight"/>
+                        <button name="action_contract_open"
+                                type="object"
+                                string="Abrir Contrato"
+                                invisible="status in ('open')"
+                                class="btn-success"/>
+                        <button name="action_contract_closed"
+                                type="object"
+                                invisible="status in ('closed')"
+                                string="Cerrar Contrato"
+                                class="btn-warning"/>
+                        <button name="action_print_contract_room"
+                                string="Imprimir Contrato de Habitacion"
+                                type="object"
+                                class="btn btn-secondary o_form_button_icon fa fa-print"/>
+                        <button name="action_print_contract_anex_room"
+                                string="Imprimir Anexos Contrato"
+                                type="object"
+                                class="btn btn-secondary o_form_button_icon fa fa-print"/>
+                    </header>
+                    <group>
+                        <group class="oe_subgroup">
+                            <field name="contract_number"/>
+                            <field name="is_active" string="Contrato Vigente por Fecha"/>
+                            <field name="active" readonly="1"/>
+                            <field name="contract_date"/>
+                            <field name="property_id" invisible='1'/>
+                            <field name="room_id"/>
+                            <field name="tenant_id"/>
+                            <field name="agency_id"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="contract_start_date"/>
+                            <field name="contract_end_date"/>
+                            <field name="renewal_terms"/>
+                            <field name="monthly_rent" widget="monetary"/>
+                            <field name="penalty_terms"/>
+                            <field name="late_payment_fee"/>
+                        </group>
+                        <group string="Responsabilidades" class="oe_subgroup">
+                            <field name="tenant_responsibilities"/>
+                            <field name="agency_responsibilities"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="signed_contract" widget="signature"/>
+                        </group>
+                    </group>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

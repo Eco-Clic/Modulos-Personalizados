@@ -1,0 +1,8 @@
+<odoo>
+    <!-- Accion para las reservas -->
+    <record id="action_booking" model="ir.actions.act_window">
+        <field name="name">Reservas</field>
+        <field name="res_model">booking.history</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

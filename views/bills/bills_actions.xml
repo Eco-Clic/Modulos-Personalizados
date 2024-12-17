@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_graph_payments" model="ir.actions.act_window">
+        <field name="name">Grafico de los pagos</field>
+        <field name="res_model">payment.history</field>
+        <field name="view_mode">graph</field>
+    </record>
+</odoo>

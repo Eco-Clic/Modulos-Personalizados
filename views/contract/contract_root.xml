@@ -1,0 +1,23 @@
+<odoo>
+    <!-- Submenú de contratos -->
+    <menuitem 
+        id="contracts_menu" 
+        name="Contratos" 
+        parent="property_management_root_menu"
+        sequence="4"/>
+
+    <!-- Submenu dentro del submenu contratos para ir a contratos de propeidad -->
+    <menuitem
+        id="property_contracts"
+        name="Contratos de propiedad"
+        parent="contracts_menu"
+        action="action_contract_property"/>
+
+    <!-- Submenu para contratos de habitación -->
+    <menuitem
+        id="property_rooms"
+        name="Contratos de habitacion"
+        parent="contracts_menu"
+        action="action_contract_room"/>
+    
+</odoo>   

@@ -1,0 +1,16 @@
+<odoo>
+
+    <!-- Acción para el mantenimento principal -->
+    <record id="action_maintenance_main" model="ir.actions.act_window">
+        <field name="name">Mantenimiento</field>
+        <field name="res_model">maintenance.main</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menú principal -->
+    <menuitem 
+        id="maintenance_root_menu" 
+        name="Mantenimiento"
+        action="action_maintenance_main"
+        sequence="3"/>
+</odoo>

@@ -1,0 +1,13 @@
+<odoo> 
+    <record id="view_payment_history_graph" model="ir.ui.view">
+        <field name="name">payment.history.graph</field>
+        <field name="model">payment.history</field>
+        <field name="arch" type="xml">
+            <graph string="Historial de Pagos" type="bar">
+                <field name="payment_type" type="row"/>
+                <field name="amount" type="measure"/>
+                <field name="tenant_id" type="col"/>
+            </graph>
+        </field>
+    </record>
+</odoo>

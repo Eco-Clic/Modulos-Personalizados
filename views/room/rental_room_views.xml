@@ -1,0 +1,112 @@
+<odoo>
+    <record id="view_rental_room_main_form" model="ir.ui.view">
+        <field name="name">room.main.form</field>
+        <field name="model">room.main</field>
+        <field name="arch" type="xml">
+            <form string="Gestión de Habitaciones">
+                <sheet>
+                    <div class="oe_button_box" name="button_box" modifiers="{}"> 
+                        <button class="oe_stat_button" type="object"
+                                name="return_action_view_xml_id_maintenance"
+                                help="Historial de Mantenimiento"
+                                context="{'xml_id': 'action_maintenance_main'}"
+                                icon="fa-cogs">
+                            <field string="Historial de Mantenimiento"
+                                name="maintenance_history_count"
+                                widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button" type="object"
+                                name="return_action_view_xml_id_contract"
+                                help="Historial de Contratos"
+                                context="{'xml_id': 'action_contract_room'}"
+                                icon="fa-book">
+                            <field string="Historial de Contratos"
+                                name="contract_history_count"
+                                widget="statinfo"/>
+                        </button>   
+                    </div>
+                    <div class="o_col o_col_6">
+                        <group>
+                            <field name="image_1920" widget="image"
+                                   options="{'preview_image': 'image_1920', 'size': (128, 128)}"
+                                   class="oe_avatar"/>
+                        </group>
+                    </div>
+                    <group>
+                        <group class="oe_subgroup">
+                            <field name="name"/>
+                            <field name="property_id"/>
+                            <field name="room_type"/>
+                            <field name="rental_price" widget="monetary"/>
+                            <field name="tenant_id" readonly="1"/>
+                            <field name="contract_open" readonly="1"/>
+                            <field name="responsible_id" widget="many2one_avatar"/>
+                            <field name="months_remaining"/>
+                            <field name="payment_insurance"/>
+                            <button string="Información adicional"
+                                    type="object"
+                                    name="open_payment_insurance"
+                                    class="btn-primary"
+                                    invisible="not payment_insurance"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Imágenes">
+                            <field name="room_photos" widget="many2many_binary"/>
+                        </page>
+                        <page string="Ocupantes">
+                            <group>
+                                <field name="tenant_ids" colspan="3">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Secciones" name="sections">
+                            <field name="size_m2">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="height"/>
+                                    <field name="width"/>
+                                    <field name="area"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <!-- <page string="Mobiliario y Servicios">
+                            <group class="oe_subgroup">
+                                <field name="furniture_list" widget="many2many_tags"/>
+                                <field name="services_included" widget="many2many_tags"/>
+                            </group>
+                        </page> -->
+                        <page string="Descripción" name="description">
+                            <group>
+                                <textarea name="description" colspan="2"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <record id="view_rental_room_main_tree" model="ir.ui.view">
+        <field name="name">room.main.tree</field>
+        <field name="model">room.main</field>
+        <field name="arch" type="xml">
+            <tree string="Propiedades">
+                <field name="name"/>
+                <field name="status"/>
+                <field name="room_type"/>
+            </tree>
+        </field>
+    </record>
+    
+    
+</odoo>

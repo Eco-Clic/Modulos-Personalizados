@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="ir_cron_check_maintenance_deadlines" model="ir.cron">
+            <field name="name">Revisar Mantenimientos Próximos a Finalizar</field>
+            <field name="model_id" ref="model_maintenance_main"/> 
+            <field name="state">code</field>
+            <field name="code">model.check_maintenance_deadlines()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>

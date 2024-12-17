@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record id="action_rental_contract_main" model="ir.actions.act_window">
+            <field name="name">Contratos</field>
+            <field name="res_model">property.contract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+                    
+        <record id="action_rental_contract_main_tree_view" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_rental_contract_main_tree"/>
+            <field name="act_window_id" ref="action_rental_contract_main"/>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="action_rental_contract_main_form_view" model="ir.actions.act_window.view">
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_rental_contract_main_form"/>
+            <field name="act_window_id" ref="action_rental_contract_main"/>
+            <field name="sequence">3</field>
+        </record>
+    </data>
+</odoo>

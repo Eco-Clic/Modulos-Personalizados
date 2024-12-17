@@ -1,0 +1,36 @@
+<odoo> 
+    <record id="view_payment_history_search" model="ir.ui.view">
+        <field name="name">payment.history.search</field>
+        <field name="model">payment.history</field>
+        <field name="arch" type="xml">
+            <search>
+
+                <!-- Filtros por Tipo de Pago -->
+                <filter string="Mensual" name="monthly" domain="[('payment_type', '=', 'monthly')]"/>
+                <filter string="Servicios" name="services" domain="[('payment_type', '=', 'services')]"/>
+                <filter string="Deuda" name="debt" domain="[('payment_type', '=', 'debt')]"/>
+                <filter string="Fianza" name="bail_bound" domain="[('payment_type', '=', 'bail_bound')]"/>
+                <filter string="Mantenimientos" name="maintenance" domain="[('payment_type', '=', 'maintenance')]"/>
+                <filter string="Propietarios" name="owners" domain="[('tenant_id.owner_or_tenant', '=', 'owner')]"/>
+                <filter string="Inquilinos" name="tenants" domain="[('tenant_id.owner_or_tenant', '=', 'tenant')]"/>
+
+                <!-- Filtros por Estado (Fianzas) -->
+                <group>
+                    <filter string="Fianza Publicada" name="fianza_published" 
+                            domain="[('payment_type', '=', 'bail_bound'), ('bail_bound_id.status', '=', 'published')]"/>
+                    <filter string="Fianza Pagada" name="fianza_paid" 
+                            domain="[('payment_type', '=', 'bail_bound'), ('bail_bound_id.status', '=', 'paid')]"/>
+
+                    <!-- Filtros por Estado (Deudas) -->
+                    <filter string="Deuda Pendiente" name="deuda_pending" 
+                            domain="[('payment_type', '=', 'debt'), ('debt_id.status', '=', 'pending')]"/>
+                    <filter string="Deuda Pagada" name="deuda_paid" 
+                            domain="[('payment_type', '=', 'debt'), ('debt_id.status', '=', 'paid')]"/>
+                </group>
+                
+                <field name="name"/>
+                <field name="tenant_id"/>
+            </search>
+        </field>
+    </record>
+</odoo>

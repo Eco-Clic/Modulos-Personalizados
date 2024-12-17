@@ -1,0 +1,8 @@
+<odoo>
+    <!-- Submenú de las propiedades (gestion de alquileres) -->
+    <menuitem
+        id='rental_submenu_property'
+        name='Propiedades'
+        parent='rental_management_root_menu'
+        action='action_rental_property_main'/>
+</odoo>

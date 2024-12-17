@@ -1,0 +1,21 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_property_main,access_property_main,model_property_main,base.group_user,1,1,1,1
+access_room_main,access_room_main,model_room_main,base.group_user,1,1,1,1
+access_res_partner,access_res_partner,model_res_partner,base.group_user,1,1,1,1
+access_room_sections_user,access_room_sections_user,model_room_sections,base.group_user,1,1,1,1
+access_room_contract,access_room_contract,model_room_contract,base.group_user,1,1,1,1
+access_property_contract,access_property_contract,model_property_contract,base.group_user,1,1,1,1
+access_cleaning_main,access_cleaning_main,model_cleaning_main,base.group_user,1,1,1,1
+access_maintenance_main,access_maintenance_main,model_maintenance_main,base.group_user,1,1,1,1
+access_maintenance_line,access_maintenance_line,model_maintenance_line,base.group_user,1,1,1,1
+access_wizard_payment_insurance,wizard_payment_insurance,model_wizard_payment_insurance,base.group_user,1,1,1,1
+access_service_item,access_service_item,model_service_item,base.group_user,1,1,1,1
+access_furniture_item,access_furniture_item,model_furniture_item,base.group_user,1,1,1,1
+access_cosigner,access_cosigner,model_tenant_co_signer,base.group_user,1,1,1,1
+access_occupation_history,access_occupation_history,model_room_main_occupancy,base.group_user,1,1,1,1
+access_bail_bounds_history_user,bail.bounds.history user access,model_bail_bounds_history,base.group_user,1,1,1,1
+access_booking_history_user,access_booking_history_user,model_booking_history,base.group_user,1,1,1,1
+access_debt_main_user,access_debt_main_user,model_debt_main,base.group_user,1,1,1,1
+access_res_partner_inquilinos,res.partner.inquilinos,base.model_res_partner,alquileres.group_only_inquilinos,1,1,1,1
+access_res_partner_all,res.partner.all,base.model_res_partner,alquileres.group_all_partners,1,1,1,1
+access_payment_history_user,payment.history.user,model_payment_history,base.group_user,1,1,1,1

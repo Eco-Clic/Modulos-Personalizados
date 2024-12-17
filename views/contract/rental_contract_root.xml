@@ -1,0 +1,8 @@
+<odoo>
+    <!-- Submenú de los contratos (gestion de alquileres) -->
+    <menuitem
+        id='rental_submenu_contract'
+        name='Contratos'
+        parent='rental_management_root_menu'
+        action='action_rental_contract_main'/>
+</odoo>

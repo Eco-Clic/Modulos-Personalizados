@@ -1,0 +1,90 @@
+<odoo>
+    <!-- Form contratos de propiedad -->
+    <record id="view_rental_contract_main_form" model="ir.ui.view">
+        <field name="name">property.contract.form</field>
+        <field name="model">property.contract</field>
+        <field name="arch" type="xml">
+            <form string="Contrato">
+                <sheet>
+                    <group>
+                        <group class="oe_subgroup">
+                            <field name="contract_number"/>
+                            <field name="is_active" string="Contrato Vigente por Fecha"/>
+                            <field name="active" readonly="1"/>
+                            <field name="contract_date"/>
+                            <field name="property_id"/>
+                            <field name="agency_id"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="contract_start_date"/>
+                            <field name="contract_end_date"/>
+                            <field name="renewal_terms"/>
+                            <field name="monthly_rent" widget="monetary"/>
+                            <field name="security_deposit" widget="monetary"/>
+                            <field name="penalty_terms"/>
+                        </group>
+                        <group string="Responsabilidades" class="oe_subgroup">
+                            <field name="owner_responsibilities"/>
+                            <field name="agency_responsibilities"/>
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="signed_contract" widget="signature"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Adjuntos del Contrato">
+                            <field name="contract_attachments"/>
+                        </page>
+                        <page string="Contratos de habitaciones">
+                            <field name="room_contract_ids" mode="kanban">
+                                <kanban>
+                                    <field name="name"/>
+                                    <field name="status"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_global_click">
+                                                <div class="oe_kanban_details">
+                                                    <div>
+                                                        <a type="object" name="action_open_form">
+                                                            <strong>
+                                                                <field name="name"/>
+                                                            </strong>
+                                                        </a>
+                                                    </div>
+                                                    <div>
+                                                        <span>Estado:</span>
+                                                        <field name="status"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                    </notebook>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Tree de los contratos -->
+    <record id="view_rental_contract_main_tree" model="ir.ui.view">
+        <field name="name">property.contract.tree</field>
+        <field name="model">property.contract</field>
+        <field name="arch" type="xml">
+            <tree string="Contratos">
+                <field name="property_id"/>
+                <field name="contract_number"/>
+                <field name="active"/>
+                <field name="contract_start_date"/>
+                <field name="contract_end_date"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

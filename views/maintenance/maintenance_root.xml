@@ -1,0 +1,40 @@
+<odoo>
+    <!-- Submenú del calendario -->
+    <menuitem 
+        id="maintenance_calendar_menu" 
+        name="Calendario" 
+        parent="maintenance_root_menu" 
+        action="action_maintenance_calendar" 
+        sequence="20"/>
+
+    <!-- Submenú de empleados -->
+    <menuitem 
+        id="maintenance_employees_menu" 
+        name="Empleados" 
+        action="action_maintenance_employees"
+        parent="maintenance_root_menu"
+        sequence="30"/>
+
+    <!-- Submenú de muebles -->
+    <!-- <menuitem 
+        id="rental_menu_furniture_items" 
+        name="Muebles" 
+        action="action_rent_furniture_room_item"
+        parent="maintenance_root_menu"
+        sequence="40"/> -->
+
+    <!-- Submenú de graficos -->
+    <menuitem
+        id="maintenance_graph"
+        name="Graficos"
+        action="action_maintenance_graph_pivot"
+        parent="maintenance_root_menu"
+        sequence="60"/>
+
+    <!-- Submenú de mantenimiento (gestion de propiedades) -->
+    <menuitem 
+        id="rental_menu_issue" 
+        name="Mantenimientos" 
+        parent="property_management_root_menu"
+        action="action_mantenimiento_management" sequence="5"/>
+</odoo>

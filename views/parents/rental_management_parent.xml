@@ -1,0 +1,7 @@
+<odoo>
+    <!-- Menú principal -->
+    <menuitem 
+        id="rental_management_root_menu" 
+        name="Gestión de Alquileres" 
+        sequence="2"/>   
+</odoo>

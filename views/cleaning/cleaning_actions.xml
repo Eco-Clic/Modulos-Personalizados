@@ -1,0 +1,8 @@
+<odoo>
+    <!-- Acción para la limpieza -->
+    <record id="action_cleaning" model="ir.actions.act_window">
+        <field name="name">Limpieza</field>
+        <field name="res_model">cleaning.main</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

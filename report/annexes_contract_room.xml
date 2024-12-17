@@ -1,0 +1,103 @@
+<odoo>
+    <data>
+        <template id="report_contrato_anex_room">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+
+                        <style>
+                            *{
+                                margin: 0;
+                                padding: 0;
+                                box-sizing: border-box;
+                            }
+                            body{
+                                padding: 20px;
+                                text-align: center;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                flex-direction: column;
+                                gap: 30px;
+                                width: 100%;
+                            }
+                            div{
+                                display: flex;
+                                gap: 200px;
+                            }
+                        </style>
+                        
+                        <p style="text-align: center; font-size: 1.2em; line-height: 1.5; margin: -50px 0 20px 0;">
+                            <b>
+                                ANEXO DE RENOVACIÓN DEL CONTRATO DE ARRENDAMIENTO DE HABITACIÓN
+                                NÚMERO <span style="color: red;"><t t-esc="doc.room_id.name"/></span> DE LA VIVIENDA SITUADA EN LA <span style="color: red;"><t t-esc="doc.property_id.address"/></span>
+                            </b>
+                        </p>
+
+                        <p>
+                            En <t t-esc="doc.company_id.city"/> a <t t-esc="time.strftime('%d/%m/%Y')"/>
+                        </p>
+
+                        <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; margin-bottom: 20px;">REUNIDOS</b>
+
+                        <p>
+                            De una parte, <t t-esc="doc.company_id.name"/>, agencia de gestión de propiedades y alquiler
+                            compartido (habitacional), con N.I.F. <t t-esc="doc.company_id.vat"/>, y con domicilio social en 
+                            <t t-esc="doc.company_id.street"/>, <t t-esc="doc.company_id.zip"/>, <t t-esc="doc.company_id.city"/> 
+                            representada en este acto por Dña. Parasto Ehsanyar, mayor de edad, con N.I.E. Y9783531N, en su 
+                            condición de administradora, en adelante EBOSS AGENCIA representante de la parte del propietario 
+                            actuante como parte arrendadora.
+                        </p>
+
+                        <p>
+                            Y de otra parte, el inquilino Don/Doña <t t-esc="doc.tenant_id.name"/> mayor de edad, con número 
+                            identificativo <t t-esc="doc.tenant_id.vat"/> y con domicilio en la ciudad de 
+                            <t t-esc="doc.tenant_id.city"/> actuando como parte arrendataria.
+                        </p>
+
+                        <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; margin-bottom: 20px;">EXPONEN</b>
+                    
+                        <p>
+                            <b>PRIMERO.-</b> Que con fecha <t t-esc="doc.contract_date"/> ambas partes firmaron un 
+                            contrato con una duración de <t t-esc="doc.room_id.months_remaining"/> meses de arrendamiento de 
+                            habitación situada en la <t t-esc="doc.property_id.address"/>.
+                        </p>
+
+                        <p>
+                            <b>SEGUNDO.-</b> Con fecha de <t t-esc="time.strftime('%d/%m/%Y')"/>, la parte arrendataria comunicó 
+                            a la parte arrendadora su decisión de renovar el contrato por (FEHCA).
+                        </p>
+
+                        <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; margin-bottom: 20px;">ACUERDAN</b>
+
+                        <p>
+                            <b>PRIMERO.-</b> El arrendatario firmará el anexo de renovación del contrato de arrendamiento, el
+                            cual está explicado en la parte superior, por un período de <t t-esc="doc.room_id.months_remaining"/> meses.
+                        </p>
+
+                        <p>
+                            <b>SEGUNDO.-</b> Las partes declaran que firman el anexo de renovación del contrato de arrendamiento
+                            para el período de <t t-esc="doc.room_id.months_remaining"/> meses de dicha habitación, manteniendo
+                            el mismo alquiler, importe de la fianza y condiciones establecidas en el contrato original de
+                            arrendamiento de esa habitación.
+                        </p>
+
+                        <p>
+                            Estando conformes ambas partes con el contenido del presente documento, lo firman por duplicado en 
+                            todas las páginas en el lugar y fecha reseñadas en el encabezamiento.
+                        </p>
+
+                        <div style="display: flex; justify-content: space-between; margin-top: 60px;">
+                            <p style="text-align: center; width: 40%;"><b>ARRENDADOR</b></p>
+                            
+                        </div>
+
+                        <div style="display: flex; margin-left: 500px; margin-top: -40px;">
+                            <p style="text-align: center; width: 100%;"><b>ARRENDATARIO</b></p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

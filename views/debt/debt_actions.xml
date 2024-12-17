@@ -1,0 +1,7 @@
+<odoo>
+    <record id="action_debt" model="ir.actions.act_window">
+        <field name="name">Deudas</field>
+        <field name="res_model">debt.main</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

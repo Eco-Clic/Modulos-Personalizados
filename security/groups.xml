@@ -1,0 +1,8 @@
+<odoo>
+    <record id="group_only_inquilinos" model="res.groups">
+        <field name="name">Grupo Solo Inquilinos</field>
+    </record>
+    <record id="group_all_partners" model="res.groups">
+        <field name="name">Grupo Todos los Partners</field>
+    </record>
+</odoo>

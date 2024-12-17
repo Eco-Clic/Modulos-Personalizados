@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="booking_recipe_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div style="font-family: Arial, sans-serif; margin-top: 10px; padding: 0;">
+                        <!-- Title -->
+                        <div style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 20px;">
+                            RECIBO DE LA RESERVA
+                        </div>
+                        <!-- Header Table -->
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">NO. Recibo</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Mes</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Finca</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Importe</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ccc;">NO. <t t-esc="doc.num_recibo"/></td>
+                                <td style="padding: 8px; border: 1px solid #ccc;"><t t-esc="doc.issue_date.strftime('%B de %Y')"/></td>
+                                <td style="padding: 8px; border: 1px solid #ccc;"><t t-esc="doc.property_id.name"/></td>
+                                <td style="padding: 8px; border: 1px solid #ccc;"><t t-esc="doc.booking_amount"/>€</td>
+                            </tr>
+                        </table>
+                        <!-- Date Section -->
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Fecha Exp.</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Fecha Vto.</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ccc;"><t t-esc="doc.issue_date.strftime('%d/%m/%Y')"/></td>
+                                <td style="padding: 8px; border: 1px solid #ccc;"><t t-esc="doc.due_date.strftime('%d/%m/%Y')"/></td>
+                            </tr>
+                        </table>
+                        <!-- Details Section -->
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">EMISOR</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">NIE</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">REF. MANDATO</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ccc;"><t t-esc="doc.responsible_id.name"/></td>
+                                <td style="padding: 8px; border: 1px solid #ccc;"><t t-esc="doc.tenant_id.vat"/></td>
+                                <td style="padding: 8px; border: 1px solid #ccc;">EBOSS AGENCIA</td>
+                            </tr>
+                        </table>
+                        <!-- Concepto Section -->
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">CONCEPTO</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">IVA</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">IRPF</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">IMPORTE</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ccc;">COBRO RESERVA MES <t t-esc="doc.issue_date.strftime('%d/%m/%Y')"/></td>
+                                <td style="padding: 8px; border: 1px solid #ccc;"><t t-esc="doc.iva"/>%</td>
+                                <td style="padding: 8px; border: 1px solid #ccc;"><t t-esc="doc.irpf"/>%</td>
+                                <td style="padding: 8px; border: 1px solid #ccc;"><t t-esc="doc.booking_amount"/>€</td>
+                            </tr>
+                        </table>
+                        <!-- Totals Section -->
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <tr>
+                                <td style="text-align: right; padding: 8px; border: 1px solid #ccc;">TOTAL BASE:</td>
+                                <td style="padding: 8px; border: 1px solid #ccc; text-align: right;"><t t-esc="doc.booking_amount"/>€</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; padding: 8px; border: 1px solid #ccc;">IVA:</td>
+                                <td style="padding: 8px; border: 1px solid #ccc; text-align: right;">0,00€</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; padding: 8px; border: 1px solid #ccc;">IRPF:</td>
+                                <td style="padding: 8px; border: 1px solid #ccc; text-align: right;">0,00€</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; padding: 8px; border: 1px solid #ccc; font-weight: bold;">TOTAL:</td>
+                                <td style="padding: 8px; border: 1px solid #ccc; text-align: right; font-weight: bold;"><t t-esc="doc.booking_amount"/>€</td>
+                            </tr>
+                        </table>
+                        <!-- Payment Details -->
+                        <div style="margin-top: 20px;">
+                            <strong>FORMA DE COBRO:</strong> TRANSFERENCIA<br/>
+                            <strong>IBAN:</strong> ES2200730100540890651303
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <strong>PAGADO POR:</strong> <t t-esc="doc.tenant_id.name"/><br/>
+                            <strong>NIE:</strong> <t t-esc="doc.tenant_id.vat"/><br/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

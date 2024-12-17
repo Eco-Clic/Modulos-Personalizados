@@ -1,0 +1,489 @@
+<odoo>
+    <data>
+        <template id="report_contrato_room">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                            <h1 style="text-align: center; font-size: 1.2em; line-height: 1.5; margin: -50px 0 20px 0;">
+                                <b>
+                                    <u>
+                                        CONTRATO DE ARRENDAMIENTO DE HABITACIÓN (POR TEMPORADA)
+                                    </u>
+                                </b>
+                            </h1>
+                            <div class="page">
+                            <p>
+                                En <t t-esc="o.company_id.city"/> a <t t-esc="time.strftime('%d/%m/%Y')"/>
+                            </p>
+                            <br/>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">REUNIDOS</b>
+                            <br/>
+
+                            <p>
+                                De una parte, Don/Doña <t t-esc="o.tenant_id.name"/> con DNI <t t-esc="o.tenant_id.vat"/> y con domicilio en 
+                                <t t-esc="o.tenant_id.street"/>, <t t-esc="o.tenant_id.zip"/>, 
+                                <t t-esc="o.tenant_id.city"/>, con N.I.F. <t t-esc="o.company_id.vat"/>, 
+                                y con domicilio social en <t t-esc="o.company_id.street"/>, 
+                                <t t-esc="o.company_id.zip"/>, <t t-esc="o.company_id.city"/>, 
+                                <t t-esc="o.company_id.state_id.name"/> representada en este acto por Dña. Parasto Ehsanyar, mayor de edad, con N.I.E.
+                                Y9783531N, en su condición de administradora, en adelante EBOSS AGENCIA representante de la parte del propietario actuando como parte arrendadora.
+                            </p>
+                            <br/>
+
+                            <p>
+                                De otra parte, D, ——————————— mayor de edad, con NIE ——————————— y con domicilio en C ———————————,
+                                Dª ——————————— mayor de edad, con NIE ——————————— y con domicilio en C ———————————,
+                                ambos actuando como parte arrendataria.
+                            </p>
+                            <br/>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">INTERVIENEN</b>
+                            <br/>
+
+                            <p>
+                                Las partes arrendatarias actúan en su propio nombre y derecho.
+                            </p>
+                            <br/>
+
+                            <p>
+                                Persona física empresaria Parasto Ehsanyar con NIE Y9783531N y con domicilio fiscal en la calle 
+                                <t t-esc="o.company_id.street"/>, <t t-esc="o.company_id.city"/>, 
+                                <t t-esc="o.company_id.state_id.name"/>, actuando como Representante de la parte del Propietario. Ambas partes se reconocen la capacidad legal necesaria para celebrar el presente contrato, a cuyo efecto.
+                            </p>
+                            <br/>
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">EXPONEN : PRIMERO.-</b>
+                            <br/>
+                            <p>Que Da Parasto Ehsanyar actuando como parte arrendadora , tiene pleno dominio del inmueble amueblado <t t-esc="o.property_id.address"/>, 
+                                inmueble que consta de <t t-esc="o.property_id.number_of_rooms"/>, <b>(<t t-esc="o.sections_with_data"/>)</b></p>
+
+                            <p>Se aporta un anexo en relación del inventario del mobiliario y contenido de la vivienda, incluyendo los
+                                electrodomésticos de la vivienda.</p>
+                            
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">SEGUNDO.-</b>
+                            <br/>
+                            <p>Que Da Parasto Ehsanyar ha convenido con D, ———————————
+                                ——————————— el parte arrendamiento de la habitación amueblada (NUMERO HABITACION) cuya superficie y
+                                composición, incluido el mobiliario, así como demás características, son perfectamente conocidas por el
+                                arrendatario.</p>
+
+                            <p>El arrendamiento de dicha habitación dará derecho al uso común con el resto de
+                                arrendatarios de la vivienda de las zonas comunes de la misma. Se adjunta inventario del mobiliario
+                                existente en este momento en la habitación arrendada y en las zonas comunes de la vivienda. El
+                                arrendamiento se realiza con sujeción al régimen jurídico establecido en la Ley de Arrendamientos.
+                                Urbanos de 24 de Noviembre de 1994, que llevan a cabo por medio del presente contrato y con arreglo
+                                a las siguientes.</p>
+                            <br/>
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">ESTIPULACIONES</b>
+                            <br/>
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">PRIMERA.- DESTINO.</b>
+                            <br/>
+                            <p>Que Da parasto ehsanyar arrienda a D/Da ——————————— la habitación descrita en el expositivo
+                            segundo de este contrato para ser destinado a constituir vivienda temporal del arrendatario durante el periodo comprendido entre el mes del marzodel 2024a 31 de
+                            agosto del 2024por motivo de Trabajo. Así, la habitación objeto de este contrato no tendrá en ningún caso la
+                            finalidad de satisfacer la necesidad de vivienda permanente del arrendatario.</p>
+                            
+                            <p>La parte arrendataria no podrá modificar el destino mencionado sin el previo consentimiento por escrito del
+                            arrendador. El incumplimiento de este precepto será motivo de rescisión del contrato.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">SEGUNDA.-DERECHO DE ACCESO A LA VIVIENDA DELARRENDADOR.</b>
+                            <br/>
+                            <p>El arrendador podrá acceder a las zonas comunes de la vivienda y a las habitaciones que
+                            circunstancial mente no se encuentren arrendadas en el momento del acceso a la vivienda. En este sentido, la
+                            parte arrendataria se obliga a no cambiar la cerradura de la puerta de la vivienda sin el previo consentimiento de
+                            la parte arrendadora, salvo casos de urgencia.</p>
+
+                            <p>El incumplimiento de lo previsto en la presente estipulación por parte del arrendatario o por cualquier persona
+                            que este en la vivienda será considerado causa de solución del contrato de arrendamiento y motivo de desahucio
+                            del arrendatario, siendo éste responsable de los daños y perjuicios que el impedimento de acceso a la
+                            vivienda puedan ocasionar al arrendador, entre otros la pérdida de beneficios por no poder arrendar otras
+                            habitaciones.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">TERCERA Invitados en la Vivienda:</b>
+                            <br/>
+                            <p>El arrendatario podrá recibir invitados una vez al mes, con una duración máxima de 5 horas, previa organización con
+                            los compañeros de la vivienda. En caso de que el arrendatario desee que los invitados permanezcan en la vivienda por
+                            más tiempo, deberá obtener autorización previa de la agencia, notificando al comercial del departamento de alquileres
+                            por escrito, ya sea mediante correo electrónico o mensaje de WhatsApp.</p>
+
+                            <p>El incumplimiento de esta obligación será considerado una infracción grave del contrato de arrendamiento y podrá
+                            tener las siguientes consecuencias:</p>
+
+                                <li>Finalización del contrato de arrendamiento por parte del arrendador.</li>
+                            
+                                <li>Pérdida total de la fianza como penalización, sin derecho a devolución, para cubrir los costos derivados de la gestión,
+                                posibles daños y molestias ocasionadas a los demás arrendatarios.</li>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">CUARTA.- ESTADO.</b>
+                            <br/>
+                            <p>El arrendatario declara recibir la habitación en un buen estado de uso y conservación y se compromete
+                            a devolverla en el mismo estado a la conclusión de la relación contractual.</p>
+                            <br/>
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">QUINTA.- DURACIÓN.</b>
+                            <br/>
+                            <p>El arrendamiento se pacta por el plazo de <t t-esc="o.room_id.months_remaining"/>, a contar desde el día <t t-esc="o.contract_start_date"/> a <t t-esc="o.contract_end_date"/></p>
+                            
+                            <p>En consecuencia, el presente contrato finalizará por todo y de forma automática, es decir, sin necesidad
+                            de requerimiento alguno una vez transcurrido dicho plazo.</p>
+
+                            <p>A la finalización del contrato, la parte arrendataria deberá dejar la habitación y el resto de la vivienda libre de sus
+                            efectos personales u otros es enseres propios.</p>
+
+                            <p>La parte arrendataria entregara las llaves de la vivienda y de la habitación a la parte arrendadora,
+                            excepto que las partes en su momento lleguen a un acuerdo para otorgar un nuevo contrato de
+                            arrendamiento.</p>
+
+                            <p>La parte arrendataria podrá desistir anticipadamente el contrato, avisando a la parte arrendadora por escrito con
+                            un mínimo de DOS MESES de antelación al momento en la que el desistimiento sería efectivo.</p>
+
+                            <p>El desistimiento no generará ningún tipo de indemnización o penalización.</p>
+
+                            <p>El arrendatario no puede abonar la habitación a mitad del mes.</p>
+
+                            <p>Debe hacerlo al final del mes con dos meses de antelación avisado.</p>
+
+                            <p>Con 30 días de antelación al día de salida del inquilino, el arrendador tendrá el derecho de mostrar la
+                            habitación a otro inquilino si está en proceso de alquiler.</p>
+
+                            <p>La presentación de la habitación se realizará mediante una video llamada.</p>
+
+                            <p>En este caso, el inquilino debería colaborar con la agencia manteniendo limpia y ordenada la
+                            habitación, abriendo la puerta, y, en caso de poder estar presente durante la presentación, también
+                            puede ser presencial con el agente.</p>
+
+                            <p>En ambos casos, el inquilino debe colaborar con el agente.</p>
+
+                            <p>Cuando se resuelva el contrato la parte arrendataria deberá abonar a la parte arrendadora todo pago
+                            devengado y no pagado por el arrendamiento durante el tiempo que el contrato ha estado en vigor. Si
+                            la parte arrendataria no avisara con los dos meses de preaviso, podría acarrear una penalización por
+                            parte del arrendador por daños y perjuicios del mes de la fianza.</p>
+
+                            <p>Durante el presente contrato, la parte arrendataria acepta utilizar de forma compartida con el resto de
+                            habitantes de la vivienda las zonas comunes.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">SEXTA.- RENTA.</b>
+                            <br/>
+                            <p>El arrendatario abonará al arrendador, en concepto de renta, la cantidad de  <span t-esc="o.rent_in_words"/> EUROS
+                            <t t-esc='o.monthly_rent'/> EUROS mensuales, que deberá satisfacer el inquilino por adelantado a partir del mes de <span t-esc="o.month_sing_in_words"/>,
+                            El arrendatario entrega la cantidad de <span t-esc="o.security_deposit_in_words"/> EUROS <span t-esc="o.security_deposit"/> EUROS en
+                            concepto de la parte proporcional del mes de <span t-esc="o.month_sing_in_words"/> quedando este documento como comprobante de pago.</p>
+                            <br/>
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">Seguro de Impagos:</b>
+                            <br/>
+                            <p>El pago que corresponde al arrendatario, del 100% es de <span t-esc="o.monthly_rent"/>, y debe abonarse el día de entrada en la vivienda.
+                            COMO IMPORTE DE ALQULIER</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">SÉPTIMA:Impago de la Renta:</b>
+                            <br/>
+                            <p>En caso de que el arrendatario deje de pagar la renta mensual y finalice el mes sin haber realizado dicho pago, se
+                            considerará un impago. Este incumplimiento será motivo suficiente para la pérdida total de la fianza, sin derecho a
+                            devolución, y dará lugar a la finalización del contrato de arrendamiento por parte del arrendador.</p>
+
+                            <p>El arrendador se reserva el derecho a tomar las acciones legales necesarias para recuperar cualquier saldo pendiente no
+                            cubierto por la fianza.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">OCTAVA .- GASTOS GENERALES Y SUMINISTROS.</b>
+                            <br/>
+                            <p>Gastos Generales:</p>
+
+                            <p>La limpieza mensual en todas las áreas comunes está incluida en la mensualidad.  </p>
+
+                            <p>Servicio de mantenimiento: El departamento de mantenimiento realizará la revisión y, en caso de que exista
+                            cobertura, cubrirá total o parcialmente los gastos. De lo contrario, todos los costos correrán a cargo de los
+                            arrendatarios, dependiendo del caso.</p>
+
+                            <p>Atención al cliente disponible las 24 horas.</p>
+
+                            <p>Gastos de la comunidad.</p>
+
+                            <p>Tasa de basura.</p>
+
+                            <p>Dentro de los cinco primeros días de cada mes, mediante ingreso o transferencia bancaria
+                            en el número de cuenta del Agente.
+                            TITULAR : EBOSS EMPRENDEDOR S.L
+                            NUMERO DE CUENTA: ES8701828749900201608630</p>
+
+                            <b>Los Suministro</b>
+
+                            <p>Los suministros de luz, gas, agua e internet no están incluidos en la mensualidad y irán a cargo del arrendatario.
+                            En el caso de que el arrendatario /a tenga un menor de edad, los servicios y suministros se dividirán de la siguiente
+                            manera:</p>
+
+                            <li>Si el menor tiene entre 3 y 8 años, su consumo se considerará la mitad del consumo de una persona adulta.</li>
+                            <li>Si el menor tiene más de 8 años, su consumo se considerará equivalente al de una persona adulta, y los gastos se
+                            calcularán en base a esa consideración.</li>
+
+                            <p>El incumplimiento de la obligación de pago o notificación del justificante del pago en el periodo fijado será
+                            motivo de resolución del contrato, dando derecho al arrendador a solicitar el desahucio, siendo por cuenta del
+                            arrendatario los gastos que estas acciones originen.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">NOVENA: PROTECCIÓN DE DATOS. INCLUSIÓN EN FICHERO DE MOROSIDAD</b>
+                            <br/>
+                            <p>El arrendador reconoce que la legislación sobre protección de datos personales (Ley Orgánica 3/2018, de 5 de
+                            diciembre, de Protección de Datos Personales y garantía de los derechos digitales) establece una serie de
+                            obligaciones en el tratamiento
+                            de datos de carácter personal, entre las que destaca la prohibición de realizar cesiones de datos de carácter personal
+                            sin la correspondiente autorización del titular de los datos personales. A tal efecto, El arrendador:</p>
+
+                            <ol type="A">
+                                <li>Únicamente accederá a los datos personales de clientes y demás personas físicas relacionadas con el arrendatario
+                                si tal acceso fuese necesario para cumplir con los servicios objeto del presente contrato</li>
+
+                                <li><ol>Se compromete a:</ol></li>
+                                    <li>Utilizar los datos de carácter personal a los que tenga acceso única y exclusivamente para cumplir con sus
+                                    obligaciones contractuales para con el arrendatario.</li>
+
+                                    <li>Observar y adoptar cuantas medidas de seguridad sean necesarias para asegurar la confidencialidad, secreto e
+                                    integridad de los datos de carácter personal a los que tenga acceso, así como a adoptar en el futuro cuantas medidas
+                                    de seguridad sean exigidas por las leyes y reglamentos destinadas a preservar el secreto, confidencialidad e
+                                    integridad en el tratamiento automatizado de datos personales.</li>
+
+                                    <li>A no ceder en ningún caso a terceras personas los datos de carácter personal a los que tenga acceso, ni tan siquiera
+                                    a efectos de su conservación.</li>
+                            </ol>
+
+                            <p>Los datos personales que el Inquilino facilita en el presente contrato y que pueda facilitar en el futuro son
+                            necesarios para la celebración del presente contrato, y serán tratados por el Propietario con la finalidad de gestionar
+                            el contrato de arrendamiento de la vivienda y sobre la base de la ejecución de dicha relación contractual.</p>
+
+                            <p>El Propietario no comunicará los datos personales del Inquilino a terceros, salvo cuando sea necesario para el cumplimiento de obligaciones
+                            legales, sin perjuicio de que los prestadores de servicios de gestión administrativa del Propietario puedan tener
+                            acceso a los datos personales del Inquilino para la prestación de dichos servicios. El Propietario no llevará a cabo
+                            transferencias internacionales de datos personales.</p>
+
+                            <p>El Propietario conservará los datos en tanto que la relación contractual se mantenga vigente, conservándolos
+                            posteriormente, debidamente bloqueados, por el plazo de prescripción de las acciones de acuerdo con la normativa
+                            civil aplicable.</p>
+                            
+                            <p>El Inquilino podrá ejercitar sus derechos de acceso, rectificación, supresión y a la portabilidad de sus datos, así
+                            como a la limitación del tratamiento de los mismos, dirigiéndose al Propietario en la dirección que figura en el
+                            encabezamiento del presente contrato, y acreditando debidamente su identidad. Asimismo, el Inquilino tiene
+                            derecho a presentar una reclamación ante la Agencia Española de Protección de Datos.</p>
+
+                            <p>El Propietario informa al Inquilino que en caso de impago de las cantidades de la renta, sus datos personales podrán
+                            ser cedidos a un fichero de solvencia patrimonial en base al interés legítimo de prevención del fraude, previo
+                            requerimiento de pago extrajudicial y notificación de dicha inclusión en ficheros de insolvencia patrimonial.</p>
+
+                            <p>En caso de incorporación de los datos de impagos del Inquilino en un fichero de solvencia patrimonial, el Inquilino
+                            recibirá, en el plazo máximo de un mes desde la inscripción de la deuda en el fichero, una comunicación del titular
+                            de dicho fichero informándole de la incorporación de sus datos personales en el mismo.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">DÉCIMA:Cláusula de Actualización de Datos:</b>
+                            <br/>
+                            <p>El arrendatario se compromete a notificar al arrendador cualquier cambio en sus datos personales, tales como
+                            dirección, número de teléfono, correo electrónico y documento de identificación, en un plazo máximo de [7] días
+                            hábiles desde que se produzca el cambio. Esta información es fundamental para garantizar la correcta comunicación
+                            entre ambas partes durante la vigencia del contrato. El incumplimiento de esta obligación podrá ser considerado una
+                            violación de los términos del contrato.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">DÉCIMO PRIMERA.- DERECHO DE ADQUISICIÓN PREFERENTE.</b>
+                            <br/>
+                            <p>Con expresa renuncia de las partes a lo dispuesto en el artículo 31 de la LAU., se acuerda que en caso de venta
+                            del inmueble arrendado no tendrá el arrendatario derecho de adquisición preferente ni sobre la vivienda ni sobre
+                            la habitación. El arrendador comunicará al arrendatario con SESENTA días de antelación a la fecha de
+                            formalización del contrato de compraventa su intención de vender el inmueble.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">DÉCIMO SEGUNDA.- OBRAS.</b>
+                            <br/>
+                            <p>Las pequeñas reparaciones que exija el desgaste por el uso ordinario de la habitación serán de cargo
+                            del arrendatario. No podrá realizar la parte arrendataria ningún otro tipo de obra o modificación en la habitación o
+                            en la vivienda, ni en el edificio al que pertenece, sin el consentimiento expreso de la parte arrendadora.</p>
+
+                            <p>La obras que si fueran autorizadas quedarían en beneficio de la vivienda, no pudiendo la parte
+                            arrendataria reclamar a la parte arrendadora indemnización alguna. La parte arrendataria será
+                            exclusivamente responsable de los daños que pueda causar a la habitación, a la vivienda o a cualquier tercero como
+                            consecuencia de dichas obras realizadas.</p>
+
+                            <p>A pesar de no tener la consideración de obra, se prohíbe expresamente al arrendatario la realización de agujeros o
+                            perforaciones en las paredes del inmueble, descontándose de la fianza el importe que sea necesario para que las
+                            paredes recuperen su estado original en su caso.</p>
+
+                            <p>Cada habitación tiene derecho a un solo juego de llaves,si el arrendatario desea tener más llaves, puede hacer una
+                            copia por su cuenta con el permiso del arrendador.</p>
+
+                            <p>Debe entregar ambos juegos de llaves al momento de la salida de la habitación. Si no lo hace, perderá la fianza y el
+                            arrendador no reembolsará el costo de las llaves.</p>
+
+                            <p>Además, la empresa posee una llave adicional de la habitación y, en casos necesarios y urgentes, podrá acceder a la
+                            habitación con previo aviso al arrendatario /a</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">DÉCIMO TERCERA- CESIÓN Y SUBARRIENDO.</b>
+                            <br/>
+                            <p>Con expresa renuncia a lo dispuesto en el artículo 32 de la LAU., el arrendatario se obliga a no
+                            subarrendar, en todo o en parte, ni ceder o traspasar la habitación arrendada sin el consentimiento
+                            expreso y escrito del arrendador. El incumplimiento de esta cláusula será causa de resolución inmediata del
+                            contrato, con la penalización de la fianza.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">DÉCIMO CUARTO- CLAUSULA DE PENALIZACIÓN EXPRESA.</b>
+                            <br/>
+                            <p>La parte arrendataria hará entrega de las llaves de la vivienda y de la habitación en la que se encuentra
+                            en la fecha de finalización del presente contrato. De realizar la entrega más tarde, el arrendatario abonará al
+                            arrendador la cantidad de <span t-esc="o.late_payment_fee_in_words"/> EUROS <span t-esc="o.late_payment_fee"/> por cada día de retraso en la puesta a disposición de
+                            las llaves, en concepto de cláusula penal, además de todos los gastos que directos e indirectos que dicho retraso
+                            generen de cara a la recuperación de la vivienda y de la habitación.</p>
+
+                            <p>En caso de que el contrato no haya finalizado y el arrendatario no haya pagado el alquiler, se aplicará un interés
+                            adicional sobre la cantidad adeudada, de acuerdo con las tasas de mercado, el cual deberá ser abonado junto con el
+                            alquiler pendiente.</p>
+                            
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">DÉCIMO QUINTO- NORMAS DE CONVIVENCIA.</b>
+                            <br/>
+                            <p>La parte arrendataria se obliga a cumplir en todo momento y durante toda la vigencia del contrato a las
+                            normas de la comunidad de propietarios, especialmente las relativas a la convivencia.</p>
+
+                            <p>Mediante el presente contrato la parte arrendataria acepta utilizar de forma compartida con el resto de habitantes de
+                            la vivienda la zonas comunes indicadas en la estipulación primera. Con este fin, se obliga al cumplimiento de
+                            las normas de convivencia, mantenimiento, respeto y conducta contenidas.</p>
+
+                            <p>La parte arrendataria se obliga a mantener las zonas comunes de la vivienda sobre las que se le
+                            concede el derecho de uso en buenas condiciones de orden e higiene.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">DÉCIMO SEXTA:prohibición de animales en las zonas comunes de la vivienda:</b>
+                            <br/>
+                            <p>En caso de que el arrendatario cuente con permiso por escrito para mantener mascotas dentro de su habitación, se
+                            prohíbe estrictamente la presencia de animales en todas las zonas comunes de la vivienda, como el salón, cocina,
+                            baños compartidos, pasillos internos y demás espacios compartidos. Los arrendatarios deberán mantener a los
+                            animales exclusivamente dentro de su habitación, bajo su control y supervisión, sin permitir su acceso a las áreas
+                            comunes de la vivienda en ningún momento. El incumplimiento de esta norma conllevará sanciones establecidas en el
+                            contrato de arrendamiento y en las políticas normativas de alquiler.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">DÉCIMO SÉPTIMO:- FIANZA.</b>
+                            <br/>
+                            <p>A la firma de este contrato, el arrendatario entrega al arrendador, en concepto de fianza, la cantidad de
+                            <span t-esc="o.security_deposit_in_words"/> EUROS <span t-esc="o.security_deposit"/> EUROS.</p>
+
+                            <p>La fianza y la gratina de pago no se retendrá hasta la finalización del contrato.</p>
+
+                            <p>El día de salida, el arrendador firmará el documento de finalización del presente contrato y se
+                            procederá a la devolución de la fianza y la gratina de pago en un plazo mínimo de 3 días y máximo de 5 días,
+                            descontando los suministros pendientes y las posibles indemnizaciones por daños a los muebles.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">DÉCIMO CTAVO:Alquiler pagado por adelantado y salida sin aviso previo:</b>
+                            <br/>
+                            <p>En caso de que el arrendatario haya pagado el alquiler del mes por adelantado pero decida desalojar la vivienda sin
+                            respetar el plazo de preaviso de dos meses estipulado en el contrato, la agencia devolverá el alquiler pagado
+                            correspondiente al mes no utilizado, siempre que el inquilino desaloje la vivienda antes del inicio de dicho mes. No
+                            obstante, se descontarán los costos de los suministros y los posibles daños a la propiedad. Adicionalmente, el
+                            arrendatario perderá en todo caso la fianza depositada, como penalización por no cumplir con el plazo de preaviso
+                            establecido en el contrato.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">DECIMO NOVENO: EMPADRONAMIENTO</b>
+                            <br/>
+                            <p>En caso de que el inquilino desee empadronarse en la vivienda, deben haber transcurrido al menos
+                            un meses desde el inicio de su arrendamiento de la habitación. Después de completar el
+                            empadronamiento, debe permanecer en la vivienda durante al menos 5 meses adicionales, lo que
+                            resultaría en un tiempo mínimo de 6 meses en total.</p>
+
+                            <p>En caso de la salida, deberá darse de baja en el empadronamiento y presentar el documento
+                            correspondiente al arrendador.</p>
+
+                            <p>Si la persona ha salido de la vivienda sin cumplir el plazo mínimo de 6 meses perderá la fianza.
+                            en caso de haber cumplido el tiempo establecido, sin presentar el documento de baja de
+                            empadronamiento, debe realizar este trámite en un plazo máximo de un mes. Si no lo hace en ese
+                            plazo después de la salida, perderá la fianza.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">VIGÉSIMO..- INCUMPLIMIENTO DE OBLIGACIONES.</b>
+                            <br/>
+                            <p>El incumplimiento por cualquiera de las partes de las obligaciones resultantes del contrato dará derecho a la
+                            parte que hubiere cumplido las suyas a exigir el cumplimiento de la obligación o a promover la resolución del
+                            contrato de acuerdo con lo dispuesto en el artículo 1.124 del Código Civil.</p>
+
+                            <p>Además, el arrendador podrá resolver de pleno derecho el contrato por las siguientes causas:</p>
+
+                            <ol type="A">
+                                <li>La falta de pago de la renta o, en su caso, de cualquiera de las cantidades cuyo pago haya asumido
+                                corresponda al arrendatario.</li>
+                                <li>La falta de pago del importe de la fianza</li>
+                                <li>La realización de daños causados dolosa mente en la finca o de obras no consentidas por el arrendador
+                                cuando el consentimiento de éste sea necesario.</li>
+                                <li>Cuando en el inmueble tengan lugar actividades molestas, insalubres, nocivas, peligrosas o ilícitas.</li>
+                                <ol><li>Cuando en el inmueble tengan lugar actividades molestas, insalubres, nocivas, peligrosas o ilícitas.
+                                    <li>No tener visitantes frecuentes, es decir, cada semana.</li>
+
+                                    <li>No fumar dentro de las zonas comunes. En caso de fumar en su habitación,
+                                    mantener siempre la ventana abierta.</li>
+
+                                    <li>No poner música a alto volumen.</li>
+
+                                    <li>No hacer ruidos que molesten a los compañeros o a los vecinos.
+                                    Mantener limpias y ordenadas las zonas comunes después de usarlas.</li>
+
+                                    <li>No ocupar los utensilios de cocina durante muchas horas.</li>
+
+                                </li></ol>
+                            </ol>
+                            
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">VIGÉSIMO PRIMERO:Referencia a Políticas Normativas de Alquileres:</b>
+                            <br/>
+                            <p>El presente contrato de arrendamiento incluye y hace referencia al Documento de Políticas Normativas
+                            de Alquileres, que forma parte integral del contrato. El arrendatario declara haber recibido, leído y
+                            comprendido dicho documento, y acepta cumplir con todas las normas y condiciones establecidas en el
+                            mismo.</p>
+
+                            <p>El Documento de Políticas Normativas de Alquileres se encuentra adjunto a este contrato y puede ser
+                            modificado con el consentimiento mutuo de las partes, siempre que dichas modificaciones sean
+                            notificadas por escrito al arrendatario. Cualquier incumplimiento de las políticas contenidas en el
+                            documento podrá ser considerado una infracción del contrato de arrendamiento y dará lugar a las
+                            consecuencias establecidas en el mismo.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">VIGÉSIMO SEGUNDO.- DOMICILIO A EFECTO DE NOTIFICACIONES.</b>
+                            <br/>
+                            <p>Las partes fijan como domicilio a efectos de notificaciones derivadas de la relación contractual el que figura para
+                            cada uno de ellos en el encabezamiento del contrato. Deberán notificarse mutuamente una parte a la otra cualquier
+                            cambio que se produzca en este sentido.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">VIGÉSIMO TERCERO - LEGISLACIÓN APLICABLE.</b>
+                            <br/>
+                            <p>En todo lo no previsto en el presente contrato, éste se regirá por lo dispuesto en la Ley 29/1.994, de 24
+                            de Noviembre, de Arrendamientos Urbanos, y supletoria mente por lo dispuesto en el Código Civil.</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">VIGÉSIMO CUARTO -Notificaciones.</b>
+                            <br/>
+                            <p>"Para cualquier notificación entre las partes, se designan los contactos que figuran en el enca-
+                            bezamiento de este contrato.</p>
+
+                            <b>Departamento de Mantenimiento:</b>
+                            <p>Número de teléfono: +34 614 27 69 65</p>
+                            <p>Correo electrónico: mantenimiento@eboss-agencia.com</p>
+
+                            <b>Departamento de Administración:</b>
+                            <p>Número de teléfono: (+34614192392)</p>
+                            <p>Correo electrónico: administracion@eboss-agencia.com</p>
+
+                            <b>Departamento de Gestión de Alquileres:</b>
+                            <p>Número de teléfono: (+34614162373)</p>
+                            <p>Correo electrónico: alquileres@eboss-agencia.com</p>
+
+                            <b>Datos de contacto del arrendatario/a:</b>
+                            <p>Número de teléfono: (+34602870910)</p>
+                            <p>Correo electrónico: Tofanrahmatzada12345@gmail.com</p>
+
+                            <b>Datos de contacto de emergencia del arrendatario/a.</b>
+                            <p>Número de teléfono: (+34602870910)</p>
+                            <p>Correo electrónico: Tofanrahmatzada12345@gmail.com</p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; maring-bottom: 20px;">VIGÉSIMO QUINTO.- SUMISIÓN.</b>
+                            <br/>
+                            <p>Los contratantes se someten expresamente a los Juzgados y Tribunales de la ciudad en la que se
+                            encuentra ubicada la habitación arrendada, para todas aquellas cuestiones litigiosas que pudieran
+                            derivarse del mismo.</p>
+
+                            <p>Y con el carácter expresado en la intervención, firman el presente contrato por duplicado, en tres folios
+                            escritos por el anverso numeradas sus caras del uno al tres, en el lugar y fecha indicados.</p>
+
+                            <div style="display: flex; justify-content: space-between; margin-top: 60px;">
+                                <p style="text-align: center; width: 40%;"><b>ARRENDADOR</b></p>
+                                
+                            </div>
+
+                            <div style="display: flex; margin-left: 500px; margin-top: -40px;">
+                                <p style="text-align: center; width: 100%;"><b>ARRENDATARIO</b></p>
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

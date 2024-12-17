@@ -1,0 +1,19 @@
+<odoo>
+    <!-- Filtro para las busquedas -->
+    <record id="view_res_partner_search_inherit_alquileres" model="ir.ui.view">
+        <field name="name">res.partner.search.inherit.alquileres</field>
+        <field name="model">res.partner</field>
+        <field name="priority" eval="20"/>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="owner_or_tenant"/>
+            </xpath>
+            <xpath expr="//filter[@name='type_company']" position="after">
+                <!-- Filtros personalizados -->
+                <filter string="Propietarios" name="owner" domain="[('owner_or_tenant', '=', 'owner')]"/>
+                <filter string="Inquilinos" name="tenant" domain="[('owner_or_tenant', '=', 'tenant')]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

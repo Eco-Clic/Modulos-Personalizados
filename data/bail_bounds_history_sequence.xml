@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_bail_bound_history" model="ir.sequence">
+        <field name="name">Secuencia de Fianzas</field>
+        <field name="code">bail.bounds.hsitory.sequence</field>
+        <field name="prefix">FIZ-</field>
+        <field name="padding">4</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

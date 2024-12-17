@@ -1,0 +1,28 @@
+<odoo>
+    <!-- Regla: Ver solo inquilinos -->
+    <record id="rule_only_inquilinos" model="ir.rule">
+        <field name="name">Regla Solo Inquilinos</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="groups" eval="[(4, ref('alquileres.group_only_inquilinos'))]"/>
+        <field name="domain_force">['|', ('owner_or_tenant', '=', 'tenant'), ('id', '=', user.partner_id.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+
+
+
+    <!-- Regla: Ver todos -->
+    <record id="rule_all_partners" model="ir.rule">
+        <field name="name">Regla Todos los Partners</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="groups" eval="[(4, ref('alquileres.group_all_partners'))]"/>
+        <field name="domain_force">[]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

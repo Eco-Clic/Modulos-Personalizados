@@ -1,0 +1,44 @@
+<odoo>
+
+    <!-- Tree para las deudas -->
+    <record id="view_debt_tree" model="ir.ui.view">
+        <field name="name">debt.main.tree</field>
+        <field name="model">debt.main</field>
+        <field name="arch" type="xml">
+            <tree string="Deudas">
+                <field name="tenant_id"/>
+                <field name="amount_due"/>
+                <field name="date_origin"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_debt_form" model="ir.ui.view">
+        <field name="name">debt.main.form</field>
+        <field name="model">debt.main</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,pending, paid"/>
+                    <button name="action_change_status" type="object" string="Cambiar Estado" class="oe_highlight"/>
+                    <button name="action_change_status" type="object" string="Cancelar"/>
+                </header>
+
+                <field name="name"/>
+
+                <group string="Descripcion deuda">
+                    <field name="tenant_id"/>
+                    <field name="amount_due"/>
+                    <field name="date_origin"/>
+                </group>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

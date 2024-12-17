@@ -1,0 +1,7 @@
+<odoo>
+    <!-- Menú principal -->
+    <menuitem 
+        id="property_management_root_menu" 
+        name="Gestión de Propiedades" 
+        sequence="1"/>   
+</odoo>

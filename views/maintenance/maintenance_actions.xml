@@ -1,0 +1,38 @@
+<odoo>
+    <!-- Acción para los empleados -->
+    <record id="action_maintenance_employees" model="ir.actions.act_window">
+        <field name="name">Empleados</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Acción para los muebles
+    <record id="action_rent_furniture_room_item" model="ir.actions.act_window">
+        <field name="name">Muebles</field>
+        <field name="res_model">furniture.item</field>
+        <field name="view_mode">tree,form</field>
+    </record> -->
+
+    <!-- Acción para el calendario -->
+    <record id="action_maintenance_calendar" model="ir.actions.act_window">
+        <field name="name">Calendario</field>
+        <field name="res_model">calendar.event</field>
+        <field name="view_mode">calendar</field>
+    </record>
+    
+    <!-- Acción para los graficos -->
+    <record id="action_maintenance_graph_pivot" model="ir.actions.act_window">
+        <field name="name">Graficos</field>
+        <field name="res_model">maintenance.main</field>
+        <field name="view_mode">graph,pivot</field>
+    </record>
+
+    <!-- Acción para la mantenimiento (gestion de propiedades) -->
+    <record id="action_mantenimiento_management" model="ir.actions.act_window">
+        <field name="name">Mantenimientos</field>
+        <field name="res_model">maintenance.main</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

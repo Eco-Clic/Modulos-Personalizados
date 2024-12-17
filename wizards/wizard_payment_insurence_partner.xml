@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_wizard_payment_insurance_form" model="ir.ui.view">
+        <field name="name">Wizard Seguro de Pago</field>
+        <field name="model">wizard.payment.insurance.partner</field>
+        <field name="arch" type="xml">
+            <form string="Wizard para Seguro de Pago">
+                <group>
+                    <field name="additional_delivery"/>
+                    <field name="insurance_date"/>
+                    <field name="policy_amount"/>
+                    <field name='departure_date'/>
+                </group>
+                <footer>
+                    <button string="Confirmar" type="object" name="confirm_payment_insurance" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+                <field name="room_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+</odoo>

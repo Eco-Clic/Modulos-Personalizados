@@ -1,0 +1,10 @@
+<odoo>
+    <!-- Submenu habitaciones (gestion de procesos) -->
+    <menuitem 
+        id="rental_menu_room" 
+        name="Habitaciones" 
+        parent="property_management_root_menu"
+        action="action_rental_room"
+        sequence="3"/>
+
+</odoo>

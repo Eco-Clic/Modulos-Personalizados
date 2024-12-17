@@ -1,0 +1,7 @@
+<odoo>
+    <record id="action_bail_bounds" model="ir.actions.act_window">
+        <field name="name">Fianzas</field>
+        <field name="res_model">bail.bounds.history</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

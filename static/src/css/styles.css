@@ -1,0 +1,12 @@
+.info-row{
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    border-color: #000;
+}
+
+.subheading{
+    color: #007bff;
+    font-weight: bold;
+    font-size: 16px;
+}

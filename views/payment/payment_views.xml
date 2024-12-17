@@ -1,0 +1,48 @@
+<odoo>
+    <record id="view_payment_history_tree" model="ir.ui.view">
+        <field name="name">payment.history.tree</field>
+        <field name="model">payment.history</field>
+        <field name="arch" type="xml">
+            <tree string="Historial de Pagos">
+                <field name="tenant_id"/>
+                <field name="payment_type"/>
+                <field name="inmueble"/>
+                <field name="amount"/>
+                <field name="property_id"/>
+                <field name="room_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_payment_history_form" model="ir.ui.view">
+        <field name="name">payment.history.form</field>
+        <field name="model">payment.history</field>
+        <field name="arch" type="xml">
+            <form string="Pagos">
+                <group string="Descripcion del pago">
+                    <field name="tenant_id" string="Inquilino/Owner"/>
+                    <field name="payment_type" string="Tipo de pago"/>
+                    <field name="inmueble" string="Propiedad/Habitacion"
+                        invisible="payment_type in ('bail_bound', 'debt')"/>
+                    <field name="amount" string="Cantidad"/>
+                    <field name="date_payment"/>
+                    <field name="property_id" 
+                        string="Propiedad"
+                        invisible="payment_type in ('bail_bound', 'debt')"/>
+                    <field name="room_id"
+                        string="Habitación"
+                        invisible="payment_type in ('bail_bound', 'debt')"/>
+                    <field name="debt_id"
+                        invisible="payment_type in ('monthly','services','bail_bound')"/>
+                    <field name="bail_bound_id" 
+                        invisible="payment_type in ('monthly','services','debt')"/>
+                </group>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,11 @@
+<odoo>
+
+    <!-- Submenú de limpieza -->
+    <menuitem 
+        id="cleaning_menu" 
+        name="Limpieza" 
+        action="action_cleaning"
+        parent="maintenance_root_menu"
+        sequence="50"/>
+        
+</odoo>

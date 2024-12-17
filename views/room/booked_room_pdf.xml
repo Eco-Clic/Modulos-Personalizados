@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="print_booked_room" model="ir.actions.report">
+			<field name="name">Habitación Reservada</field>
+			<field name="model">room.main</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">alquileres.booked_room_template</field>
+			<field name="report_file">alquileres.booked_room_template</field>
+			<field name="binding_model_id" ref="model_room_main"/>
+			<field name="binding_type">report</field>
+		</record>
+	</data>
+</odoo>

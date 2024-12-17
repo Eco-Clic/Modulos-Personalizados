@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>  
+    
+        <menuitem id="menu_pagos"
+                name="Pagos"
+                parent="account.menu_finance"
+                sequence="1"
+                action="action_payment_history"/>
+
+        <!-- Menú Deudas -->
+        <menuitem id="menu_deudas"
+                name="Deudas"
+                parent="account.menu_finance"
+                sequence="2"
+                action="action_debt"/>
+
+        <!-- Menú Mantenimientos -->
+
+        <menuitem id="menu_mantenimientos"
+                name="Mantenimientos"
+                parent="account.menu_finance"
+                sequence="3"
+                action="action_bills_maintenance_contabilidad" />
+
+        <!-- Menú Fianzas -->
+        <menuitem id="menu_finance_receivables"
+                name="Fianzas"
+                parent="account.menu_finance"
+                sequence="4"
+                action="action_bail_bounds" />
+
+        <menuitem id="menu_grafics_payments"
+                name="Graficos"
+                parent="account.menu_finance"
+                sequence="5"
+                action="action_graph_payments"/>
+</odoo>

@@ -1,0 +1,36 @@
+<odoo>
+    <record id="view_booking_form" model="ir.ui.view">
+        <field name="name">booking.history.form</field>
+        <field name="model">booking.history</field>
+        <field name="arch" type="xml">
+            <form string="Reservas">
+                <field name='name'/>
+                <group string="Descripción Reserva">
+                   <field name='room_id' readonly="1"/>
+                    <field name='tenant_id' readonly="1"/>
+                    <field name="booking_amount" widget="monetary" readonly="1"/>
+                    <field name="issue_date" widget="date" readonly="1"/>
+                    <field name="due_date" widget="date" readonly="1"/>
+                    <field name="iva" widget="float" digits="[6,2]" readonly="1"/>
+                    <field name="irpf" widget="float" digits="[6,2]" readonly="1"/>
+                </group>
+                <div class="oe_chatter">
+                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_booking_tree" model="ir.ui.view">
+        <field name="name">booking.history.tree</field>
+        <field name="model">booking.history</field>
+        <field name="arch" type="xml">
+            <tree string="Reservas">
+                <field name='name'/>
+                <field name='room_id'/>
+                <field name='tenant_id'/>
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_room_contract" model="ir.sequence">
+        <field name="name">Secuencia de los contratos de habitacion</field>
+        <field name="code">room.contract.sequence</field>
+        <field name="prefix">RCNT-</field>
+        <field name="padding">4</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

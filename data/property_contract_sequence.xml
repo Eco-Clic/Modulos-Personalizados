@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_property_contract" model="ir.sequence">
+        <field name="name">Secuencia de los contratos de propiedad</field>
+        <field name="code">property.contract.sequence</field>
+        <field name="prefix">PCNT-</field>
+        <field name="padding">4</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

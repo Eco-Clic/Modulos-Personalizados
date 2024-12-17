@@ -1,0 +1,19 @@
+<odoo>
+
+    <!-- Acciones para habitaciones (gestion de procesos)-->
+    <record id="action_rental_room" model="ir.actions.act_window">
+        <field name="name">Habitaciones</field>
+        <field name="res_model">room.main</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban,form,tree</field>
+    </record>
+
+    <!-- Accion para el wizard de seguro de pago -->
+    <record id="action_wizard_payment_insurance" model="ir.actions.act_window">
+        <field name="name">Seguro de Pago</field>
+        <field name="res_model">wizard.payment.insurance</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

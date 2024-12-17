@@ -1,0 +1,8 @@
+<odoo>
+    <!-- Submenú de las habitaciones (gestion de alquileres) -->
+    <menuitem
+        id='rental_submenu_rental'
+        name='Habitaciones'
+        parent='rental_management_root_menu'
+        action='action_rental_room_main'/>
+</odoo>

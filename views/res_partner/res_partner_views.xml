@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tenant_form" model="ir.ui.view">
+        <field name="name">tenant.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='contact_addresses']" position="after">
+                <page string="Información de Alquiler">
+                    <group>
+                        <group class="oe_subgroup">
+                            <field name="owner_or_tenant"/>
+                            <field name="birth_date"/>
+                            <field name="identification_number"/>
+                            <field name="marital_status"/>
+                            <field name="nationality"/>
+                            <field name="employment_status"/>
+                            <!-- <field name="payment_insurance"/>
+                            <button string="Información adicional"
+                                    type="object"
+                                    name="open_payment_insurance"
+                                    class="btn-primary"/>  -->
+                        
+                        </group>
+                        <group class="oe_subgroup">
+                            <field name="monthly_income" widget="monetary"/>
+                            <field name="lease_start_date"/>
+                            <field name="lease_end_date"/>
+                            <field name="monthly_rent" widget="monetary"/>
+                            <field name="deposit_amount" widget="monetary"/>
+                            <field name="guarantees"/>
+                        </group>
+
+                        <group string="Co-firmantes" colspan="2">
+                            <field name="co_signer_ids" widget="many2many_avatar"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Información del Contrato">
+                    <group class="oe_subgroup">
+                        <field name="signed_lease_contract"/>
+                        <field name="id_document"/>
+                        <field name="deposit_receipt" widget="monetary"/>
+                        <field name="income_proof"/>
+                        <field name="additional_guarantees"/>
+                    </group>
+                </page>
+                <!-- <page string="Historial de Pagos de Alquiler">
+                    <field name="rental_payment_history_ids" readonly="1"/>
+                </page> -->
+            </xpath>
+
+            <!-- Botones para Check-In y Check-Out -->
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <!-- Botón para Check-In -->
+                    <!-- <button name="action_open_check_in_wizard"
+                            string="Abrir Contrato"
+                            type="object"
+                            class="btn-primary"/> -->
+                    <!-- Botón para Check-Out -->
+                    <!-- <button name="action_open_check_out_wizard"
+                            string="Cerrar Contrato"
+                            type="object"
+                            class="btn-secondary"/>
+                    <button name="action_open_rental_payment_wizard"
+                            string="Pago de Alquiler"
+                            type="object"
+                            class="btn-secondary"/> -->
+                </header>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="partner_view_buttons_inherit" model="ir.ui.view">
+        <field name="name">partner.view.buttons.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.partner_view_buttons"/>
+        <field name="arch" type="xml">
+            <!-- Insertamos el nuevo botón justo después del botón de facturas -->
+            <xpath expr="//button[@name='action_view_partner_invoices']" position="after">
+                <div class="oe_button_box" name="button_box" modifiers="{}">
+                    <!-- <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Historial de Incidentes"
+                            context="{'xml_id': 'action_incident_history'}"
+                            icon="fa-exclamation-circle">
+                        <field string="Historial de Incidentes"
+                               name="incident_history_count"
+                               widget="statinfo"/>
+                    </button>
+
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Historial de Pagos de Alquiler"
+                            context="{'xml_id': 'action_rental_payment_history'}"
+                            icon="fa-money">
+                        <field string="Historial de Pagos de Alquiler"
+                               name="rental_payment_count"
+                               widget="statinfo"/>
+                    </button> -->
+<!-- 
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Historial de Comunicaciones"
+                            context="{'xml_id': 'action_communication_history'}"
+                            icon="fa-comment">
+                        <field string="Historial de Comunicaciones"
+                               name="communication_history_count"
+                               widget="statinfo"/>
+                    </button> -->
+
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            string="Historial de Pagos"
+                            help="Haz clic para ver el hsitorial de pagos"
+                            context="{'xml_id': 'action_payment_history'}"
+                            icon="fa-money">
+                        <field string="Historial de pagos"
+                            name="payment_count"
+                            widget="statinfo"/>
+                    </button>
+
+                    <button class="oe_stat_button" type="object"
+                            name="action_view_contracts"
+                            string="Historial de Contratos"
+                            help="Haz clic para ver el historial de contratos asociados."
+                            context="{}"
+                            icon="fa-book">
+                        <field string="Contratos Asociados"
+                            name="contract_count"
+                            widget="statinfo"/>
+                    </button>
+
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Historial de Fianzas"
+                            context="{'xml_id': 'action_bail_bounds'}"
+                            icon="fa-university ">
+                        <field string="Historial de Fianzas"
+                               name="bail_bound_count"
+                               widget="statinfo"/>
+                    </button>
+                    
+                    <button class="oe_stat_button" type="object"
+                            name="return_action_view_xml_id"
+                            help="Historial de Deudas"
+                            context="{'xml_id': 'action_debt'}"
+                            icon="fa-briefcase">
+                        <field string="Historial de Deudas"
+                               name="debt_count"
+                               widget="statinfo"/>
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

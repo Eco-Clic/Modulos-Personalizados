@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_contract_property" model="ir.actions.act_window">
+        <field name="name">Contratos de Propiedades</field>
+        <field name="res_model">property.contract</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+    
+    <record id="action_contract_room" model="ir.actions.act_window">
+        <field name="name">Contratos de Habitaciones</field>
+        <field name="res_model">room.contract</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+    
+    <record id="action_contract_room" model="ir.actions.act_window">
+        <field name="name">Contratos Habitacion</field>
+        <field name="res_model">room.contract</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+
+                
+    <record id="action_room_contract_tree_view" model="ir.actions.act_window.view">
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_room_contract_kanban"/>
+        <field name="act_window_id" ref="action_contract_room"/>
+        <field name="sequence">2</field>
+    </record>
+
+
+    <record id="action_room_contract_form_view" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_room_contract_form_no_editable"/>
+        <field name="act_window_id" ref="action_contract_room"/>
+        <field name="sequence">3</field>
+    </record>
+</odoo>

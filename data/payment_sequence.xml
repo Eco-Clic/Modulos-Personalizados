@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_payment_history" model="ir.sequence">
+        <field name="name">Secuencia de Pagos</field>
+        <field name="code">payment.history</field>
+        <field name="prefix">PA-</field>
+        <field name="padding">4</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

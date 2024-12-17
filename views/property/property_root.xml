@@ -1,0 +1,10 @@
+<odoo>
+    <!-- Submenú de las propiedades (gestion de las propiedas) -->
+    <menuitem 
+        id="rental_menu_property" 
+        name="Propiedades" 
+        parent="property_management_root_menu"
+        action="action_property_main" 
+        sequence="2"/>
+
+</odoo>

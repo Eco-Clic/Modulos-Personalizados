@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Vista Tree Main Maintenances -->
+    <record id="view_bills_maintenance_tree" model="ir.ui.view">
+        <field name="name">maintenance.main.tree</field>
+        <field name="model">maintenance.main</field>
+        <field name="arch" type="xml">
+            <tree string="Mantenimiento">
+                <field name="sequence"/>
+                <field name="employer_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="room_propierty_reference"/>
+                <field name="urgent" widget="boolean_toggle" options="{'color': 'red'}" string="Urgente"/>
+                <field name="status"/>
+                <button name="action_aceptar" type="object" string="Aceptar" class="btn-primary" />
+                <button name="action_rechazar" type="object" string="Rechazar" class="btn-danger" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

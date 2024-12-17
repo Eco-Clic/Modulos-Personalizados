@@ -1,0 +1,167 @@
+<odoo>
+    <data>
+        <template id="contract_termination_room">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+
+                            <style>
+                            *{
+                                margin: 0;
+                                padding: 0;
+                                box-sizing: border-box;
+                            }
+                            body{
+                                padding: 20px;
+                                text-align: left;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                flex-direction: column;
+                                gap: 30px;
+                                width: 100%;
+                            }
+                            div{
+                                display: flex;
+                                gap: 200px;
+                            }
+                            table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin: 20px 0;
+                            }
+                            table th, table td {
+                                border: 1px solid #000;
+                                padding: 8px;
+                                text-align: left;
+                            }
+                            table th {
+                                background-color: #f2f2f2;
+                            }
+                            table th[rowspan="2"] {
+                                vertical-align: middle;
+                            }
+                            table th[colspan="3"] {
+                                text-align: center;
+                            }
+                            </style>
+
+                        <body>
+                            <p style="text-align: center; font-size: 1.2em; line-height: 1.5; margin-bottom: 30px;">
+                                <b>FINALIZACIÓN DE CONTRATO DE ARRENDAMIENTO DE HABITACIÓN
+                                <br/><t t-esc="doc.property_id.address"/></b>
+                            </p>
+
+                            <p>
+                                En Barcelona a <t t-esc="time.strftime('%d/%m/%Y')"/>
+                            </p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; margin-bottom: 30px;">REUNIDOS</b>
+
+                            <p>
+                                De una parte, <t t-esc="doc.company_id.name"/> con <t t-esc="doc.company_id.vat"/> y con DOMICILIO fiscal con nombre registrado (EBOSS-Emprendedor) en la ciudad de <t t-esc="doc.company_id.city"/>, <t t-esc="doc.company_id.street"/>
+                                representante de la parte del propietario actuante como parte arrendadora.
+                            </p>
+                            
+                            <p>
+                                <b>Y de otra parte, el INQUILINO</b> <t t-esc="doc.tenant_id.name"/> mayor de edad, con número identificativo <t t-esc="doc.tenant_id.vat"/> y con domicilio en la ciudad de <t t-esc="doc.tenant_id.city"/> , actuando como parte arrendataria.
+                            </p>
+
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; margin-bottom: 30px;">EXPONEN</b>
+
+                            <p>
+                                <b>PRIMERO.-</b> Que con fecha <t t-esc="doc.contract_history_ids.contract_date"/> ambas partes firmaron contrato de arrendamiento de habitación situado en la <t t-esc="doc.property_id.address"/>
+                            </p>
+                            <p>    
+                                <b>SEGUNDO.-</b> Con fecha <t t-esc="time.strftime('%d/%m/%Y')"/>, la parte arrendataria comunicó a la parte arrendadora su decisión de no continuar con el contrato. En consecuencia, está previsto que se mude el día <b>-------</b>.
+                            </p>
+                            
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; margin-top: 30px; margin-bottom: 60px;">ACUERDAN</b>
+
+                            <p style="text-align: left;"><b>PRIMERO.-</b> Dar por terminado el contrato de arrendamiento de habitación suscrito en fecha <t t-esc="doc.due_date"/> al que se hace mención en el primer expositivo.</p>
+                            <p style="text-align: left;"><b>SEGUNDO.-</b> El arrendatario hace entrega al arrendador de la posesión de la habitación así como de las llaves de la habitación y de la entrada.</p>
+                            <p style="text-align: left;"><b>TERCERO.-</b> El arrendador revisará la habitación en el transcurso de los próximos 5 días para hacer constar que recibió la habitación en buen estado de conservación, para no tener que formular reclamación de indemnización por daños o perjuicios.</p>
+                            
+                            <b style="display: block; text-align: center; font-size: 1.2em; line-height: 1.5; margin-bottom: 30px; margin-top: 140px;">FINALIZACIÓN DE CONTRATO DE ARRENDAMIENTO DE HABITACIÓN NUMERO 2 DE LA VIVIENDA SITUADO EN <br/><t t-esc="doc.property_id.address"/></b>
+                            
+                            <p><b>CUARTO.-</b> El arrendatario recibió, con la firma de la finalización del contrato, la fianza de <b><t t-esc="doc.contract_history_ids.security_deposit"/></b>.</p>
+                            
+                            <p>La cantidad se entregará después de revisar la habitación y la parte proporcional del piso descontando los suministros pendientes y las posibles indemnizaciones por daños a los muebles en un plazo máximo de 5 días.</p>
+                            <p>La parte arrendadora realizará una transferencia a la siguiente cuenta del arrendatario:</p>
+                            
+                            <!-- <p style="text-align: center;"><b><t t-esc="doc.cosigner_ids.bank_account_number"/></b></p> -->
+
+                            <!-- <p style="text-align: center;"><b>Maria Fernanda Vargas (Santander)</b></p> -->
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">Fianza</th>
+                                        <th colspan="3">Detalles</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Total los días de consumo</th>
+                                        <th>Importe aproximadamente de los suministros</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Factura de luz pendiente</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Factura de agua pendiente</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Factura de gas pendiente</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Factura de internet recibida y no pagada por el arrendatario</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Factura de internet pendiente</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mantenimiento pendiente de revisión</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p style="margin-top: 30px;"><b>QUINTO.-</b> Las partes declaran que dan por saldadas y finiquitadas las obligaciones derivadas del contrato de arrendamiento de habitación, declarando no tener nada más que reclamarse por concepto alguno.</p>
+                            
+                            <p>Estando conformes ambas partes con el contenido del presente documento, lo firman por duplicado en todas las páginas en el lugar y fecha reseñadas en el encabezamiento.</p>
+
+                            <div>
+                                <p style="text-align: center;">ARRENDADOR<br></br>ARRENDATARIO</p>
+                            </div>
+                        </body>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

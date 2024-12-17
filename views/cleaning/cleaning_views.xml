@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Vista Tree Main Cleaning -->
+    <record id="view_cleaning_tree" model="ir.ui.view">
+        <field name="name">cleaning.main.tree</field>
+        <field name="model">cleaning.main</field>
+        <field name="arch" type="xml">
+            <tree string="Limpieza">
+                <field name="sequence" string="Secuencia"/>
+                <field name="employer_id" string="Empleado Responsable"/>
+                <field name="date" string="Fecha"/>
+                <field name="room_propierty_reference" string="Vivienda/Habitación"/>
+                <field name="status" string="Estado"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form Main Cleaning -->
+    <record id="view_cleaning_form" model="ir.ui.view">
+        <field name="name">cleaning.main.form</field>
+        <field name="model">cleaning.main</field>
+        <field name="arch" type="xml">
+            <form string="Limpieza">
+                <header>
+                    <!-- Barra de estado -->
+                    <field name="status" widget="statusbar" statusbar_visible="inprogress,finalished"/>
+                    
+                    <!-- Botones de acción -->
+                    <button name="action_change_status" type="object" string="Cambiar Estado" class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Cancelar"/>
+                </header>
+
+                <sheet>
+                    <!-- Título principal -->
+                    <div class="oe_title">
+                        <h1>
+                            <field name="sequence" string="Secuencia"/>
+                        </h1>
+                    </div>
+
+                    <!-- Grupo principal -->
+                    <group>
+                        <group string="Información General">
+                            <field name="employer_id" string="Empleado Responsable"/>
+                            <field name="date" string="Fecha"/>
+                            <field name='hours_worked'/>
+                            <field name='price_per_hour'/>
+                            <field name='total_price' readonly='1'/>
+                        </group>
+                        <group string="Detalles de la Vivienda/Habitación">
+                            <field name="room_propierty_reference" string="Vivienda/Habitación"/>
+                        </group>
+                    </group>
+
+                </sheet>
+
+                <!-- Sección de Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>
